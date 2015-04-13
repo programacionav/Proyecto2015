@@ -1,5 +1,6 @@
 <?php
-//Esto es una prueba.
+
+//Esto es una prueba de GitHub
 
 namespace app\modules\admwiki\controllers;
 
