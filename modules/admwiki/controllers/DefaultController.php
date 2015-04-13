@@ -1,4 +1,5 @@
 <?php
+//Esto es una prueba.
 
 namespace app\modules\admwiki\controllers;
 
