@@ -1,5 +1,7 @@
 <?php
 
+//Esto es una prueba de GitHub
+
 namespace app\modules\admwiki\controllers;
 
 use yii\web\Controller;
