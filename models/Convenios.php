@@ -13,6 +13,8 @@ use Yii;
  * @property string $FechaFin
  * @property string $ValorConsulta
  * @property string $ValorPractica
+ *
+ * @property Obrassociales $idObraSocial0
  */
 class Convenios extends \yii\db\ActiveRecord
 {
@@ -50,5 +52,13 @@ class Convenios extends \yii\db\ActiveRecord
             'ValorConsulta' => Yii::t('app', 'Valor Consulta'),
             'ValorPractica' => Yii::t('app', 'Valor Practica'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdObraSocial0()
+    {
+        return $this->hasOne(Obrassociales::className(), ['idObraSocial' => 'idObraSocial']);
     }
 }
