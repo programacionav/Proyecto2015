@@ -9,6 +9,12 @@ use Yii;
  *
  * @property integer $idObraSocial
  * @property string $Descripcion
+ *
+ * @property Consultas[] $consultas
+ * @property Convenios[] $convenios
+ * @property Liquidacionesobrasocial[] $liquidacionesobrasocials
+ * @property Pacienteobrasocial[] $pacienteobrasocials
+ * @property Turnos[] $turnos
  */
 class Obrassociales extends \yii\db\ActiveRecord
 {
@@ -40,5 +46,45 @@ class Obrassociales extends \yii\db\ActiveRecord
             'idObraSocial' => Yii::t('app', 'Id Obra Social'),
             'Descripcion' => Yii::t('app', 'Descripcion'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getConsultas()
+    {
+        return $this->hasMany(Consultas::className(), ['idObraSocial' => 'idObraSocial']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getConvenios()
+    {
+        return $this->hasMany(Convenios::className(), ['idObraSocial' => 'idObraSocial']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLiquidacionesobrasocials()
+    {
+        return $this->hasMany(Liquidacionesobrasocial::className(), ['idObraSocial' => 'idObraSocial']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPacienteobrasocials()
+    {
+        return $this->hasMany(Pacienteobrasocial::className(), ['idObraSocial' => 'idObraSocial']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTurnos()
+    {
+        return $this->hasMany(Turnos::className(), ['idObraSocial' => 'idObraSocial']);
     }
 }
