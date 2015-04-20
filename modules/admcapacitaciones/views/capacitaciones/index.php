@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\admcapacitaciones\models\CapacitacionesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Capacitaciones';
+$this->title = 'WTF';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="capacitaciones-index">
