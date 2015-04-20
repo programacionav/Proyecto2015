@@ -1,0 +1,69 @@
+<?php
+
+namespace app\modules\admcomedor\models;
+
+use Yii;
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
+use app\models\LiquidacionMensual;
+
+/**
+ * LiquidacionMensualSearch represents the model behind the search form about `app\models\LiquidacionMensual`.
+ */
+class LiquidacionMensualSearch extends LiquidacionMensual
+{
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['idliquidacion', 'Mes', 'Anio', 'idEmpleado', 'Pagada'], 'integer'],
+            [['Total'], 'number'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function scenarios()
+    {
+        // bypass scenarios() implementation in the parent class
+        return Model::scenarios();
+    }
+
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
+     */
+    public function search($params)
+    {
+        $query = LiquidacionMensual::find();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'idliquidacion' => $this->idliquidacion,
+            'Mes' => $this->Mes,
+            'Anio' => $this->Anio,
+            'Total' => $this->Total,
+            'idEmpleado' => $this->idEmpleado,
+            'Pagada' => $this->Pagada,
+        ]);
+
+        return $dataProvider;
+    }
+}
