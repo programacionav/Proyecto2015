@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Pacientes */
 
-$this->title = $model->idPaciente;
+$this->title = $model->Apellido." ".$model->Nombre;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pacientes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,11 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idPaciente',
-            'Apellido',
-            'Nombre',
+            //'idPaciente',
+            //'Apellido',
+            //'Nombre',
             'DNI',
-            'idLocalidad',
+            //'idLocalidad',
             'Direccion',
             'FechaNac',
             'FechaAlta',
@@ -41,3 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <?php echo Html::a(Html::encode('Ver Consultas'),['consultas/index','id'=>$model->idPaciente])?>
+        <a class="navbar-brand" href="index.php?r=admpacientes/pacientes">Ver Practicas</a>
+      <a class="navbar-brand" href="index.php?r=admpacientes/consultas">Ver Consultas</a>
+    
+   
