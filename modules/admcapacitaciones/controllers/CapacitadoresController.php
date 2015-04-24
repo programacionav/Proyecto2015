@@ -30,6 +30,18 @@ class CapacitadoresController extends Controller
      * Lists all Capacitadores models.
      * @return mixed
      */
+    public function actionPrueba()
+    {
+    	$capacitador = new CapacitadoresSearch();
+    	$capacitador = Capacitadores::find()->where(['idEspecialidad' => '1'])->one();
+    	
+    	$capacitador->Apellido = 'Ramires';
+    	$capacitador->save();
+
+    	return $this->render('prueba', [
+    			'searchModel' => $capacitador,
+    	]);
+    }
     public function actionIndex()
     {
         $searchModel = new CapacitadoresSearch();
