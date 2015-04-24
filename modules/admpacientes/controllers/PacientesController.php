@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\modules\admpacientes\ConsultasSearch;
+use app\models\FormSearch;
+use yii\helpers\Html;
 
 /**
  * PacientesController implements the CRUD actions for Pacientes model.
@@ -57,16 +59,42 @@ class PacientesController extends Controller
     public function actionFicha($id)
     {
         $paciente=$this->findModel($id);
-         $searchModel = new ConsultasSearch();
-         $param=Yii::$app->request->queryParams;
-         $param['idPaciente']=$id;
+        $searchModel = new ConsultasSearch();
+        $param=Yii::$app->request->queryParams;
+        $param['idPaciente']=$id;
         $dataProvider = $searchModel->search($param);
+        
+        $form = new FormSearch(); //Sabri
+        $search=null;   //Sabri
+        $rows=null;   //Sabri
+        
+        if($form->load(Yii::$app->request->get())){
+            
+            if($form->validate()){
+                
+                $search = Html::encode($form->q);
+                
+                $query = (new\yii\db\Query())
+                        ->select('FechaHora, Diagnostico, Tratamiento')
+                        ->from ('consultas')
+                        ->where('Tratamiento=:Tratamiento', [':Tratamiento' => $search]);
+                $command = $query->createCommand();
+                $rows = $command->queryAll();
+            }
+            else{
+                
+                $form ->getErrors();
+            }
+        }
         return $this->render('ficha', [
             'model' => $this->findModel($id),
             'practicas' => $paciente->practicasmedicas,
             'consultas' => $paciente->consultas,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'rows' => $rows,
+            'form' => $form,
+            'search' => $search,
         ]);
     }
 

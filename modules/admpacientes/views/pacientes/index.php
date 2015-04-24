@@ -40,3 +40,5 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
 </div>
+
+<?= Html::a(Html::encode('Menu Principal'), ['default/index']) ?>
