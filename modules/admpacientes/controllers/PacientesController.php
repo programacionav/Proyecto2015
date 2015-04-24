@@ -8,6 +8,7 @@ use app\modules\admpacientes\PacientesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\admpacientes\ConsultasSearch;
 
 /**
  * PacientesController implements the CRUD actions for Pacientes model.
@@ -50,6 +51,22 @@ class PacientesController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+    }
+    
+    public function actionFicha($id)
+    {
+        $paciente=$this->findModel($id);
+         $searchModel = new ConsultasSearch();
+         $param=Yii::$app->request->queryParams;
+         $param['idPaciente']=$id;
+        $dataProvider = $searchModel->search($param);
+        return $this->render('ficha', [
+            'model' => $this->findModel($id),
+            'practicas' => $paciente->practicasmedicas,
+            'consultas' => $paciente->consultas,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 

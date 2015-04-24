@@ -1,7 +1,17 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <a class="navbar-brand" href="index.php?r=admpacientes/pacientes">Buscar Pacientes</a><br />
-      <a class="navbar-brand" href="index.php?r=admpacientes/consultas">Consultas</a>
+
+<div class="col-md-3" style="margin-top: 50px">
+    <div class="panel panel-default" id="sidebar">
+        <div class="panel-heading" style="background-color: #333; color: #fff;" data-target="#test">PACIENTES</div>
+        <div class="panel-body" id="test">
+            <ul class="nav nav-stacked nav-collapse">
+                <li><a class="navbar-brand" href="index.php?r=admpacientes/pacientes">Buscar Pacientes</a></li>
+                <li><a class="navbar-brand" href="index.php?r=admpacientes/consultas">Consultas</a></li>
+            </ul>
+            
+            <hr />
+            
+        </div>
     </div>
+    
+</div>    
+      
