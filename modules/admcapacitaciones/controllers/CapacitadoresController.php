@@ -33,11 +33,7 @@ class CapacitadoresController extends Controller
     public function actionPrueba()
     {
     	$capacitador = new CapacitadoresSearch();
-    	$capacitador = Capacitadores::find()->where(['idEspecialidad' => '1'])->one();
-    	
-    	$capacitador->Apellido = 'Ramires';
-    	$capacitador->save();
-
+    	$capacitador = Capacitadores::find()->all();
     	return $this->render('prueba', [
     			'searchModel' => $capacitador,
     	]);
