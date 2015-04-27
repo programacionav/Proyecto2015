@@ -45,8 +45,8 @@ class Reservas extends \yii\db\ActiveRecord
         return [
             'idReserva' => 'Id Reserva',
             'Fecha' => 'Fecha',
-            'idMenu' => 'Id Menu',
-            'idEmpleado' => 'Id Empleado',
+            'idMenu' => 'Menu',
+            'idEmpleado' => 'Empleado',
             'Retiro' => 'Retiro',
         ];
     }
