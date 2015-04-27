@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Menus */
 
 $this->title = 'Create Menus';
-$this->params['breadcrumbs'][] = ['label' => 'Menuses', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Menus', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="menus-create">

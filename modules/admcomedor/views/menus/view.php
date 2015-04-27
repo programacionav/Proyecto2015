@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Menus */
 
 $this->title = $model->idMenu;
-$this->params['breadcrumbs'][] = ['label' => 'Menuses', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Menus', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="menus-view">
