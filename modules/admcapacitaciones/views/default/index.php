@@ -1,3 +1,6 @@
+<?php
+use yii\helpers\Html;
+?>
 <div class="admcapacitaciones-default-index">
     <h1><?= $this->context->action->uniqueId ?></h1>
     <p>
@@ -5,8 +8,8 @@
         The action belongs to the controller "<?= get_class($this->context) ?>"
         in the "<?= $this->context->module->id ?>" module.
     </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
+    <p><?= Html::a('Tabla Capacitaciones', ['capacitaciones/index']); ?></p>
+    <p><?= Html::a('Tabla Capacitadores', ['capacitadores/index']); ?></p>
+    <p><?= Html::a('Tabla de Empresas Capacitadoras', ['empresas-capacitadoras/index']); ?></p>
+    <p><?= Html::a('Tabla relacional Capacitaciones y Doctores', ['capacitaciones-doctores/index']) ?></p>
 </div>

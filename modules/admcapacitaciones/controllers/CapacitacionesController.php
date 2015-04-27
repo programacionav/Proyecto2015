@@ -8,7 +8,9 @@ use app\modules\admcapacitaciones\models\CapacitacionesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\app\models;
+use app\models\Capacitadores;
+use app\models\app\models;
 /**
  * CapacitacionesController implements the CRUD actions for Capacitaciones model.
  */
@@ -30,6 +32,19 @@ class CapacitacionesController extends Controller
      * Lists all Capacitaciones models.
      * @return mixed
      */
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function actionPrueba()
+    {
+    	return $this->render('prueba');
+    }
+    public function actionPorempresa($id)
+    {
+    	$capacitadores = new Capacitadores();
+    	$capacitadores = Capacitadores::find()->where(['idEmpresaCapacitadora' => $id])->all();
+    	
+    	return $this->render('porempresa', ['data' => $capacitaciones]);
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function actionIndex()
     {
         $searchModel = new CapacitacionesSearch();
@@ -40,12 +55,6 @@ class CapacitacionesController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
-    /**
-     * Displays a single Capacitaciones model.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionView($id)
     {
         return $this->render('view', [
