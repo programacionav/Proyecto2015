@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\LiquidacionMensual */
 
 $this->title = 'Create Liquidacion Mensual';
-$this->params['breadcrumbs'][] = ['label' => 'Liquidacion Mensuals', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Liquidacion Mensual', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="liquidacion-mensual-create">

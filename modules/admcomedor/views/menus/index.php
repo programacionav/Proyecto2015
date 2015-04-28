@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\admcomedor\models\MenusSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Menuses';
+$this->title = 'Menus';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="menus-index">

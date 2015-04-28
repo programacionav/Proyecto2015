@@ -9,7 +9,7 @@ use yii\helpers\Html;
         in the "<?= $this->context->module->id ?>" module.
     </p>
     <p><?= Html::a('Tabla Capacitaciones', ['capacitaciones/index']); ?></p>
-    <p><?= Html::a('Tabla Capacitadores', ['capacitacitadores/index']); ?></p>
+    <p><?= Html::a('Tabla Capacitadores', ['capacitadores/index']); ?></p>
     <p><?= Html::a('Tabla de Empresas Capacitadoras', ['empresas-capacitadoras/index']); ?></p>
     <p><?= Html::a('Tabla relacional Capacitaciones y Doctores', ['capacitaciones-doctores/index']) ?></p>
 </div>

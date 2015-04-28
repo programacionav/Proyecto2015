@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\LiquidacionMensual */
 
 $this->title = $model->idliquidacion;
-$this->params['breadcrumbs'][] = ['label' => 'Liquidacion Mensuals', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Liquidacion Mensual', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="liquidacion-mensual-view">

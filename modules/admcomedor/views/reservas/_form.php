@@ -15,10 +15,12 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'Fecha')->textInput() ?>
 
     <?= $form->field($model, 'idMenu')->textInput() ?>
-
+    
     <?= $form->field($model, 'idEmpleado')->textInput() ?>
 
     <?= $form->field($model, 'Retiro')->textInput() ?>
+    
+    <?= $form->field($model, 'Observaciones')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

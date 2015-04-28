@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\LiquidacionMensual */
 
 $this->title = 'Update Liquidacion Mensual: ' . ' ' . $model->idliquidacion;
-$this->params['breadcrumbs'][] = ['label' => 'Liquidacion Mensuals', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Liquidacion Mensual', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->idliquidacion, 'url' => ['view', 'id' => $model->idliquidacion]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
