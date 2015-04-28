@@ -8,6 +8,9 @@ use app\modules\admpersonal\models\EmpleadosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Especialidades;
+use app\models\Doctores;
+use app\models\Enfermeros;
 
 /**
  * EmpleadosController implements the CRUD actions for Empleados model.
@@ -63,6 +66,14 @@ class EmpleadosController extends Controller
         $model = new Empleados();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->tipoEmpleado == "doctor")
+                {
+                    $doc = new Doctores();
+                    $doc->idDoctor = $model->idEmpleado;
+                    $doc->idEspecialidad = $model->idEspecialidad;
+                    $doc->Matricula = "BMW123";
+                    $doc->save();
+                }
             return $this->redirect(['view', 'id' => $model->idEmpleado]);
         } else {
             return $this->render('create', [

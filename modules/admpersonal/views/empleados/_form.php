@@ -41,13 +41,14 @@ use app\models\Enfermeros;
     
     <div class="form-group field-tipo">
         <?= Html::label("Tipo", "tipo", ["class"=>"control-label", "id"=>"labelTipoEmpl"]) ?>
-        <?= Html::dropDownList("tipo", "enfermero", ["doctor"=>"Doctor", "enfermero"=>"Enfermero"], ["class"=>"form-control", "onChange"=>"tipoEmpleado(this)", "id"=>"tipoEmpleado"]) ?>
+        <?= Html::dropDownList("tipoEmpleado", "enfermero", ["doctor"=>"Doctor", "enfermero"=>"Enfermero"], ["class"=>"form-control", "onChange"=>"tipoEmpleado(this)", "id"=>"tipoEmpleado"]) ?>
     </div>
     
     <div class="form-group field-matricula">
         <?= Html::label("Matricula", "matricula",["style"=>"visibility: hidden;", "class"=>"control-label"]) ?>
         <?= Html::input("hidden", "matricula", "", ["class"=>"form-control", "id"=>"inputMatricula"])?>
     </div>
+    <?= $form->field($model, 'idEspecialidad')->hiddenInput(["value"=>"1"]) ?>
     
     <?= $form->field($model, 'FechaIngreso')->input("date") ?>
 
