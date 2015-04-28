@@ -70,6 +70,11 @@ class Licencias extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Empleados::className(), ['idEmpleado' => 'idEmpleado']);
     }
+    
+    public function arrayLicencias()
+    {
+        return $this->findBySql("select * from licencias")->all();
+    }
 
     /**
      * @return \yii\db\ActiveQuery
