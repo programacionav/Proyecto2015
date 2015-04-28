@@ -11,59 +11,37 @@ use yii\helpers\Url;
     <?php $f = ActiveForm::begin([
         
         "method" => "get",
-        "action" => Url::toRoute (['ficha', 'id' => $model->idPaciente]), 
+        "action" => Url::toRoute (['ficha', 'id' => 1]),
         "enableClientValidation" => true,
     ]);
     ?>
     
     <div class="form-group">
-        <?= $f->field($form,"q")->input("search") ?>
+        <h4>Ingresa fecha</h4>
+        <?= $f->field($form,"q")->input("desde") ?>
+        <?= $f->field($form,"h")->input("hasta") ?>
     </div>
     
     <?= Html::submitButton("Filtrar",["class" =>"btn btn-primary"]) ?>
     
     <?php $f -> end()?>
-    
-    <h3><?= $search ?></h3>
-    
-    <h3>Consultas </h3>
+<br>
 
+<h3>Consultas</h3>
     <table class="table table-bordered">
         <tr>
             <th>Fecha y Hora</th>
             <th>Diagnostico</th>
             <th>Tratamiento</th>
         </tr>
-        <?php foreach($consultas as $row): ?>
+        <?php foreach($model as $row){ ?>
         <tr>
             <td><?= $row -> FechaHora ?></td>
             <td><?= $row -> Diagnostico ?></td>
             <td><?= $row -> Tratamiento ?></td>
             
         </tr>
-        <?php        endforeach ?>
+        <?php   } ?>
     </table>
 
-    <?= Html::a(Html::encode('Volver'), ['view', 'id' => $model->idPaciente]) ?>
     
-<!-- <div class="col-md-6">
-     <?= GridView::widget([
-         'dataProvider' => $dataProvider,
-         'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-          
-            'idConsulta',
-            'FechaHora',
-            'idDoctor',
-            'idPaciente',
-            'Diagnostico:ntext',
-            'Tratamiento:ntext',
-            // 'idObraSocial',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-</div>  
--->

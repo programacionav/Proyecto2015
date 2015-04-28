@@ -11,12 +11,14 @@ use yii\base\Model;
 class FormSearch extends Model
 {
     public $q;
+    public $h;
     
     public function rules() {
         
         return [
             
-            ["q","match","pattern" => "/^[0-9a-záéíóúñ\s]+$/i", "message" => "Solo letras y numeros"]
+            ["q","match","pattern" => "/^[0-9a-záéíóúñ\s]+$/i", "message" => "Solo letras y numeros"],
+            ["h","match","pattern" => "/^[0-9a-záéíóúñ\s]+$/i", "message" => "Solo letras y numeros"]
         ];
     }
     
@@ -24,7 +26,8 @@ class FormSearch extends Model
         
         return [
             
-            'q'=> "Buscar: ",
+            'q'=> "Desde: ",
+            'h'=> "Hasta: ",
         ];
     }
 }
