@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Doctores;
 use app\models\Enfermeros;
+use app\models\Especialidades;
+$this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('position' => $this::POS_HEAD), 'jquery');
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Empleados */
@@ -11,7 +13,7 @@ use app\models\Enfermeros;
 ?>
 
 <script type="text/javascript">
-    function tipoEmpleado(elemento)
+    /*function tipoEmpleado(elemento)
     {
         var label = document.getElementById("labelTipoEmpl");
         var input = document.getElementById("inputMatricula");
@@ -20,9 +22,24 @@ use app\models\Enfermeros;
                 label.style.visibility = "visible";
                 input.type("text");
                 
-            }
+            }}*/
         
-    }
+        $(document).ready(function() {
+            $("#empleados-tipoempleado").change(
+                    function(){
+                        if ($(this).val() === "enfermero")
+                            {
+                                $("#empleados-matricula").attr("disabled","disabled")
+                            }
+                        else
+                            {
+                               $("#empleados-matricula").removeAttr("disabled") 
+                            }
+                        }
+                    )})
+        
+        
+    
 </script>
 
 <div class="empleados-form">
@@ -39,16 +56,17 @@ use app\models\Enfermeros;
 
     <?= $form->field($model, 'NroEmpleado')->textInput() ?>
     
-    <div class="form-group field-tipo">
-        <?= Html::label("Tipo", "tipo", ["class"=>"control-label", "id"=>"labelTipoEmpl"]) ?>
-        <?= Html::dropDownList("tipoEmpleado", "enfermero", ["doctor"=>"Doctor", "enfermero"=>"Enfermero"], ["class"=>"form-control", "onChange"=>"tipoEmpleado(this)", "id"=>"tipoEmpleado"]) ?>
-    </div>
+    <?= $form->field($model, "tipoEmpleado")->dropDownList(["doctor"=>"Doctor", "enfermero"=>"Enfermero"]) ?>
     
-    <div class="form-group field-matricula">
-        <?= Html::label("Matricula", "matricula",["style"=>"visibility: hidden;", "class"=>"control-label"]) ?>
-        <?= Html::input("hidden", "matricula", "", ["class"=>"form-control", "id"=>"inputMatricula"])?>
-    </div>
-    <?= $form->field($model, 'idEspecialidad')->hiddenInput(["value"=>"1"]) ?>
+    <?= $form->field($model, "matricula")->textInput() ?>
+    
+    <?php
+       $esp = new Especialidades;
+       $arrayEsp = $esp->generarArray();
+       
+    ?>
+    
+    <?= $form->field($model, 'idEspecialidad')->dropDownList($arrayEsp) ?>
     
     <?= $form->field($model, 'FechaIngreso')->input("date") ?>
 

@@ -1,11 +1,11 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
-$this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('position' => $this::POS_HEAD), 'jquery');
+//$this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('position' => $this::POS_HEAD), 'jquery');
 
 ?>
 <script type="text/javascript">
-    $(document).ready(function(e) {
+   /* $(document).ready(function(e) {
             $(".container ul > li > ul > li > a").click(
 				function()
 					{
@@ -32,7 +32,7 @@ $this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('positi
 							}
 					}
 			)
-        });
+        });*/
 </script>
 
 
@@ -45,17 +45,17 @@ $this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('positi
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Especializades<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#espVisualizar">Visualizar</a></li>
-                <li><a href="#espAgregar">Agregar</a></li>
+                <li><?= Html::a("Visualizar", ["especialidades/index"]);?></li>
+                <li><?= Html::a("Agregar", ["especialidades/create"]);?></li>
             </ul>
         </li>
         
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Empleados<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#agregarEmpleado">Agregar Empleado</a></li>
-                <li><a href="#doctores">Doctores</a></li>
-                <li><a href="#enfermeros">Enfermeros</a></li>
+                <li><?= Html::a("Agregar Empleado", ["empleados/create"]);?></li>
+                <li><?= Html::a("Doctores", ["doctores/index"]);?></li>
+                <li><?= Html::a("Enfermeros", ["enfermeros/index"]);?></li>
             </ul>
         </li>
         
@@ -65,7 +65,7 @@ $this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('positi
                 <li><a href="#licencias">Visualizar Licenciados</a></li>
                 <li><a href="#licPendientes">Pendientes</a></li>
                 <li><a href="#licHistorial">Historial</a></li>
-                <li><a href="#licAgregar">Agregar Licencia</a></li>
+                <li><a href=<?= Html::a("Url1", ["licencias/create"]);?>">Agregar Licencia</a></li>
             </ul>
         </li>
         
@@ -75,6 +75,8 @@ $this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('positi
 </div>
 
 <div id="contenido">
+    
+    
     
 </div>
 

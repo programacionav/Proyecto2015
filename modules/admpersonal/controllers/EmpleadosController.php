@@ -71,8 +71,16 @@ class EmpleadosController extends Controller
                     $doc = new Doctores();
                     $doc->idDoctor = $model->idEmpleado;
                     $doc->idEspecialidad = $model->idEspecialidad;
-                    $doc->Matricula = "BMW123";
+                    $doc->Matricula = $model->matricula;
                     $doc->save();
+                }
+            else
+                {
+                    $enf = new Enfermeros();
+                    $enf->idEnfermero = $model->idEmpleado;
+                    $enf->idEspecialidad = $model->idEspecialidad;
+                    $enf->save();
+                    
                 }
             return $this->redirect(['view', 'id' => $model->idEmpleado]);
         } else {

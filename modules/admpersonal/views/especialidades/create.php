@@ -19,3 +19,15 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
+
+<div>
+   <?php 
+    $array = $model->generarArray();
+    foreach ($array as $especialidades) {
+        print_r($especialidades);
+        //echo "Descripcion: $descripcion<br>";
+        
+    
+}
+    ?>
+</div>
