@@ -4,27 +4,38 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
+use yii\jui\DatePicker;
 
 ?>
 
     
-    <?php $f = ActiveForm::begin([
-        
-        "method" => "get",
-        "action" => Url::toRoute (['ficha', 'id' => 1]),
-        "enableClientValidation" => true,
-    ]);
-    ?>
     
     <div class="form-group">
         <h4>Ingresa fecha</h4>
-        <?= $f->field($form,"q")->input("desde") ?>
-        <?= $f->field($form,"h")->input("hasta") ?>
-    </div>
     
-    <?= Html::submitButton("Filtrar",["class" =>"btn btn-primary"]) ?>
+        
+    <?php $f = ActiveForm::begin([
+        "method"=>"post",
+        "action"=>url::toRoute(["ficha",'id'=>1]),
+        
+    ]) ?>
     
-    <?php $f -> end()?>
+     
+   <?= $f->field($form, 'q')->input('search')->widget(\yii\jui\DatePicker::classname(), [
+    //'language' => 'ru',
+    'dateFormat' => 'yyyy-MM-dd',
+]) ?>
+        </div>
+
+    <?= Html::submitButton("buscar",["class"=>"btn btn-primary"])?>
+      
+    <?php $f->end()?>
+      
+   
+    
+    
+    
+
 <br>
 
 <h3>Consultas</h3>

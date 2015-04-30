@@ -62,27 +62,42 @@ class PacientesController extends Controller
         $model=$this->findModel($id)-> consultas;
         $form = new FormSearch(); 
         $desde=null;
-        $hasta=null;
-        if($form->load(Yii::$app->request->get())){
-            
-            if($form->validate()){
+       
+        
+        //$hasta=null;
+        if($form->load(Yii::$app->request->post())){
+             
+            $DATOS = (Yii::$app->request->post());
+             
+           // if($form->validate()){
                 
                $desde = Html::encode($form->q);
-               $hasta = Html::encode($form->h);
-               $query = "Select * from consultas where FechaHora";
+              // $hasta = Html::encode($form->h);
+               $query = "Select * from consultas where idConsulta='".$DATOS["FormSearch"]["q"]."'";
                $model = $table ->findBySql($query)->all();
-            }
-            else{
-                
-                $form ->getErrors();
-            }
-        }
-        return $this->render('ficha', [
+               return $this->render('ficha', [
             'form' => $form,
             'desde' => $desde,
-            'hasta' => $hasta,
+            //'hasta' => $hasta,
             'model' => $model,
-        ]);
+             'id' => $id,
+        ]); 
+           // }
+           // else{
+                
+           //     $form ->getErrors();
+           // }
+        }
+        else{
+           return $this->render('ficha', [
+            'form' => $form,
+            'desde' => $desde,
+            //'hasta' => $hasta,
+            'model' => $model,
+        ]); 
+            
+        }
+        
     }
 
     /**
