@@ -8,6 +8,9 @@ use app\modules\admcapacitaciones\models\EmpresasCapacitadorasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Capacitaciones;
+use app\models\Capacitadores;
+use app\models\app\models;
 
 /**
  * EmpresasCapacitadorasController implements the CRUD actions for EmpresasCapacitadoras model.
@@ -48,8 +51,16 @@ class EmpresasCapacitadorasController extends Controller
      */
     public function actionView($id)
     {
+    	$capacitadores = new Capacitadores();
+    	$capacitadores = Capacitadores::find()->select(['idCapacitador'])->where(['idEmpresaCapacitadora' => $id]);
+    	$capacitaciones = new Capacitaciones();
+    	$cap = Capacitaciones::find()
+    	->where(['idCapacitador' => $capacitadores])
+    	->all();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+        	'cap' => $cap
         ]);
     }
 
