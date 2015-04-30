@@ -15,8 +15,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'idDoctor')->textInput() ?>
 
     <?= $form->field($model, 'idEspecialidad')->textInput() ?>
-    
-    <?= $form->field($model, 'idEspecialidad')->textInput() ?>
 
     <?= $form->field($model, 'Matricula')->textInput(['maxlength' => 20]) ?>
 

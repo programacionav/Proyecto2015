@@ -25,6 +25,7 @@ class LicenciasController extends Controller
             ],
         ];
     }
+    
 
     /**
      * Lists all Licencias models.
