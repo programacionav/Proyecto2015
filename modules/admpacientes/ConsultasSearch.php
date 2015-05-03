@@ -32,6 +32,15 @@ class ConsultasSearch extends Consultas
         return Model::scenarios();
     }
 
+    public function searchConsPac($idPaciente,$fechaIn,$fechaFin){
+        $table = new Consultas();
+       
+        $query = "Select * from consultas  WHERE idPaciente=$idPaciente and FechaHora BETWEEN '$fechaIn' AND '$fechaFin '";
+       
+        $model = $table ->findBySql($query)->all();  
+        return $model;
+    }
+
     /**
      * Creates data provider instance with search query applied
      *

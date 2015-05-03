@@ -58,47 +58,28 @@ class PacientesController extends Controller
     
     public function actionFicha($id)
     {
-        $table = new Consultas();
-        $model=$this->findModel($id)-> consultas;
-        $form = new FormSearch(); 
-        $desde=null;
-       
-        
-        //$hasta=null;
-        if($form->load(Yii::$app->request->post())){
-             
-            $DATOS = (Yii::$app->request->post());
-             
-           // if($form->validate()){
-                
-               $desde = Html::encode($form->q);
-              // $hasta = Html::encode($form->h);
-               $query = "Select * from consultas where idConsulta='".$DATOS["FormSearch"]["q"]."'";
-               $model = $table ->findBySql($query)->all();
-               return $this->render('ficha', [
-            'form' => $form,
-            'desde' => $desde,
-            //'hasta' => $hasta,
+     
+    $Search=new ConsultasSearch();
+    
+      if(isset(Yii::$app->request->post()['fechaIn'])){
+            $datos=Yii::$app->request->post();
+            $fechaIn=$datos['fechaIn'];
+            $fechaFin=$datos['fechaFin'];
+            $model=$Search->searchConsPac($id,$fechaIn,$fechaFin);
+             return $this->render('ficha', [
+            'id' => $id,
             'model' => $model,
-             'id' => $id,
-        ]); 
-           // }
-           // else{
-                
-           //     $form ->getErrors();
-           // }
+            ]);
+                       
+       }    
+        else{  
+            return $this->render('ficha', [
+               'id' => $id,
+               'model' => $this->findModel($id)->consultas,
+             ]);
         }
-        else{
-           return $this->render('ficha', [
-            'form' => $form,
-            'desde' => $desde,
-            //'hasta' => $hasta,
-            'model' => $model,
-        ]); 
-            
-        }
-        
-    }
+}
+
 
     /**
      * Creates a new Pacientes model.

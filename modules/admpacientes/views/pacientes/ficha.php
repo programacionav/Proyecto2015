@@ -10,30 +10,28 @@ use yii\jui\DatePicker;
 
     
     
-    <div class="form-group">
-        <h4>Ingresa fecha</h4>
-    
-        
-    <?php $f = ActiveForm::begin([
-        "method"=>"post",
-        "action"=>url::toRoute(["ficha",'id'=>1]),
-        
-    ]) ?>
-    
-     
-   <?= $f->field($form, 'q')->input('search')->widget(\yii\jui\DatePicker::classname(), [
-    //'language' => 'ru',
-    'dateFormat' => 'yyyy-MM-dd',
-]) ?>
-        </div>
+   <?= Html::beginForm(['ficha','id'=>$id], 'post') ?>
 
-    <?= Html::submitButton("buscar",["class"=>"btn btn-primary"])?>
-      
-    <?php $f->end()?>
-      
-   
+<?php Html::input('text', 'fechaIn') ?>
+<?php echo DatePicker::widget([
+    'name'  => 'fechaIn',
     
-    
+     //'language' => 'ru',
+    'dateFormat' => 'yyyy-MM-dd',
+]);
+?>
+<?php echo DatePicker::widget([
+    'name'  => 'fechaFin',
+     //'language' => 'ru',
+    'dateFormat' => 'yyyy-MM-dd',
+]);
+?>
+<?= Html::submitButton('buscar', ['class' => 'submit']) ?>    
+<?= Html::endForm ()  ?>
+
+
+<br>
+ 
     
 
 <br>
