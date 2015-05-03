@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use app\models\Doctores;
 use app\models\Enfermeros;
 use app\models\Especialidades;
+use yii\helpers\ArrayHelper;
 $this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('position' => $this::POS_HEAD), 'jquery');
 
 /* @var $this yii\web\View */
@@ -60,14 +61,10 @@ $this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('positi
     
     <?= $form->field($model, "matricula")->textInput() ?>
     
-    <?php
-       $esp = new Especialidades;
-       $arrayEsp = $esp->generarArray();
-       
-    ?>
-    
-    <?= $form->field($model, 'idEspecialidad')->dropDownList($arrayEsp) ?>
-    
+    <div class="form-group field-especialidad">
+        <?= Html::label("Especialidad", "idEspecialidad", ["class"=>"control-label"]) ?>
+        <?= Html::dropDownList("idEspecialidad", null,ArrayHelper::map(Especialidades::find()->all(), "idEspecialidad", "Descripcion"), ["class"=>"form-control", "id"=>"especialidad"]) ?>
+    </div>
     <?= $form->field($model, 'FechaIngreso')->input("date") ?>
 
     <?= $form->field($model, 'Email')->input("email", ['maxlength' => 100]) ?>
