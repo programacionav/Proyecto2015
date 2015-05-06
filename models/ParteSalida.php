@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "partesalida".
  *
  * @property integer $idParte
- * @property integer $Fecha
+ * @property string $Fecha
  * @property integer $idEmpleado
  *
  * @property Itemspartesalida[] $itemspartesalidas
@@ -31,7 +31,8 @@ class ParteSalida extends \yii\db\ActiveRecord
     {
         return [
             [['Fecha', 'idEmpleado'], 'required'],
-            [['Fecha', 'idEmpleado'], 'integer']
+            [['idEmpleado'], 'integer'],
+            [['Fecha'], 'safe'],
         ];
     }
 
