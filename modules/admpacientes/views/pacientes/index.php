@@ -23,20 +23,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+           // ['class' => 'yii\grid\SerialColumn'],
 
-            'idPaciente',
+            //'idPaciente',
             'Apellido',
             'Nombre',
             'DNI',
-            'idLocalidad',
+            //'idLocalidad',
             // 'Direccion',
             // 'FechaNac',
             // 'FechaAlta',
             // 'Email:email',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],
         ],
     ]); ?>
 
 </div>
+
+<?= Html::a(Html::encode('Menu Principal'), ['default/index']) ?>

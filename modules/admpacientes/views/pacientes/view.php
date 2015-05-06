@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Pacientes */
 
-$this->title = $model->idPaciente;
+$this->title = $model->Apellido." ".$model->Nombre;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pacientes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -14,25 +14,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->idPaciente], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->idPaciente], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
+    
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idPaciente',
-            'Apellido',
-            'Nombre',
+            //'idPaciente',
+            //'Apellido',
+            //'Nombre',
             'DNI',
-            'idLocalidad',
+            //'idLocalidad',
             'Direccion',
             'FechaNac',
             'FechaAlta',
@@ -41,3 +31,21 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+   
+   <p>
+        <?= Html::a(Html::encode('Ver Ficha'), ['ficha', 'id' => $model->idPaciente], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Actualizar'), ['update', 'id' => $model->idPaciente], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Eliminar'), ['delete', 'id' => $model->idPaciente], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                'method' => 'post',
+            ],
+        ]) ?>
+       
+       
+    </p>
+
+    

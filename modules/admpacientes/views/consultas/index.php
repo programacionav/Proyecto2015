@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'idDoctor',
             'idPaciente',
             'Diagnostico:ntext',
-            // 'Tratamiento:ntext',
+            'Tratamiento:ntext',
             // 'idObraSocial',
 
             ['class' => 'yii\grid\ActionColumn'],

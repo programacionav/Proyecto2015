@@ -15,6 +15,8 @@ use Yii;
  * @property string $TotalPagar
  * @property integer $Pagada
  * @property string $FechaPago
+ *
+ * @property Obrassociales $idObraSocial0
  */
 class Liquidacionesobrasocial extends \yii\db\ActiveRecord
 {
@@ -54,5 +56,13 @@ class Liquidacionesobrasocial extends \yii\db\ActiveRecord
             'Pagada' => Yii::t('app', 'Pagada'),
             'FechaPago' => Yii::t('app', 'Fecha Pago'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdObraSocial0()
+    {
+        return $this->hasOne(Obrassociales::className(), ['idObraSocial' => 'idObraSocial']);
     }
 }

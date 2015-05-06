@@ -8,7 +8,10 @@ use app\modules\admpacientes\PacientesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\modules\admpacientes\ConsultasSearch;
+use app\models\FormSearch;
+use yii\helpers\Html;
+use app\models\Consultas;
 /**
  * PacientesController implements the CRUD actions for Pacientes model.
  */
@@ -51,6 +54,50 @@ class PacientesController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }
+    
+    public function actionFicha($id)
+    {
+        $table = new Consultas();
+        $model=$this->findModel($id)-> consultas;
+        $form = new FormSearch(); 
+        $desde=null;
+       
+        
+        //$hasta=null;
+        if($form->load(Yii::$app->request->post())){
+             
+            $DATOS = (Yii::$app->request->post());
+             
+           // if($form->validate()){
+                
+               $desde = Html::encode($form->q);
+              // $hasta = Html::encode($form->h);
+               $query = "Select * from consultas where idConsulta='".$DATOS["FormSearch"]["q"]."'";
+               $model = $table ->findBySql($query)->all();
+               return $this->render('ficha', [
+            'form' => $form,
+            'desde' => $desde,
+            //'hasta' => $hasta,
+            'model' => $model,
+             'id' => $id,
+        ]); 
+           // }
+           // else{
+                
+           //     $form ->getErrors();
+           // }
+        }
+        else{
+           return $this->render('ficha', [
+            'form' => $form,
+            'desde' => $desde,
+            //'hasta' => $hasta,
+            'model' => $model,
+        ]); 
+            
+        }
+        
     }
 
     /**
