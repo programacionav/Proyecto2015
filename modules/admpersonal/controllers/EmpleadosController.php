@@ -35,6 +35,7 @@ class EmpleadosController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'amdpersonal';
         $searchModel = new EmpleadosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -51,6 +52,7 @@ class EmpleadosController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = 'amdpersonal';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -63,6 +65,7 @@ class EmpleadosController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = 'amdpersonal';
         $model = new Empleados();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -98,6 +101,7 @@ class EmpleadosController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'amdpersonal';
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
