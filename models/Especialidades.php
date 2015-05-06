@@ -69,4 +69,14 @@ class Especialidades extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Enfermeros::className(), ['idEspecialidad' => 'idEspecialidad']);
     }
+    
+    public function generarArray()
+    
+        {
+            $datos = $this->findBySql("select * from especialidades")->all();
+            foreach ($datos as $obj) {
+                $array[] = [$obj->idEspecialidad => $obj->Descripcion];                
+            }
+            return $array;
+        }
 }

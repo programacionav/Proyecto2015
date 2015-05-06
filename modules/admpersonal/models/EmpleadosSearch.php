@@ -15,6 +15,7 @@ class EmpleadosSearch extends Empleados
     /**
      * @inheritdoc
      */
+
     public function rules()
     {
         return [

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Doctores;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admpersonal\models\DoctoresSearch */
@@ -33,4 +34,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+</div>
+<div>
+    <?php
+    $doc = new Doctores();
+    $doc->idDoctor = 1;
+    $doc->idEspecialidad = 1;
+    $doc->Matricula = "BMW123";
+    
+    
+    ?>
 </div>

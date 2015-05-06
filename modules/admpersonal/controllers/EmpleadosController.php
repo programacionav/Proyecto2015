@@ -8,6 +8,9 @@ use app\modules\admpersonal\models\EmpleadosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Especialidades;
+use app\models\Doctores;
+use app\models\Enfermeros;
 
 /**
  * EmpleadosController implements the CRUD actions for Empleados model.
@@ -32,6 +35,7 @@ class EmpleadosController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'amdpersonal';
         $searchModel = new EmpleadosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -48,6 +52,7 @@ class EmpleadosController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = 'amdpersonal';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -60,9 +65,26 @@ class EmpleadosController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = 'amdpersonal';
         $model = new Empleados();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->tipoEmpleado == "doctor")
+                {
+                    $doc = new Doctores();
+                    $doc->idDoctor = $model->idEmpleado;
+                    $doc->idEspecialidad = $model->idEspecialidad;
+                    $doc->Matricula = $model->matricula;
+                    $doc->save();
+                }
+            else
+                {
+                    $enf = new Enfermeros();
+                    $enf->idEnfermero = $model->idEmpleado;
+                    $enf->idEspecialidad = $model->idEspecialidad;
+                    $enf->save();
+                    
+                }
             return $this->redirect(['view', 'id' => $model->idEmpleado]);
         } else {
             return $this->render('create', [
@@ -79,6 +101,7 @@ class EmpleadosController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'amdpersonal';
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

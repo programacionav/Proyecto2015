@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Especialidades;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Doctores */
@@ -12,11 +14,15 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'idDoctor')->textInput() ?>
-
-    <?= $form->field($model, 'idEspecialidad')->textInput() ?>
+    <?= //$form->field($model, 'idDoctor')->textInput()
+        Html::hiddenInput("Doctores[idDoctor]", $model->idDoctor, ['id' =>'doctores-iddoctor']);
+    ?>
     
-    <?= $form->field($model, 'idEspecialidad')->textInput() ?>
+    <div class="form-group field-doctores-idespecialidad required">
+        <?= Html::label("Especialidad", "Doctores[idEspecialidad]", ["class"=>"control-label"]) ?>
+        <?= Html::dropDownList("Doctores[idEspecialidad]", null, ArrayHelper::map(Especialidades::find()->all(), "idEspecialidad", "Descripcion"), ["class"=>"form-control", "id"=>"doctores-idespecialidad", "name"=>"Doctores[idEspecialidad]"]) ?>
+    </div>
+    <?php //= $form->field($model, 'idEspecialidad')->textInput() ?>
 
     <?= $form->field($model, 'Matricula')->textInput(['maxlength' => 20]) ?>
 
