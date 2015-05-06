@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `clinicadb`
 --
+CREATE DATABASE clinicadb;
+USE clinicadb;
 
 -- --------------------------------------------------------
 
