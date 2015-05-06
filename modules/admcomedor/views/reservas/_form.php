@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'idMenu')->textInput() ?>
     
     <?= $form->field($model, 'idEmpleado')->textInput() ?>
-
+   
     <?= $form->field($model, 'Retiro')->textInput() ?>
     
     <?= $form->field($model, 'Observaciones')->textarea(['rows' => 6]) ?>
