@@ -2,16 +2,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use app\models\Doctores;
-use app\models\Enfermeros;
-
-$Doctores = new Doctores();
-$Enfermeros = new Enfermeros();
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Empleados */
 
-$this->title = $model->idEmpleado;
+$this->title = $model->Nombre." ".$model->Apellido;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Empleados'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -31,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?= DetailView::widget([
-        'model' => array($model, $Enfermeros, $Doctores),
+        'model' => $model,
         'attributes' => [
             'idEmpleado',
             'Apellido',
@@ -42,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Email:email',
             'Activo',
             'FechaBaja',
-            'Matricula'
+            //'Matricula'
         ],
     ]) ?>
 

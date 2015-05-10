@@ -6,6 +6,7 @@ use app\models\Doctores;
 use app\models\Enfermeros;
 use app\models\Especialidades;
 use yii\helpers\ArrayHelper;
+use app\models\Sectores;
 $this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('position' => $this::POS_HEAD), 'jquery');
 
 /* @var $this yii\web\View */
@@ -28,14 +29,28 @@ $this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('positi
         $(document).ready(function() {
             $("#empleados-tipoempleado").change(
                     function(){
-                        if ($(this).val() === "enfermero")
+                        var valor = $("#empleados-tipoempleado").val();
+                        switch (valor)
                             {
-                                $("#empleados-matricula").attr("disabled","disabled")
+                                case "admin":
+                                    $("#empleados-matricula").prop("disabled","disabled");
+                                    $("#especialidad").prop("disabled","disabled");
+                                    $("#empleados-matricula").prop("disabled","disabled");
+                                    break;
+                                case "enfermero":
+                                    $("#empleados-matricula").prop("disabled","disabled");
+                                    $("#especialidad").removeAttr("disabled");
+                                    $("#idSector").prop("disabled","disabled");
+                                    break;
+                                case "doctor":
+                                    $("#especialidad").removeAttr("disabled");
+                                    $("#empleados-matricula").removeAttr("disabled");
+                                    $("#idSector").prop("disabled","disabled");
+                                    break;
+                                    
                             }
-                        else
-                            {
-                               $("#empleados-matricula").removeAttr("disabled") 
-                            }
+                        
+                     
                         }
                     )})
         
@@ -57,14 +72,20 @@ $this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('positi
 
     <?= $form->field($model, 'NroEmpleado')->textInput() ?>
     
-    <?= $form->field($model, "tipoEmpleado")->dropDownList(["doctor"=>"Doctor", "enfermero"=>"Enfermero"]) ?>
+    <?= $form->field($model, "tipoEmpleado")->dropDownList(["admin"=>"Administrativo", "doctor"=>"Doctor", "enfermero"=>"Enfermero"]) ?>
     
-    <?= $form->field($model, "matricula")->textInput() ?>
+    <div class="form-group field-especialidad">
+        <?= Html::label("Sector", "idSector", ["class"=>"control-label"]) ?>
+        <?= Html::dropDownList("idSector", null,ArrayHelper::map(Sectores::find()->all(), "idSector", "Descripcion"), ["class"=>"form-control", "id"=>"idSector"]) ?>
+    </div>
+    
+    <?= $form->field($model, "matricula")->textInput(["disabled"=>"disabled"]) ?>
     
     <div class="form-group field-especialidad">
         <?= Html::label("Especialidad", "idEspecialidad", ["class"=>"control-label"]) ?>
-        <?= Html::dropDownList("idEspecialidad", null,ArrayHelper::map(Especialidades::find()->all(), "idEspecialidad", "Descripcion"), ["class"=>"form-control", "id"=>"especialidad"]) ?>
+        <?= Html::dropDownList("idEspecialidad", null,ArrayHelper::map(Especialidades::find()->all(), "idEspecialidad", "Descripcion"), ["class"=>"form-control", "id"=>"especialidad", "disabled"=>"disabled"]) ?>
     </div>
+    
     <?= $form->field($model, 'FechaIngreso')->input("date") ?>
 
     <?= $form->field($model, 'Email')->input("email", ['maxlength' => 100]) ?>
@@ -74,7 +95,7 @@ $this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('positi
     <?= $form->field($model, 'FechaBaja')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

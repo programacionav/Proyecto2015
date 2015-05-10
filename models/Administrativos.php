@@ -61,6 +61,48 @@ class Administrativos extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Empleados::className(), ['idEmpleado' => 'idEmpleado']);
     }
+    
+    public function getIdEmpleado()
+    {
+        return $this->idEmpleado0->idEmpleado;
+    }
+    public function getApellido()
+    {
+        return $this->idEmpleado0->Apellido;
+    }
+    public function getDNI()
+    {
+        return $this->idEmpleado0->DNI;
+    }
+    public function getNombre()
+    {
+        return $this->idEmpleado0->Nombre;
+    }
+    public function getNroEmpleado()
+    {
+        return $this->idEmpleado0->NroEmpleado;
+    }
+    public function getFechaIngreso()
+    {
+        return $this->idEmpleado0->FechaIngreso;
+    }
+    public function getEmail()
+    {
+        return $this->idEmpleado0->Email;
+    }
+    public function getActivo()
+    {
+        return $this->idEmpleado0->Activo;
+    }
+    public function getFechaBaja()
+    {
+        return $this->idEmpleado0->FechaBaja;
+    }
+    
+    public function getSecDescripcion()
+    {
+        return $this->idEmpleado0->Descripcion;
+    }
 
     /**
      * @return \yii\db\ActiveQuery

@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
 
@@ -30,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'NroEmpleado',
             // 'FechaIngreso',
             // 'Email:email',
-            // 'Activo',
+             'Activo',
             // 'FechaBaja',
 
             ['class' => 'yii\grid\ActionColumn'],

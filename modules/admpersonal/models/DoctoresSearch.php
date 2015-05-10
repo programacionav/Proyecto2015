@@ -15,11 +15,26 @@ class DoctoresSearch extends Doctores
     /**
      * @inheritdoc
      */
+    //Empleado
+    public $idEmpleado;
+    public $Apellido;
+    public $Nombre;
+    public $DNI;
+    public $NroEmpleado;
+    public $FechaIngreso;
+    public $Email;
+    public $Activo;
+    public $FechaBaja;
+    
+    //Especialidad
+    public $Descripcion;
+    public $idEspecialidad;
+    
     public function rules()
     {
         return [
             [['idDoctor', 'idEspecialidad'], 'integer'],
-            [['Matricula'], 'safe'],
+            [['Matricula', 'idEmpleado','Apellido', "Nombre", "DNI", "NroEmpleado", "FechaIngreso", "Email", "Activo", "FechaBaja", "idEspecialidad", "Descripcion"], 'safe'],
         ];
     }
 
@@ -50,6 +65,8 @@ class DoctoresSearch extends Doctores
         $this->load($params);
 
         if (!$this->validate()) {
+            $query->joinWith(['idDoctor0']);
+            $query->joinWith(['idEspecialidad0']);
             // uncomment the following line if you do not want to any records when validation fails
             // $query->where('0=1');
             return $dataProvider;

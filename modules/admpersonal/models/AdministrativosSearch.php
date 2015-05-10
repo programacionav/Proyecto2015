@@ -15,10 +15,26 @@ class AdministrativosSearch extends Administrativos
     /**
      * @inheritdoc
      */
+    //Empleado
+    public $idEmpleado;
+    public $Apellido;
+    public $Nombre;
+    public $DNI;
+    public $NroEmpleado;
+    public $FechaIngreso;
+    public $Email;
+    public $Activo;
+    public $FechaBaja;
+    
+    //Especialidad
+    public $Descripcion;
+    public $idSector;
+    
     public function rules()
     {
         return [
             [['idEmpleado', 'idSector'], 'integer'],
+            [['Apellido', "Nombre", "DNI", "NroEmpleado", "FechaIngreso", "Email", "Activo", "FechaBaja", "idSector", "Descripcion"], 'safe']
         ];
     }
 
@@ -51,6 +67,8 @@ class AdministrativosSearch extends Administrativos
         if (!$this->validate()) {
             // uncomment the following line if you do not want to any records when validation fails
             // $query->where('0=1');
+            $query->joinWith(['idEmpleado0']);
+            $query->joinWith(['idEspecialidad0']);
             return $dataProvider;
         }
 

@@ -35,6 +35,7 @@ class Empleados extends \yii\db\ActiveRecord
     public $matricula;
     public $tipoEmpleado;
     public $idEspecialidad;
+    public $idSector;
     
     
     public static function tableName()
@@ -55,7 +56,7 @@ class Empleados extends \yii\db\ActiveRecord
             [['Email'], 'string', 'max' => 100],
             [['DNI'], 'unique'],
             [['NroEmpleado'], 'unique'],
-            [['matricula','tipoEmpleado', "idEspecialidad"], 'safe']
+            [['matricula','tipoEmpleado', "idEspecialidad", "idSector"], 'safe']
         ];
     }
 

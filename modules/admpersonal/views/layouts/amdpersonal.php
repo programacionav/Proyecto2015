@@ -75,7 +75,7 @@ echo Nav::widget([
         ['label' => 'Licencias',
             'items'=>[
                 ['label' => 'Licenciados', 'url' => ['licencias/index']],
-                ['label' => 'Pendientes', 'url' => ['licencias/index']],
+                ['label' => 'Pendientes', 'url' => ['licencias/create']],
                 ['label' => 'Historial', 'url' => ['licencias/index']],
                      ],
             'options'=>["class"=>'dropdown-toggle']
