@@ -33,7 +33,8 @@ class Reservas extends \yii\db\ActiveRecord
     {
         return [
             [['Fecha', 'idMenu', 'idEmpleado'], 'required'],
-            [['Fecha', 'idMenu', 'idEmpleado', 'Retiro'], 'integer']
+        	[['Fecha'], 'safe'],
+        	[['idMenu', 'idEmpleado', 'Retiro'], 'integer']
         ];
     }
 
