@@ -9,48 +9,20 @@ use yii\jui\DatePicker;
 ?>
 
     
-    
-   <?= Html::beginForm(['ficha','id'=>$id], 'post') ?>
+<?= $this->render('/practicas-medicas\index',[
+        
+        'searchModel'=>$searchModel,
+        'dataProvider'=>$dataProvider,
+    ])?>
 
-<?php Html::input('text', 'fechaIn') ?>
-<?php echo DatePicker::widget([
-    'name'  => 'fechaIn',
-    
-     //'language' => 'ru',
-    'dateFormat' => 'yyyy-MM-dd',
-]);
-?>
-<?php echo DatePicker::widget([
-    'name'  => 'fechaFin',
-     //'language' => 'ru',
-    'dateFormat' => 'yyyy-MM-dd',
-]);
-?>
-<?= Html::submitButton('buscar', ['class' => 'submit']) ?>    
-<?= Html::endForm ()  ?>
+    <?= $this->render('/consultas\_search',[
+        'id'=>$id,
+        'searchModel2'=>$searchModel2,
+        'dataProvider2'=>$dataProvider2,
+    ])?>
 
-
-<br>
- 
-    
-
-<br>
-
-<h3>Consultas</h3>
-    <table class="table table-bordered">
-        <tr>
-            <th>Fecha y Hora</th>
-            <th>Diagnostico</th>
-            <th>Tratamiento</th>
-        </tr>
-        <?php foreach($model as $row){ ?>
-        <tr>
-            <td><?= $row -> FechaHora ?></td>
-            <td><?= $row -> Diagnostico ?></td>
-            <td><?= $row -> Tratamiento ?></td>
-            
-        </tr>
-        <?php   } ?>
-    </table>
-
-    
+    <?= $this->render('/consultas\index',[
+        
+        'searchModel2'=>$searchModel2,
+        'dataProvider2'=>$dataProvider2,
+    ])?>

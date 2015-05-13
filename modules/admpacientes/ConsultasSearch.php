@@ -15,11 +15,15 @@ class ConsultasSearch extends Consultas
     /**
      * @inheritdoc
      */
+    
+    public $fechaIni;
+    public $fechaFin;
+    
     public function rules()
     {
         return [
             [['idConsulta', 'idDoctor', 'idPaciente', 'idObraSocial'], 'integer'],
-            [['FechaHora', 'Diagnostico', 'Tratamiento'], 'safe'],
+            [['FechaHora', 'Diagnostico', 'Tratamiento','fechaIni','fechaFin'], 'safe'],
         ];
     }
 
@@ -56,6 +60,7 @@ class ConsultasSearch extends Consultas
             'query' => $query,
         ]);
 
+        
         $this->load($params);
 
         if (!$this->validate()) {
@@ -71,10 +76,12 @@ class ConsultasSearch extends Consultas
             'idPaciente' => $this->idPaciente,
             'idObraSocial' => $this->idObraSocial,
         ]);
-
+         
         $query->andFilterWhere(['like', 'Diagnostico', $this->Diagnostico])
-            ->andFilterWhere(['like', 'Tratamiento', $this->Tratamiento]);
-
+            ->andFilterWhere(['like', 'Tratamiento', $this->Tratamiento])
+                ->andFilterWhere(['>', 'FechaHora', $this->fechaIni])
+                ->andFilterWhere(['<', 'FechaHora', $this->fechaFin]);
+      
         return $dataProvider;
     }
 }
