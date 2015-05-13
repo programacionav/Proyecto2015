@@ -4,6 +4,7 @@ namespace app\modules\admcomedor\controllers;
 
 use Yii;
 use app\models\Reservas;
+use app\models\Empleados;
 use app\modules\admcomedor\models\ReservasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -118,4 +119,21 @@ class ReservasController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    public function buscarEmpleados()
+    {
+	    //Busco los registros de todos los empleados.
+	    $listaEmpleados = Empleados::find()->all();
+	    $arrayEmpleados = [];
+	    foreach ($listaEmpleados as $empleado) {
+	    	$idEmp = $empleado->idEmpleado;
+	    	$emp = $empleado->Nombre.' '.$empleado->Apellido.' - '.$empleado->DNI;
+	    
+	    	//Armo un array con cada empleado y lo sumo al array general.
+	    	$miniArray = [$idEmp, $emp]	;
+	    	array_push($arrayEmpleados, $miniArray);
+	    }
+	    return $arrayEmpleados;
+    }    
+    
 }
