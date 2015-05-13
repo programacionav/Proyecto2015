@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "pedidocompra".
  *
  * @property integer $idPedido
- * @property integer $Fecha
+ * @property string $Fecha
  * @property integer $idProveedor
  *
  * @property Itemspedidocompra[] $itemspedidocompras
@@ -31,7 +31,8 @@ class PedidoCompra extends \yii\db\ActiveRecord
     {
         return [
             [['Fecha', 'idProveedor'], 'required'],
-            [['Fecha', 'idProveedor'], 'integer']
+            [['Fecha'], 'safe'],
+            [['idProveedor'], 'integer'],			
         ];
     }
 
@@ -61,5 +62,8 @@ class PedidoCompra extends \yii\db\ActiveRecord
     public function getIdProveedor0()
     {
         return $this->hasOne(Proveedor::className(), ['idProveedor' => 'idProveedor']);
+    }
+    public function getRazonSocial(){
+    	return $this->idProveedor0->RazonSocial;
     }
 }

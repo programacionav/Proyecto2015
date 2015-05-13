@@ -35,18 +35,20 @@ class ItemsParteSalida extends \yii\db\ActiveRecord
             [['idParte', 'idInsumo', 'Cantidad'], 'integer']
         ];
     }
-
+    
     /**
      * @inheritdoc
      */
+    
     public function attributeLabels()
     {
-        return [
-            'idItem' => 'Id Item',
-            'idParte' => 'Id Parte',
-            'idInsumo' => 'Id Insumo',
-            'Cantidad' => 'Cantidad',
-        ];
+    	return [
+    	'idItem' => 'Id Item',
+    	'idParte' => 'Id Parte',
+    	'idInsumo' => 'Id Insumo',
+    	'Cantidad' => 'Cantidad',
+    	'Descripcion' => 'Descripcion',
+    	];
     }
 
     /**
@@ -64,4 +66,10 @@ class ItemsParteSalida extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Insumos::className(), ['idInsumo' => 'idInsumo']);
     }
+    
+    public function getDescripcion(){
+    	return $this->idInsumo0->Descripcion;
+    }
+    
+
 }

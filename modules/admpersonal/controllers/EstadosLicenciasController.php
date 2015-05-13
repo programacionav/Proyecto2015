@@ -32,6 +32,7 @@ class EstadosLicenciasController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'amdpersonal';
         $searchModel = new EstadosLicenciasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -48,6 +49,7 @@ class EstadosLicenciasController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = 'amdpersonal';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -60,6 +62,7 @@ class EstadosLicenciasController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = 'amdpersonal';
         $model = new EstadosLicencias();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -79,6 +82,7 @@ class EstadosLicenciasController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'amdpersonal';
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

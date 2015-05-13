@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Capacitaciones;
+use app\models\app\models;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\EmpresasCapacitadoras */
@@ -24,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -35,4 +36,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'Telefono',
         ],
     ]) ?>
+    <h3>Capacitacones de esta Empresa</h3>
+    <?php
+    	foreach($cap as $c)
+    	{
+    		echo DetailView::widget([
+     	   'model' => $c,
+     	   'attributes' => [
+            'Nombre',
+            'Descripcion',
+     	   	'Fecha',
+     	   	'DuracionHoras',
+     	   	'idCapacitador',
+        ],
+    ]);
+    	}    	
+    ?>
 </div>

@@ -12,22 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="especialidades-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Crear Especialidad</h1>
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
 
-</div>
-
-<div>
-   <?php 
-    $array = $model->generarArray();
-    foreach ($array as $especialidades) {
-        print_r($especialidades);
-        //echo "Descripcion: $descripcion<br>";
-        
-    
-}
-    ?>
 </div>

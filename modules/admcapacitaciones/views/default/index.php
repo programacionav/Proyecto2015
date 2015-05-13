@@ -12,4 +12,5 @@ use yii\helpers\Html;
     <p><?= Html::a('Tabla Capacitadores', ['capacitadores/index']); ?></p>
     <p><?= Html::a('Tabla de Empresas Capacitadoras', ['empresas-capacitadoras/index']); ?></p>
     <p><?= Html::a('Tabla relacional Capacitaciones y Doctores', ['capacitaciones-doctores/index']) ?></p>
+    <p><?= Html::a('Filtro de capacitaciones por fecha.', ['capacitaciones/porfecha']) ?></p>
 </div>

@@ -31,7 +31,19 @@ class CapacitacionesController extends Controller
      * Lists all Capacitaciones models.
      * @return mixed
      */
-    
+    public function actionPorfecha()
+    {
+    	return $this->render('filtroporfecha');
+    }
+    public function actionFiltroporfecha()
+    {
+    	$searchModel = new Capacitaciones();
+    	$searchModel = Capacitaciones::find()->where('Fecha = 2016-05-12');
+    	
+    	return $this->render('filtroporfecha', [
+    			'searchModel' => $searchModel,
+    	]);
+    }
     public function actionIndex()
     {
         $searchModel = new CapacitacionesSearch();

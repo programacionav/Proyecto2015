@@ -15,10 +15,29 @@ class EnfermerosSearch extends Enfermeros
     /**
      * @inheritdoc
      */
+    
+    //Empleado
+    public $idEmpleado;
+    public $Apellido;
+    public $Nombre;
+    public $DNI;
+    public $NroEmpleado;
+    public $FechaIngreso;
+    public $Email;
+    public $Activo;
+    public $FechaBaja;
+    
+    //Especialidad
+    public $Descripcion;
+    public $idEspecialidad;
+    
+    
+    
     public function rules()
     {
         return [
             [['idEnfermero', 'idEspecialidad'], 'integer'],
+            [['idEmpleado','Apellido', "Nombre", "DNI", "NroEmpleado", "FechaIngreso", "Email", "Activo", "FechaBaja", "idEspecialidad", "Descripcion"], 'safe']
         ];
     }
 
@@ -49,6 +68,8 @@ class EnfermerosSearch extends Enfermeros
         $this->load($params);
 
         if (!$this->validate()) {
+            $query->joinWith(['idEnfermero0']);
+            $query->joinWith(['idEspecialidad0']);
             // uncomment the following line if you do not want to any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
@@ -58,6 +79,7 @@ class EnfermerosSearch extends Enfermeros
             'idEnfermero' => $this->idEnfermero,
             'idEspecialidad' => $this->idEspecialidad,
         ]);
+        
 
         return $dataProvider;
     }

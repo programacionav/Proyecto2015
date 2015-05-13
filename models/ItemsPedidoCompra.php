@@ -64,4 +64,8 @@ class ItemsPedidoCompra extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Insumos::className(), ['idInsumo' => 'idInsumo']);
     }
+    
+    public function getDescripcion(){
+    	return $this->idInsumo0->Descripcion;
+    }
 }
