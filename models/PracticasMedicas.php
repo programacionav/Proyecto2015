@@ -58,4 +58,15 @@ class PracticasMedicas extends \yii\db\ActiveRecord
             'Adjunto' => Yii::t('app', 'Adjunto'),
         ];
     }
+    
+    public function getTiposPracticas() {
+        
+        return $this->hasOne(TiposPracticas::className(),['idTipoPractica'=>'idTipoPractica']);
+    }
+    
+    public function getDescripcion() {
+        
+        return $this->tiposPracticas->Descripcion;
+    }
+    
 }

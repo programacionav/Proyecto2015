@@ -15,11 +15,14 @@ class PracticasMedicasSearch extends PracticasMedicas
     /**
      * @inheritdoc
      */
+    
+    public $Descripcion;
+    
     public function rules()
     {
         return [
             [['idPractica', 'idTipoPractica', 'idDoctor', 'idPaciente', 'idObraSocial'], 'integer'],
-            [['FechaSolicitud', 'FechaHoraRealizado', 'Resultado', 'Adjunto'], 'safe'],
+            [['FechaSolicitud', 'FechaHoraRealizado', 'Resultado', 'Adjunto','Descripcion'], 'safe'],
         ];
     }
 
@@ -50,7 +53,7 @@ class PracticasMedicasSearch extends PracticasMedicas
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to any records when validation fails
+            $query->joinWith(['tiposPracticas']);// uncomment the following line if you do not want to any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
         }
@@ -67,6 +70,10 @@ class PracticasMedicasSearch extends PracticasMedicas
 
         $query->andFilterWhere(['like', 'Resultado', $this->Resultado])
             ->andFilterWhere(['like', 'Adjunto', $this->Adjunto]);
+        $query->joinWith(['tiposPracticas'=>function($q){
+            
+            $q->where('tiposPracticas.Descripcion LIKE "%'.$this->Descripcion.'%"');
+        }]);
 
         return $dataProvider;
     }

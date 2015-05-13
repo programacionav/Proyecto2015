@@ -37,7 +37,7 @@ class PacientesController extends Controller
     {
         $searchModel = new PacientesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $this->layout='mainPacientes.php';
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -51,54 +51,52 @@ class PacientesController extends Controller
      */
     public function actionView($id)
     {
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
+           
         ]);
     }
     
     public function actionFicha($id)
     {
-        $table = new Consultas();
-        $model=$this->findModel($id)-> consultas;
-        $form = new FormSearch(); 
-        $desde=null;
-       
-        
-        //$hasta=null;
-        if($form->load(Yii::$app->request->post())){
-             
-            $DATOS = (Yii::$app->request->post());
-             
-           // if($form->validate()){
-                
-               $desde = Html::encode($form->q);
-              // $hasta = Html::encode($form->h);
-               $query = "Select * from consultas where idConsulta='".$DATOS["FormSearch"]["q"]."'";
-               $model = $table ->findBySql($query)->all();
-               return $this->render('ficha', [
-            'form' => $form,
-            'desde' => $desde,
-            //'hasta' => $hasta,
-            'model' => $model,
-             'id' => $id,
-        ]); 
-           // }
-           // else{
-                
-           //     $form ->getErrors();
-           // }
-        }
-        else{
-           return $this->render('ficha', [
-            'form' => $form,
-            'desde' => $desde,
-            //'hasta' => $hasta,
-            'model' => $model,
-        ]); 
+         $searchModel = new \app\modules\admpacientes\PracticasMedicasSearch();
+         $searchModel->idPaciente=$id;
+         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+         
+         $searchModel2 = new ConsultasSearch();
+         $searchModel2->idPaciente=$id;
+         $dataProvider2 = $searchModel2->search(Yii::$app->request->queryParams);
+         
+         //$Search=new ConsultasSearch();
+    
+    
+      //if(isset(Yii::$app->request->post()['fechaIn'])){
+        //    $datos=Yii::$app->request->post();
+          //  $fechaIn=$datos['fechaIn'];
+            //$fechaFin=$datos['fechaFin'];
+            //$model=$Search->searchConsPac($id,$fechaIn,$fechaFin);
             
-        }
+             //return $this->render('ficha', [
+            //'id' => $id,
+            //'model' => $model,
+            // ]);
+                       
+       //}    
+        //else{
         
-    }
+            return $this->render('ficha', [
+               
+                'id' => $id,
+               //'model' => $this->findModel($id)->consultas,
+               'searchModel'=>$searchModel,
+               'dataProvider'=>$dataProvider,
+               'searchModel2'=>$searchModel2,
+               'dataProvider2'=>$dataProvider2,
+             ]);
+        //}
+}
+
 
     /**
      * Creates a new Pacientes model.
