@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Reservas', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Nueva Reserva', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'idMenu',
             'idEmpleado',
             'Retiro',
-            // 'Observaciones:ntext',
+            'Observaciones:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

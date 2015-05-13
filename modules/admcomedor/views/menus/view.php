@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\modules\admcomedor\admComedorModule;
+use app\models\Menus;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Menus */
@@ -12,8 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="menus-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->idMenu], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->idMenu], [
@@ -34,5 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Precio',
         ],
     ]) ?>
+    
+    <?= Html::a('Volver', ['index'], ['class' => 'btn btn-success']) ?>
 
 </div>

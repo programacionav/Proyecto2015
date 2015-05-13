@@ -63,7 +63,7 @@ class MenusController extends Controller
         $model = new Menus();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idMenu]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
