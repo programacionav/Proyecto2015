@@ -10,9 +10,12 @@ use yii\grid\GridView;
 $this->title = Yii::t('app', 'Consultas');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+
+
 <div class="consultas-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -27,13 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'idConsulta',
             'FechaHora',
-            'idDoctor',
+            //'idDoctor',
             //'idPaciente',
             'Diagnostico:ntext',
             'Tratamiento:ntext',
             // 'idObraSocial',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

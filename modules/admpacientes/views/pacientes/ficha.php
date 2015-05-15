@@ -9,11 +9,7 @@ use yii\jui\DatePicker;
 ?>
 
     
-<?= $this->render('/practicas-medicas\index',[
-        
-        'searchModel'=>$searchModel,
-        'dataProvider'=>$dataProvider,
-    ])?>
+
 
     <?= $this->render('/consultas\_search',[
         'id'=>$id,
@@ -25,4 +21,10 @@ use yii\jui\DatePicker;
         
         'searchModel2'=>$searchModel2,
         'dataProvider2'=>$dataProvider2,
+    ])?> 
+<br><br>
+<?= $this->render('/practicas-medicas\index',[
+        
+        'searchModel'=>$searchModel,
+        'dataProvider'=>$dataProvider,
     ])?>

@@ -15,17 +15,17 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pacientes-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?></h1><br>
     <?php 
     
-    NavBar::begin(['brandLabel' => 'NavBar Test']);
-echo Nav::widget([
-    'items' => [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-    ],
-]);
-NavBar::end();
+    //NavBar::begin(['brandLabel' => 'NavBar Test']);
+//echo Nav::widget([
+    //'items' => [
+      //  ['label' => 'Home', 'url' => ['/site/index']],
+        //['label' => 'About', 'url' => ['/site/about']],
+    //],
+//]);
+//NavBar::end();
  ?>
 
     <p>
@@ -54,4 +54,4 @@ NavBar::end();
 
 </div>
 
-<?= Html::a(Html::encode('Menu Principal'), ['default/index']) ?>
+<?php// Html::a(Html::encode('Menu Principal'), ['default/index']) ?>
