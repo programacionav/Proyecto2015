@@ -15,15 +15,17 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'idCapacitacion') ?>
+    <?php //echo $form->field($model, 'idCapacitacion') ?>
 
-    <?= $form->field($model, 'Nombre') ?>
+    <?php //echo $form->field($model, 'Nombre') ?>
 
-    <?= $form->field($model, 'Descripcion') ?>
+    <?php //echo $form->field($model, 'Descripcion') ?>
 
-    <?= $form->field($model, 'Fecha') ?>
+    <?= $form->field($model, 'Desde') ?>
+ 
+ 	<?= $form->field($model, 'Hasta') ?>
 
-    <?= $form->field($model, 'DuracionHoras') ?>
+    <?php //echo $form->field($model, 'DuracionHoras') ?>
 
     <?php // echo $form->field($model, 'idCapacitador') ?>
 

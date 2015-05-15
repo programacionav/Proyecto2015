@@ -33,7 +33,17 @@ class CapacitacionesController extends Controller
      */
     public function actionPorfecha()
     {
-    	return $this->render('filtroporfecha');
+    {
+        $model = new CapacitacionesSearch();
+ 
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            // datos validos recibidos
+            return $this->render('index', ['model' => $model]);
+        } else {
+            // o se ha solicitado la pagina inicial o bien hay un error de validacion
+            return $this->render('filtroporfecha', ['model' => $model]);
+        }
+    }
     }
     public function actionFiltroporfecha()
     {
