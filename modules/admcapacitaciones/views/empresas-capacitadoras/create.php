@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\EmpresasCapacitadoras */
 
-$this->title = 'Create Empresas Capacitadoras';
+$this->title = 'Crear Empresas Capacitadoras';
 $this->params['breadcrumbs'][] = ['label' => 'Empresas Capacitadoras', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

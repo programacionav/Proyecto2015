@@ -17,11 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->idEmpresa], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->idEmpresa], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->idEmpresa], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Borrar', ['delete', 'id' => $model->idEmpresa], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Seguro quiere borrar este item?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -38,18 +38,20 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
     <h3>Capacitacones de esta Empresa</h3>
     <?php
+    	echo '<table class="table table-striped table-bordered detail-view">';
     	foreach($cap as $c)
     	{
-    		echo DetailView::widget([
-     	   'model' => $c,
-     	   'attributes' => [
-            'Nombre',
-            'Descripcion',
-     	   	'Fecha',
-     	   	'DuracionHoras',
-     	   	'idCapacitador',
-        ],
-    ]);
-    	}    	
+    		echo	'
+						<tbody>
+					    	<tr><th>Nombre</th><td>'.$c->Nombre.'</td></tr>
+							<tr><th>Descripcion</th><td>'.$c->Descripcion.'</td></tr>
+							<tr><th>Fecha</th><td>'.$c->Fecha.'</td></tr>
+							<tr><th>Duracion</th><td>'.$c->DuracionHoras.'</td></tr>
+							<tr><th>idCapacitador</th><td>'.$c->idCapacitador.'</td></tr>
+							<tr><th></th><td></td></tr>
+						</tbody>
+					';
+    	}
+    	echo '</table>';
     ?>
 </div>

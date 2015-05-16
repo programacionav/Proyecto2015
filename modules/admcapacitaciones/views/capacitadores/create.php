@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Capacitadores */
 
-$this->title = 'Create Capacitadores';
+$this->title = 'Crear Capacitadores';
 $this->params['breadcrumbs'][] = ['label' => 'Capacitadores', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
