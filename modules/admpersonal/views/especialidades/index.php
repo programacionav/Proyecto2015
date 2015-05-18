@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="especialidades-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Doctores/Enfermeros | <?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     

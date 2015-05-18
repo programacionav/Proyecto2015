@@ -77,13 +77,15 @@ class EmpleadosController extends Controller
                     $doc->idEspecialidad = $model->idEspecialidad;
                     $doc->Matricula = $model->matricula;
                     $doc->save();
+                    return $this->redirect(['doctores/index']);
                 }
             else if ($model->tipoEmpleado == "enfermero")
                 {
                     $enf = new Enfermeros();
                     $enf->idEnfermero = $model->idEmpleado;
                     $enf->idEspecialidad = $model->idEspecialidad;
-                    $enf->save();  
+                    $enf->save();
+                    return $this->redirect(['enfermeros/index']);
                 }
             else
                 {
@@ -91,8 +93,9 @@ class EmpleadosController extends Controller
                     $adm->idEmpleado = $model->idEmpleado;
                     $adm->idSector = $model->idSector;
                     $adm->save();
+                    return $this->redirect(['administrativos/index']);
                 }
-            return $this->redirect(['view', 'id' => $model->idEmpleado]);
+            //return $this->redirect(['view', 'id' => $model->idEmpleado]);
         } else {
             return $this->render('create', [
                 'model' => $model,

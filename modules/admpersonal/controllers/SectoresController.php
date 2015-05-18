@@ -66,7 +66,7 @@ class SectoresController extends Controller
         $model = new Sectores();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idSector]);
+            return $this->redirect(["index"]);//$this->redirect(['view', 'id' => $model->idSector]);
         } else {
             return $this->render('create', [
                 'model' => $model,

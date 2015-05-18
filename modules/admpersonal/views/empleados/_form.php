@@ -2,17 +2,19 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\Doctores;
-use app\models\Enfermeros;
+//use app\models\Doctores;
+//use app\models\Enfermeros;
 use app\models\Especialidades;
 use yii\helpers\ArrayHelper;
 use app\models\Sectores;
-$this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('position' => $this::POS_HEAD), 'jquery');
+//$this->registerJsFile('vendor/bower/jquery/dist/jquery.min.js', array('position' => $this::POS_HEAD), 'jquery');
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Empleados */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 <script type="text/javascript">
     /*function tipoEmpleado(elemento)

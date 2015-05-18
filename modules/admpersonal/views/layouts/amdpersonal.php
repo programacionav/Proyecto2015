@@ -71,8 +71,8 @@ echo Nav::widget([
                 ['label' => 'Administrativos', 'url' => ['administrativos/index']],
                 ['label' => 'Doctores', 'url' => ['doctores/index']],
                 ['label' => 'Enfermeros', 'url' => ['enfermeros/index']],
-                
-                ['label' => 'Especialidades', 'url' => ['especialidades/index']]
+                ['label' => 'Especialidades', 'url' => ['especialidades/index']],
+                ['label' => 'Sectores', 'url' => ['sectores/index']]
                      ],
             'options'=>["class"=>'dropdown-toggle']
             ],
