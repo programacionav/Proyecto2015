@@ -23,15 +23,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
-            'idEmpleado',
-            'idSector',
+            //'idEmpleado',
+            //'idSector',
             'secDescripcion',
             'Nombre',
+            'Apellido',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
 </div>
+<?php
+ /*$admin = new app\models\Administrativos;
+ $admin->idSector = 1;
+ $admin->idEmpleado = 1;
+ $admin->save();
+*/
+?>

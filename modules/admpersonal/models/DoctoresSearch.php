@@ -78,7 +78,7 @@ class DoctoresSearch extends Doctores
         ]);
 
         $query->andFilterWhere(['like', 'Matricula', $this->Matricula]);
-
+        
         return $dataProvider;
     }
 }

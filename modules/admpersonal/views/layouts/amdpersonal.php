@@ -53,8 +53,10 @@ AppAsset::register($this);
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ])*/ ?>
             
-            <?php
+    <?php
 NavBar::begin();
+
+    
 echo Nav::widget([
     'items' => [
         /*['label' => 'Especialidades',
@@ -65,24 +67,24 @@ echo Nav::widget([
             ],*/
         ['label' => 'Empleados',
             'items'=>[
-                ['label' => 'Administrar', 'url' => ['empleados/create']],
+                ['label' => 'Crear', 'url' => ['empleados/create']],
+                ['label' => 'Administrativos', 'url' => ['administrativos/index']],
                 ['label' => 'Doctores', 'url' => ['doctores/index']],
                 ['label' => 'Enfermeros', 'url' => ['enfermeros/index']],
+                
                 ['label' => 'Especialidades', 'url' => ['especialidades/index']]
-                ],
+                     ],
             'options'=>["class"=>'dropdown-toggle']
             ],
         ['label' => 'Licencias',
             'items'=>[
                 ['label' => 'Licenciados', 'url' => ['licencias/index']],
-                ['label' => 'Pendientes', 'url' => ['licencias/create']],
+                ['label' => 'Pendientes', 'url' => ['licencias/index']],
                 ['label' => 'Historial', 'url' => ['licencias/index']],
                      ],
             'options'=>["class"=>'dropdown-toggle']
-            ],
-        
-        
-    ],
+            ]
+                ],
     'options'=>['class'=>'nav navbar-nav']
 ]);
 NavBar::end();

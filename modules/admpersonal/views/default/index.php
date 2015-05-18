@@ -43,19 +43,24 @@ use yii\bootstrap\Nav;
     <h1 class="titulo">Administración del personal</h1>
     <?php
 NavBar::begin();
+
+    
 echo Nav::widget([
     'items' => [
-        ['label' => 'Especialidades',
+        /*['label' => 'Especialidades',
             'items'=>[
                 ['label' => 'Administrar', 'url' => ['especialidades/index']]
                      ],
             'options'=>["class"=>'dropdown-toggle']
-            ],
+            ],*/
         ['label' => 'Empleados',
             'items'=>[
-                ['label' => 'Administrar', 'url' => ['empleados/create']],
+                ['label' => 'Crear', 'url' => ['empleados/create']],
+                ['label' => 'Administrativos', 'url' => ['administrativos/index']],
                 ['label' => 'Doctores', 'url' => ['doctores/index']],
                 ['label' => 'Enfermeros', 'url' => ['enfermeros/index']],
+                
+                ['label' => 'Especialidades', 'url' => ['especialidades/index']]
                      ],
             'options'=>["class"=>'dropdown-toggle']
             ],

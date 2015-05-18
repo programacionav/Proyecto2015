@@ -37,8 +37,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'Email:email',
             'Activo',
             'FechaBaja',
+            "idSector"
             //'Matricula'
         ],
     ]) ?>
 
 </div>
+

@@ -52,6 +52,7 @@ class Doctores extends \yii\db\ActiveRecord
             'idDoctor' => Yii::t('app', 'Id Doctor'),
             'idEspecialidad' => Yii::t('app', 'Id Especialidad'),
             'Matricula' => Yii::t('app', 'Matricula'),
+            'espDescripcion' => Yii::t('app', 'Especialidad'),
         ];
     }
 
