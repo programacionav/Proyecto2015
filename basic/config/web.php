@@ -5,48 +5,11 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'language' => 'es-AR',
     'bootstrap' => ['log'],
-    'modules' => [
-    	'admpacientes' => [
-    		'class' => 'app\modules\admpacientes\admPacientesModule',
-    	],    
-    	'adminternaciones' => [
-    		'class' => 'app\modules\adminternaciones\admInternacionesModule',
-    	],    
-    	'admturnos' => [
-    		'class' => 'app\modules\admturnos\admTurnosModule',
-    	],    
-    	'admpersonal' => [
-    		'class' => 'app\modules\admpersonal\admPersonalModule',
-    	],    
-    	'admcomedor' => [
-    		'class' => 'app\modules\admcomedor\admComedorModule',
-    	],    
-    	'admfarmacia' => [
-    		'class' => 'app\modules\admfarmacia\admFarmaciaModule',
-    	],    
-    	'admwiki' => [
-    		'class' => 'app\modules\admwiki\admWikiModule',
-    	],
-    	'admobrasociales' => [
-    		'class' => 'app\modules\admobrasociales\admObraSocialesModule',
-    	],
-    	'admambulancias' => [
-    		'class' => 'app\modules\admambulancias\admAmbulanciasModule',
-    	],    
-    	'admcapacitaciones' => [
-    		'class' => 'app\modules\admcapacitaciones\admcapacitacionesModule',
-    	],
-    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'Programacion avanzada 2015',
-        ],
-        'urlManager'=>[
-            'enablePrettyUrl'=>true,
-            'rules'=>[]
+            'cookieValidationKey' => 'EywON-Extb7x7wFKivdQL4u-i8tIGBEh',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

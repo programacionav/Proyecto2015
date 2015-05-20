@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\modules\admambulancias;
 
 use Yii;
 
@@ -51,7 +51,6 @@ class Ambulancias extends \yii\db\ActiveRecord
             'Modelo' => 'Modelo',
             'NroMotor' => 'Nro Motor',
             'idEmpleado' => 'Id Empleado',
-            'FullNombre'=> Yii::t('app', 'Empleado Encargado'),
         ];
     }
 
@@ -61,10 +60,6 @@ class Ambulancias extends \yii\db\ActiveRecord
     public function getIdEmpleado0()
     {
         return $this->hasOne(Empleados::className(), ['idEmpleado' => 'idEmpleado']);
-    }
-  public function getFullNombre()
-    {
-        return $this->idEmpleado0->Nombre.' '.$this->idEmpleado0->Apellido;
     }
 
     /**
