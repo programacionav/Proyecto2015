@@ -48,7 +48,7 @@ class LiquidacionMensual extends \yii\db\ActiveRecord
             'Mes' => 'Mes',
             'Anio' => 'Anio',
             'Total' => 'Total',
-            'idEmpleado' => 'Id Empleado',
+            'idEmpleado' => 'Empleado',
             'Pagada' => 'Pagada',
         ];
     }

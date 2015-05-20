@@ -33,7 +33,8 @@ class Reservas extends \yii\db\ActiveRecord
     {
         return [
             [['Fecha', 'idMenu', 'idEmpleado'], 'required'],
-            [['Fecha', 'idMenu', 'idEmpleado', 'Retiro'], 'integer']
+        	[['Observaciones'], 'safe'],
+        	[['idMenu', 'idEmpleado', 'Retiro'], 'integer']
         ];
     }
 
@@ -45,9 +46,10 @@ class Reservas extends \yii\db\ActiveRecord
         return [
             'idReserva' => 'Id Reserva',
             'Fecha' => 'Fecha',
-            'idMenu' => 'Id Menu',
-            'idEmpleado' => 'Id Empleado',
+            'idMenu' => 'Menu',
+            'idEmpleado' => 'Empleado',
             'Retiro' => 'Retiro',
+        	'Observaciones' => 'Observaciones'
         ];
     }
 
@@ -66,4 +68,5 @@ class Reservas extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Empleados::className(), ['idEmpleado' => 'idEmpleado']);
     }
+    
 }

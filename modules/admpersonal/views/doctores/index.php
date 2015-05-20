@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Doctores;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admpersonal\models\DoctoresSearch */
@@ -16,21 +17,35 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Doctores'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php //= Html::a(Yii::t('app', 'Create Doctores'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
-            'idDoctor',
-            'idEspecialidad',
+            //'idDoctor',
+            //'idEspecialidad',
+            "Apellido",
+            "Nombre",
             'Matricula',
+            'FechaIngreso',
+            "espDescripcion",
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
+</div>
+<div>
+    <?php
+    $doc = new Doctores();
+    $doc->idDoctor = 1;
+    $doc->idEspecialidad = 1;
+    $doc->Matricula = "BMW123";
+    
+    
+    ?>
 </div>

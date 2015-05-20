@@ -52,6 +52,7 @@ class Doctores extends \yii\db\ActiveRecord
             'idDoctor' => Yii::t('app', 'Id Doctor'),
             'idEspecialidad' => Yii::t('app', 'Id Especialidad'),
             'Matricula' => Yii::t('app', 'Matricula'),
+            'espDescripcion' => Yii::t('app', 'Especialidad'),
         ];
     }
 
@@ -78,6 +79,43 @@ class Doctores extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Empleados::className(), ['idEmpleado' => 'idDoctor']);
     }
+    
+    public function getIdEmpleado()
+    {
+        return $this->idDoctor0->idEmpleado;
+    }
+    public function getApellido()
+    {
+        return $this->idDoctor0->Apellido;
+    }
+    public function getDNI()
+    {
+        return $this->idDoctor0->DNI;
+    }
+    public function getNombre()
+    {
+        return $this->idDoctor0->Nombre;
+    }
+    public function getNroEmpleado()
+    {
+        return $this->idDoctor0->NroEmpleado;
+    }
+    public function getFechaIngreso()
+    {
+        return $this->idDoctor0->FechaIngreso;
+    }
+    public function getEmail()
+    {
+        return $this->idDoctor0->Email;
+    }
+    public function getActivo()
+    {
+        return $this->idDoctor0->Activo;
+    }
+    public function getFechaBaja()
+    {
+        return $this->idDoctor0->FechaBaja;
+    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -86,7 +124,10 @@ class Doctores extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Especialidades::className(), ['idEspecialidad' => 'idEspecialidad']);
     }
-
+    public function getEspDescripcion()
+    {
+        return $this->idEspecialidad0->Descripcion;
+    }
     /**
      * @return \yii\db\ActiveQuery
      */

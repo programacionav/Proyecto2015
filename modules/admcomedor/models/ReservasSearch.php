@@ -15,11 +15,13 @@ class ReservasSearch extends Reservas
     /**
      * @inheritdoc
      */
+	public $NombreEmpleado;
+	
     public function rules()
     {
         return [
-            [['idReserva', 'Fecha', 'idMenu', 'idEmpleado', 'Retiro'], 'integer'],
-            [['Observaciones'], 'safe'],
+            [['idReserva', 'idMenu', 'idEmpleado', 'Retiro'], 'integer'],
+            [['Fecha', 'Observaciones', 'NombreEmpleado'], 'safe'],
         ];
     }
 

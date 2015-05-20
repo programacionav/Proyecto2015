@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Empleados */
 
-$this->title = $model->idEmpleado;
+$this->title = $model->Nombre." ".$model->Apellido;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Empleados'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -37,7 +37,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'Email:email',
             'Activo',
             'FechaBaja',
+            "idSector"
+            //'Matricula'
         ],
     ]) ?>
 
 </div>
+

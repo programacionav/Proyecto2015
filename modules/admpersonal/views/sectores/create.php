@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Sectores */
 
-$this->title = Yii::t('app', 'Create Sectores');
+$this->title = Yii::t('app', 'Administrativos | Crear Sector');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Sectores'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

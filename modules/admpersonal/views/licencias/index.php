@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Licencias;
+$licencias = new Licencias();
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admpersonal\models\LicenciasSearch */
@@ -36,4 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+</div>
+
+<div>
+    <?php print_r($licencias->arrayLicencias()) ?>
 </div>

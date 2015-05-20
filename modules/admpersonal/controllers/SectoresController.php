@@ -32,6 +32,7 @@ class SectoresController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'amdpersonal';
         $searchModel = new SectoresSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -48,6 +49,7 @@ class SectoresController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = 'amdpersonal';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -60,10 +62,11 @@ class SectoresController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = 'amdpersonal';
         $model = new Sectores();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idSector]);
+            return $this->redirect(["index"]);//$this->redirect(['view', 'id' => $model->idSector]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -79,6 +82,7 @@ class SectoresController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'amdpersonal';
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

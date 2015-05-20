@@ -12,24 +12,25 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="especialidades-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Doctores/Enfermeros | <?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Especialidades'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'idEspecialidad',
+            //['class' => 'yii\grid\SerialColumn'],
+            //"idEspecialidad",
             'Descripcion',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    
+    <p>
+        <?= Html::a(Yii::t('app', 'Crear Especialidad'), ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
 </div>

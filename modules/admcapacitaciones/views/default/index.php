@@ -1,5 +1,8 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use app\models\Empleados;
+$model = new Empleados();
 ?>
 <div class="admcapacitaciones-default-index">
     <h1><?= $this->context->action->uniqueId ?></h1>
@@ -12,4 +15,6 @@ use yii\helpers\Html;
     <p><?= Html::a('Tabla Capacitadores', ['capacitadores/index']); ?></p>
     <p><?= Html::a('Tabla de Empresas Capacitadoras', ['empresas-capacitadoras/index']); ?></p>
     <p><?= Html::a('Tabla relacional Capacitaciones y Doctores', ['capacitaciones-doctores/index']) ?></p>
+    <p><?= Html::a('Filtro de capacitaciones por fecha.', ['capacitaciones/porfecha']) ?></p>
+    <p><?= Html::activeDropDownList($model, 'idEmpleado', ArrayHelper::map(Empleados::find()->all(), 'idEmpleado', 'Apellido')) ?></p>
 </div>

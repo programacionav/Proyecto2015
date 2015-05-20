@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\admcomedor\models\LiquidacionMensualSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Liquidacion Mensuals';
+$this->title = 'Liquidacion Mensual';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="liquidacion-mensual-index">
@@ -16,7 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Liquidacion Mensual', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Nueva Liquidacion', ['create'], ['class' => 'btn btn-success']) ?>
+    	<?= Html::a('Volver', ['../admcomedor'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

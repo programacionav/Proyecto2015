@@ -12,6 +12,8 @@ use app\models\Capacitaciones;
  */
 class CapacitacionesSearch extends Capacitaciones
 {
+	public $Desde;
+	public $Hasta;
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class CapacitacionesSearch extends Capacitaciones
     {
         return [
             [['idCapacitacion', 'DuracionHoras', 'idCapacitador'], 'integer'],
-            [['Nombre', 'Descripcion', 'Fecha'], 'safe'],
+            [['Nombre', 'Descripcion', 'Fecha', 'Desde', 'Hasta'], 'safe'],
         ];
     }
 
@@ -57,13 +59,14 @@ class CapacitacionesSearch extends Capacitaciones
 
         $query->andFilterWhere([
             'idCapacitacion' => $this->idCapacitacion,
-            'Fecha' => $this->Fecha,
             'DuracionHoras' => $this->DuracionHoras,
             'idCapacitador' => $this->idCapacitador,
         ]);
 
         $query->andFilterWhere(['like', 'Nombre', $this->Nombre])
-            ->andFilterWhere(['like', 'Descripcion', $this->Descripcion]);
+            ->andFilterWhere(['like', 'Descripcion', $this->Descripcion])
+ 	        ->andFilterWhere(['>', 'Fecha', $this->Desde])
+	        ->andFilterWhere(['<', 'Fecha', $this->Hasta]);
 
         return $dataProvider;
     }

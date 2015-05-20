@@ -15,11 +15,12 @@ class EmpleadosSearch extends Empleados
     /**
      * @inheritdoc
      */
+
     public function rules()
     {
         return [
             [['idEmpleado', 'DNI', 'NroEmpleado', 'Activo'], 'integer'],
-            [['Apellido', 'Nombre', 'FechaIngreso', 'Email', 'FechaBaja'], 'safe'],
+            [['Apellido', 'Nombre', 'FechaIngreso', 'Email', 'FechaBaja', 'idSector'], 'safe'],
         ];
     }
 

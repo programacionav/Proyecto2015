@@ -81,4 +81,5 @@ class Consultas extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Doctores::className(), ['idDoctor' => 'idDoctor']);
     }
+    
 }

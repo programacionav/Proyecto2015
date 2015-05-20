@@ -1,12 +1,12 @@
+<?php
+use yii\helpers\Html;
+?>
+
 <div class="admcomedor-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
+    <h1>Menu ADM Comedor</h1>
+    <p> <?= Html::a('Menus', ['menus/index'], ['class' => 'btn btn-success']) ?> </p>
+    <p> <?= Html::a('Reservas', ['reservas/index'], ['class' => 'btn btn-success']) ?> </p>
+    <p> <?= Html::a('Liquidaciones', ['liquidacion-mensual/index'], ['class' => 'btn btn-success']) ?>  </p>
 </div>
+
+

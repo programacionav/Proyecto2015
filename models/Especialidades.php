@@ -69,4 +69,5 @@ class Especialidades extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Enfermeros::className(), ['idEspecialidad' => 'idEspecialidad']);
     }
+    
 }

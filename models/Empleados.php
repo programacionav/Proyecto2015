@@ -32,6 +32,14 @@ class Empleados extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public $matricula;
+    public $tipoEmpleado;
+    public $idEspecialidad;
+    public $idSector;
+    public $secDescripcion;
+    public $licencia;
+    
+    
     public static function tableName()
     {
         return 'empleados';
@@ -49,7 +57,8 @@ class Empleados extends \yii\db\ActiveRecord
             [['Apellido', 'Nombre'], 'string', 'max' => 50],
             [['Email'], 'string', 'max' => 100],
             [['DNI'], 'unique'],
-            [['NroEmpleado'], 'unique']
+            [['NroEmpleado'], 'unique'],
+            [['matricula','tipoEmpleado', "idEspecialidad", "idSector", "secDescripcion", "licencia"], 'safe']
         ];
     }
 
@@ -118,6 +127,11 @@ class Empleados extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Licencias::className(), ['idEmpleado' => 'idEmpleado']);
     }
+    
+    public function getLicencia()
+    {
+        return "EstoEsUnaLicencia";
+    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -142,4 +156,7 @@ class Empleados extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Usuarios::className(), ['idEmpleado' => 'idEmpleado']);
     }
+    
+    
+    
 }

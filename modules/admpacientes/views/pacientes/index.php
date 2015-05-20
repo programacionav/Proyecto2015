@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\bootstrap\NavBar;
+use yii\widgets\Menu;
+use yii\bootstrap\Nav;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admpacientes\PacientesSearch */
@@ -13,7 +16,17 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="pacientes-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php 
+    
+    NavBar::begin(['brandLabel' => 'NavBar Test']);
+echo Nav::widget([
+    'items' => [
+        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'About', 'url' => ['/site/about']],
+    ],
+]);
+NavBar::end();
+ ?>
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Pacientes'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -23,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+           // ['class' => 'yii\grid\SerialColumn'],
 
             //'idPaciente',
             'Apellido',
@@ -35,8 +48,10 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'FechaAlta',
             // 'Email:email',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],
         ],
     ]); ?>
 
 </div>
+
+<?= Html::a(Html::encode('Menu Principal'), ['default/index']) ?>

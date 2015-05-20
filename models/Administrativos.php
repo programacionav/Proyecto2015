@@ -43,6 +43,7 @@ class Administrativos extends \yii\db\ActiveRecord
         return [
             'idEmpleado' => Yii::t('app', 'Id Empleado'),
             'idSector' => Yii::t('app', 'Id Sector'),
+            'secDescripcion' => Yii::t('app', 'Sector'),
         ];
     }
 
@@ -53,6 +54,11 @@ class Administrativos extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Sectores::className(), ['idSector' => 'idSector']);
     }
+    
+    public function getSecDescripcion()
+    {
+        return $this->idSector0->Descripcion;
+    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -61,6 +67,45 @@ class Administrativos extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Empleados::className(), ['idEmpleado' => 'idEmpleado']);
     }
+    
+    public function getIdEmpleado()
+    {
+        return $this->idEmpleado0->idEmpleado;
+    }
+    public function getApellido()
+    {
+        return $this->idEmpleado0->Apellido;
+    }
+    public function getDNI()
+    {
+        return $this->idEmpleado0->DNI;
+    }
+    public function getNombre()
+    {
+        return $this->idEmpleado0->Nombre;
+    }
+    public function getNroEmpleado()
+    {
+        return $this->idEmpleado0->NroEmpleado;
+    }
+    public function getFechaIngreso()
+    {
+        return $this->idEmpleado0->FechaIngreso;
+    }
+    public function getEmail()
+    {
+        return $this->idEmpleado0->Email;
+    }
+    public function getActivo()
+    {
+        return $this->idEmpleado0->Activo;
+    }
+    public function getFechaBaja()
+    {
+        return $this->idEmpleado0->FechaBaja;
+    }
+    
+    
 
     /**
      * @return \yii\db\ActiveQuery

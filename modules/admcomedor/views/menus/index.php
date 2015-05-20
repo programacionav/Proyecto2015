@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\admcomedor\models\MenusSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Menuses';
+$this->title = 'Menus';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="menus-index">
@@ -16,7 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Menus', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Nuevo Menu', ['create'], ['class' => 'btn btn-success']) ?>
+    	<?= Html::a('Volver', ['../admcomedor'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

@@ -65,4 +65,7 @@ class Liquidacionesobrasocial extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Obrassociales::className(), ['idObraSocial' => 'idObraSocial']);
     }
+    public function getDescripcion(){
+    	return $this->idObraSocial0->Descripcion;
+    }
 }

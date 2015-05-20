@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\CapacitacionesDoctores */
 
-$this->title = 'Update Capacitaciones Doctores: ' . ' ' . $model->idCD;
+$this->title = 'Actualizar Capacitaciones Doctores: ' . ' ' . $model->idCD;
 $this->params['breadcrumbs'][] = ['label' => 'Capacitaciones Doctores', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->idCD, 'url' => ['view', 'id' => $model->idCD]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Aceptar';
 ?>
 <div class="capacitaciones-doctores-update">
 

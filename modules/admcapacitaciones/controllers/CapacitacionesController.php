@@ -10,7 +10,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\app\models;
 use app\models\Capacitadores;
-use app\models\app\models;
 /**
  * CapacitacionesController implements the CRUD actions for Capacitaciones model.
  */
@@ -32,19 +31,29 @@ class CapacitacionesController extends Controller
      * Lists all Capacitaciones models.
      * @return mixed
      */
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function actionPrueba()
+    public function actionPorfecha()
     {
-    	return $this->render('prueba');
+    {
+        $model = new CapacitacionesSearch();
+ 
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            // datos validos recibidos
+            return $this->render('index', ['model' => $model]);
+        } else {
+            // o se ha solicitado la pagina inicial o bien hay un error de validacion
+            return $this->render('filtroporfecha', ['model' => $model]);
+        }
     }
-    public function actionPorempresa($id)
+    }
+    public function actionFiltroporfecha()
     {
-    	$capacitadores = new Capacitadores();
-    	$capacitadores = Capacitadores::find()->where(['idEmpresaCapacitadora' => $id])->all();
+    	$searchModel = new Capacitaciones();
+    	$searchModel = Capacitaciones::find()->where('Fecha = 2016-05-12');
     	
-    	return $this->render('porempresa', ['data' => $capacitaciones]);
+    	return $this->render('filtroporfecha', [
+    			'searchModel' => $searchModel,
+    	]);
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function actionIndex()
     {
         $searchModel = new CapacitacionesSearch();
@@ -59,6 +68,7 @@ class CapacitacionesController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        		
         ]);
     }
 
