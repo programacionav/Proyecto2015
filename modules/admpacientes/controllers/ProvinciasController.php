@@ -3,19 +3,16 @@
 namespace app\modules\admpacientes\controllers;
 
 use Yii;
-use app\models\Pacientes;
-use app\modules\admpacientes\PacientesSearch;
+use app\models\Provincias;
+use app\modules\admpacientes\ProvinciasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\modules\admpacientes\ConsultasSearch;
-use app\models\FormSearch;
-use yii\helpers\Html;
-use app\models\Consultas;
+
 /**
- * PacientesController implements the CRUD actions for Pacientes model.
+ * ProvinciasController implements the CRUD actions for Provincias model.
  */
-class PacientesController extends Controller
+class ProvinciasController extends Controller
 {
     public function behaviors()
     {
@@ -30,14 +27,14 @@ class PacientesController extends Controller
     }
 
     /**
-     * Lists all Pacientes models.
+     * Lists all Provincias models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PacientesSearch();
+        $searchModel = new ProvinciasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $this->layout='mainPacientes.php';
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -45,70 +42,28 @@ class PacientesController extends Controller
     }
 
     /**
-     * Displays a single Pacientes model.
+     * Displays a single Provincias model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-        
         return $this->render('view', [
             'model' => $this->findModel($id),
-           
         ]);
     }
-    
-    public function actionFicha($id)
-    {
-         $searchModel = new \app\modules\admpacientes\PracticasMedicasSearch();
-         $searchModel->idPaciente=$id;
-         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-         
-         $searchModel2 = new ConsultasSearch();
-         $searchModel2->idPaciente=$id;
-         $dataProvider2 = $searchModel2->search(Yii::$app->request->queryParams);
-         
-         //$Search=new ConsultasSearch();
-    
-    
-      //if(isset(Yii::$app->request->post()['fechaIn'])){
-        //    $datos=Yii::$app->request->post();
-          //  $fechaIn=$datos['fechaIn'];
-            //$fechaFin=$datos['fechaFin'];
-            //$model=$Search->searchConsPac($id,$fechaIn,$fechaFin);
-            
-             //return $this->render('ficha', [
-            //'id' => $id,
-            //'model' => $model,
-            // ]);
-                       
-       //}    
-        //else{
-        
-            return $this->render('ficha', [
-               
-                'id' => $id,
-               //'model' => $this->findModel($id)->consultas,
-               'searchModel'=>$searchModel,
-               'dataProvider'=>$dataProvider,
-               'searchModel2'=>$searchModel2,
-               'dataProvider2'=>$dataProvider2,
-             ]);
-        //}
-}
-
 
     /**
-     * Creates a new Pacientes model.
+     * Creates a new Provincias model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Pacientes();
+        $model = new Provincias();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idPaciente]);
+            return $this->redirect(['view', 'id' => $model->idProvincia]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -117,7 +72,7 @@ class PacientesController extends Controller
     }
 
     /**
-     * Updates an existing Pacientes model.
+     * Updates an existing Provincias model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -127,7 +82,7 @@ class PacientesController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idPaciente]);
+            return $this->redirect(['view', 'id' => $model->idProvincia]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -136,7 +91,7 @@ class PacientesController extends Controller
     }
 
     /**
-     * Deletes an existing Pacientes model.
+     * Deletes an existing Provincias model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -149,20 +104,18 @@ class PacientesController extends Controller
     }
 
     /**
-     * Finds the Pacientes model based on its primary key value.
+     * Finds the Provincias model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Pacientes the loaded model
+     * @return Provincias the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Pacientes::findOne($id)) !== null) {
+        if (($model = Provincias::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
-      
 }

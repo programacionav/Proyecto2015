@@ -8,6 +8,9 @@ use app\modules\admpacientes\PracticasMedicasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\UploadForm;
+use yii\web\UploadedFile;
+
 
 /**
  * PracticasMedicasController implements the CRUD actions for PracticasMedicas model.
@@ -61,14 +64,19 @@ class PracticasMedicasController extends Controller
     public function actionCreate()
     {
         $model = new PracticasMedicas();
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+              $model->file = UploadedFile::getInstance($model, 'file');
+             if ($model->file && $model->validate()) {
+                $model->file->saveAs('uploads/' . $model->file->baseName . '.' . $model->file->extension);
+                }
             return $this->redirect(['view', 'id' => $model->idPractica]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+              
             ]);
         }
+
     }
 
     /**
