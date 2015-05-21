@@ -76,6 +76,11 @@ class AdministrativosSearch extends Administrativos
             'idEmpleado' => $this->idEmpleado,
             'idSector' => $this->idSector,
         ]);
+        
+        $query->joinWith(['idEmpleado0'=>function ($q){
+        	$q->where('empleados.Activo = 1');
+        }
+        ]);
 
         return $dataProvider;
     }

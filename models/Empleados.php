@@ -38,6 +38,7 @@ class Empleados extends \yii\db\ActiveRecord
     public $idSector;
     public $secDescripcion;
     public $licencia;
+    public $activo2;
     
     
     public static function tableName()
@@ -58,7 +59,7 @@ class Empleados extends \yii\db\ActiveRecord
             [['Email'], 'string', 'max' => 100],
             [['DNI'], 'unique'],
             [['NroEmpleado'], 'unique'],
-            [['matricula','tipoEmpleado', "idEspecialidad", "idSector", "secDescripcion", "licencia"], 'safe']
+            [['matricula','tipoEmpleado', "idEspecialidad", "idSector", "secDescripcion", "licencia", "activo2"], 'safe']
         ];
     }
 
@@ -77,6 +78,7 @@ class Empleados extends \yii\db\ActiveRecord
             'Email' => Yii::t('app', 'Email'),
             'Activo' => Yii::t('app', 'Activo'),
             'FechaBaja' => Yii::t('app', 'Fecha Baja'),
+            'activo2' => Yii::t('app', "Activo"),
         ];
     }
 

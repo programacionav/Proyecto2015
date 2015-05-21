@@ -76,6 +76,11 @@ class DoctoresSearch extends Doctores
             'idDoctor' => $this->idDoctor,
             'idEspecialidad' => $this->idEspecialidad,
         ]);
+        
+        $query->joinWith(['idEmpleado0'=>function ($q){
+        	$q->where('empleados.Activo = 1');
+        }
+        ]);
 
         $query->andFilterWhere(['like', 'Matricula', $this->Matricula]);
         

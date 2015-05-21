@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'FechaIngreso',
             'secDescripcion',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

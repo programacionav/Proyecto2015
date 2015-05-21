@@ -16,6 +16,9 @@ use app\models\Sectores;
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
+<!-- cdn for modernizr, if you haven't included it already -->
+
+
 <script type="text/javascript">
     /*function tipoEmpleado(elemento)
     {
@@ -86,7 +89,7 @@ use app\models\Sectores;
 
     <?= $form->field($model, 'Email')->input("email", ['maxlength' => 100]) ?>
 
-    <?php //= $form->field($model, 'Activo')->dropDownList(["1"=>"SI", "0"=>"NO"])?>
+    <?= $form->field($model, 'Activo')->dropDownList(["1"=>"SI", "0"=>"NO"])?>
 
     <?php //= $form->field($model, 'FechaBaja')->textInput() ?>
 

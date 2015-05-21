@@ -80,6 +80,11 @@ class EnfermerosSearch extends Enfermeros
             'idEspecialidad' => $this->idEspecialidad,
         ]);
         
+        $query->joinWith(['idEnfermero0'=>function ($q){
+        	$q->where('empleados.Activo = 1');
+        }
+        ]);
+        
 
         return $dataProvider;
     }

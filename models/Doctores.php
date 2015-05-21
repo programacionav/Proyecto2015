@@ -80,6 +80,12 @@ class Doctores extends \yii\db\ActiveRecord
         return $this->hasOne(Empleados::className(), ['idEmpleado' => 'idDoctor']);
     }
     
+    public function getIdEmpleado0()
+    {
+        return $this->hasOne(Empleados::className(), ['idEmpleado' => 'idDoctor']);
+    }
+    
+    
     public function getIdEmpleado()
     {
         return $this->idDoctor0->idEmpleado;
@@ -124,6 +130,7 @@ class Doctores extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Especialidades::className(), ['idEspecialidad' => 'idEspecialidad']);
     }
+    
     public function getEspDescripcion()
     {
         return $this->idEspecialidad0->Descripcion;

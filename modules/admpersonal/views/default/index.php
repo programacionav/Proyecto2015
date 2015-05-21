@@ -4,11 +4,17 @@ use yii\helpers\Html;
 use yii\widgets\Menu;
 use yii\bootstrap\NavBar;
 use yii\bootstrap\Nav;
-//$this->registerJsFile('../vendor/bower/jquery/dist/jquery.min.js', array('position' => $this::POS_HEAD), 'jquery');
+use \app\models\Empleados;
+use \yii\web\View;
+$model = new Empleados();
+$this2 = new View();
+
 
 ?>
 
 
 <div class="admpersonal-default-index">
     <h1 class="titulo">Administración del personal</h1>
+   
+    
 </div>

@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="empleados-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?> Inactivos</h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     
@@ -33,15 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'Email:email',
             'Activo',
             'licencia',
-            // 'FechaBaja',
+            'FechaBaja',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Crear Empleado'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 </div>
 
 <div>

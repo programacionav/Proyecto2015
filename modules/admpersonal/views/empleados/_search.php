@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'NroEmpleado') ?>
     
-    <?= $form->field($model, 'Activo')->dropDownList(["1"=>"SI", "0"=>"NO"])//["1"=>"SI", "0"=>"NO"]?>
+    <?php //=$form->field($model, 'Activo')->dropDownList(["1"=>"SI", "0"=>"NO"])//["1"=>"SI", "0"=>"NO"]?>
 
     <?php // echo $form->field($model, 'FechaIngreso') ?>
 
