@@ -43,6 +43,7 @@ class Administrativos extends \yii\db\ActiveRecord
         return [
             'idEmpleado' => Yii::t('app', 'Id Empleado'),
             'idSector' => Yii::t('app', 'Id Sector'),
+            'secDescripcion' => Yii::t('app', 'Sector'),
         ];
     }
 
@@ -52,6 +53,11 @@ class Administrativos extends \yii\db\ActiveRecord
     public function getIdSector0()
     {
         return $this->hasOne(Sectores::className(), ['idSector' => 'idSector']);
+    }
+    
+    public function getSecDescripcion()
+    {
+        return $this->idSector0->Descripcion;
     }
 
     /**
@@ -99,10 +105,7 @@ class Administrativos extends \yii\db\ActiveRecord
         return $this->idEmpleado0->FechaBaja;
     }
     
-    public function getSecDescripcion()
-    {
-        return $this->idEmpleado0->Descripcion;
-    }
+    
 
     /**
      * @return \yii\db\ActiveQuery

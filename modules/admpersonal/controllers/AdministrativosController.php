@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+
 /**
  * AdministrativosController implements the CRUD actions for Administrativos model.
  */
@@ -84,6 +85,7 @@ class AdministrativosController extends Controller
     {
         $this->layout = 'amdpersonal';
         $model = $this->findModel($id);
+        
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idEmpleado]);

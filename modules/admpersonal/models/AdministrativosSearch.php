@@ -26,7 +26,7 @@ class AdministrativosSearch extends Administrativos
     public $Activo;
     public $FechaBaja;
     
-    //Especialidad
+    //Sector
     public $Descripcion;
     public $idSector;
     

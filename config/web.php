@@ -5,6 +5,7 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
+    'language' => 'es-AR',
     'bootstrap' => ['log'],
     'modules' => [
     	'admpacientes' => [
@@ -43,11 +44,15 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Programacion avanzada 2015',
         ],
+        'urlManager'=>[
+            'enablePrettyUrl'=>true,
+            'rules'=>[]
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Usuarios',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [

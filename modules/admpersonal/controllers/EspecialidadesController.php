@@ -66,7 +66,7 @@ class EspecialidadesController extends Controller
         $model = new Especialidades();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idEspecialidad]);
+            return $this->redirect(["index"]);//$this->redirect(['view', 'id' => $model->idEspecialidad]);
         } else {
             return $this->render('create', [
                 'model' => $model,

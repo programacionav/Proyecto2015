@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'FechaIngreso',
             // 'Email:email',
              'Activo',
+            'licencia',
             // 'FechaBaja',
 
             ['class' => 'yii\grid\ActionColumn'],

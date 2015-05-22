@@ -8,6 +8,7 @@ use app\models\Empleados;
 use app\modules\admcomedor\controllers\ReservasController;
 use yii\helpers\ArrayHelper;
 use app\modules\admcomedor\controllers\MenusController;
+use dosamigos\datetimepicker\DateTimePicker;
 
 
 /* @var $this yii\web\View */
@@ -36,7 +37,22 @@ $menu = Menus::findOne(['Fecha'=>date('Y-m-d')]);
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'Fecha')->textInput(['value'=>date('Y-m-d')]) ?>
+    <?= $form->field($model, 'Fecha')->widget(DateTimePicker::classname(), [
+    		'language' => 'es',
+    		'size' => 'ms',
+    		'template' => '{input}',
+    		'pickButtonIcon' => 'glyphicon glyphicon-time',
+    		'inline' => false,
+    		'clientOptions' => [
+    				'format' => 'yyyy-mm-dd',
+    				'startView' => 'month',
+    				'minView' => 'month',
+    				'maxView' => 'month',
+    				'todayBtn' => true,
+    				'todayHighlight' => true,
+    				'autoclose' => true
+    		]
+    ]) ?>
     
     <?= $form->field($model, 'idMenu')->hiddenInput(['value'=>$menu->idMenu])->hint($menu->Descripcion.' - $'.$menu->Precio) ?>
     

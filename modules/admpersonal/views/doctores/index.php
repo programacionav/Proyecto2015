@@ -17,20 +17,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Doctores'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php //= Html::a(Yii::t('app', 'Create Doctores'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
             //'idDoctor',
             //'idEspecialidad',
-            'Matricula',
-            "Nombre",
             "Apellido",
+            "Nombre",
+            'Matricula',
+            'FechaIngreso',
             "espDescripcion",
 
             ['class' => 'yii\grid\ActionColumn'],

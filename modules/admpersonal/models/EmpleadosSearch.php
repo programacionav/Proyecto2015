@@ -20,7 +20,7 @@ class EmpleadosSearch extends Empleados
     {
         return [
             [['idEmpleado', 'DNI', 'NroEmpleado', 'Activo'], 'integer'],
-            [['Apellido', 'Nombre', 'FechaIngreso', 'Email', 'FechaBaja'], 'safe'],
+            [['Apellido', 'Nombre', 'FechaIngreso', 'Email', 'FechaBaja', 'idSector'], 'safe'],
         ];
     }
 
