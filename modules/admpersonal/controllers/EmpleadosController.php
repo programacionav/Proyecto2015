@@ -13,10 +13,6 @@ use app\models\Doctores;
 use app\models\Enfermeros;
 use app\models\Administrativos;
 
-use app\modules\admpersonal\controllers\AdministrativosController;
-use app\modules\admpersonal\controllers\DoctoresController;
-use app\modules\admpersonal\controllers\EnfermerosController;
-
 /*$Doctores = new DoctoresController();
 $Administrativos = new AdministrativosController();
 $Enfermeros = new EnfermerosController();*/
@@ -34,6 +30,18 @@ class EmpleadosController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                ],
+            ],
+            
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'only' => ['create','update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['create','update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -136,7 +144,7 @@ class EmpleadosController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idEmpleado]);
+            return $this->redirect(['index', 'id' => $model->idEmpleado]);
         } else {
             return $this->render('update', [
                 'model' => $model,

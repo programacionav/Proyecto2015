@@ -39,6 +39,7 @@ class Empleados extends \yii\db\ActiveRecord
     public $secDescripcion;
     public $licencia;
     public $activo2;
+    public $activo;
     
     
     public static function tableName()
@@ -85,6 +86,7 @@ class Empleados extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    
     public function getAdministrativos()
     {
         return $this->hasOne(Administrativos::className(), ['idEmpleado' => 'idEmpleado']);

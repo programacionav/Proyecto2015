@@ -36,7 +36,7 @@ class Licencias extends \yii\db\ActiveRecord
         return [
             [['idTipoLicencia', 'idEmpleado', 'FechaInicio', 'FechaFin', 'idEstado'], 'required'],
             [['idTipoLicencia', 'idEmpleado', 'idEstado'], 'integer'],
-            [['FechaInicio', 'FechaFin'], 'safe']
+            [['FechaInicio', 'FechaFin', 'NroEmpleado', 'Nombre', 'Apellido', 'desTipoLicencia'], 'safe']
         ];
     }
 
@@ -47,11 +47,13 @@ class Licencias extends \yii\db\ActiveRecord
     {
         return [
             'idLicencia' => Yii::t('app', 'Id Licencia'),
-            'idTipoLicencia' => Yii::t('app', 'Id Tipo Licencia'),
+            'idTipoLicencia' => Yii::t('app', 'Tipo Licencia'),
             'idEmpleado' => Yii::t('app', 'Id Empleado'),
-            'FechaInicio' => Yii::t('app', 'Fecha Inicio'),
-            'FechaFin' => Yii::t('app', 'Fecha Fin'),
-            'idEstado' => Yii::t('app', 'Id Estado'),
+            'FechaInicio' => Yii::t('app', 'Inicia'),
+            'FechaFin' => Yii::t('app', 'Finaliza'),
+            'idEstado' => Yii::t('app', 'Estado'),
+            'desTipoLicencia' => Yii::t('app', 'Tipo'),
+            
         ];
     }
 
@@ -62,6 +64,8 @@ class Licencias extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Tiposlicencias::className(), ['idTipoLicencia' => 'idTipoLicencia']);
     }
+    
+    
 
     /**
      * @return \yii\db\ActiveQuery
@@ -82,5 +86,24 @@ class Licencias extends \yii\db\ActiveRecord
     public function getIdEstado0()
     {
         return $this->hasOne(Estadoslicencias::className(), ['idEstado' => 'idEstado']);
+    }
+    
+    public function getApellido()
+    {
+        return $this->idEmpleado0->Apellido;
+    }
+    
+    public function getNombre()
+    {
+        return $this->idEmpleado0->Nombre;
+    }
+    public function getNroEmpleado()
+    {
+        return $this->idEmpleado0->NroEmpleado;
+    }
+    
+    public function getDesTipoLicencia()
+    {
+        return $this->idTipoLicencia0->Descripcion;
     }
 }

@@ -65,6 +65,7 @@ echo Nav::widget([
                      ],
             'options'=>["class"=>'dropdown-toggle']
             ],*/
+        ['label' => 'Inicio', 'url' => ['empleados/index']],
         ['label' => 'Empleados',
             'items'=>[
                 ['label' => 'Crear', 'url' => ['empleados/create']],
@@ -79,9 +80,9 @@ echo Nav::widget([
             ],
         ['label' => 'Licencias',
             'items'=>[
-                ['label' => 'Licenciados', 'url' => ['licencias/index']],
-                ['label' => 'Pendientes', 'url' => ['licencias/index']],
-                ['label' => 'Historial', 'url' => ['licencias/index']],
+                //['label' => 'Licenciados', 'url' => ['licencias/index']],
+                ['label' => 'Pendientes', 'url' => ['licencias/pendientes']],
+                ['label' => 'Historial', 'url' => ['licencias/historial']],
                      ],
             'options'=>["class"=>'dropdown-toggle']
             ]
