@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admpersonal\models\EmpleadosSearch */
@@ -31,11 +32,26 @@ $this->params['breadcrumbs'][] = $this->title;
             'NroEmpleado',
             // 'FechaIngreso',
             // 'Email:email',
-             'Activo',
-            'licencia',
+            'Activo' => [
+                'label' => 'Estado',
+                'format' => 'raw',
+                'value' => function($data){
+                    if ($data->Activo == 1){return "Activo";}
+                    else {return "Inactivo";}
+                }
+                
+            ],
+            'licencia' => [
+                'label' => 'Licencia',
+                'format' => 'raw',
+                'value' => function ($data){
+                if ($data->Activo == 1){
+                return Html::a('Licencia',['licencias/create', 'idEmpleado' => $data->idEmpleado, 'idEstado' => "3" ] /*[Url::to(['licencias/create','idEmpleado'=>$data->idEmpleado])]*/, ['class' => 'btn btn-success']);//idEmpleado
+                }else{return "<center>-------</center>";}}
+            ]
+            ,
             // 'FechaBaja',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{update}'],
         ],
     ]); ?>
 

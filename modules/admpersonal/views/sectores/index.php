@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'idSector',
             'Descripcion',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{update}']
         ],
     ]); ?>
 <p>

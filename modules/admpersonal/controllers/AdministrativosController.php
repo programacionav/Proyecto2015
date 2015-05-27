@@ -24,6 +24,18 @@ class AdministrativosController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'only' => ['create','update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['create','update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
         ];
     }
 

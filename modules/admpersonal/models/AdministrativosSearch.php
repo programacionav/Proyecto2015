@@ -61,7 +61,21 @@ class AdministrativosSearch extends Administrativos
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
+        
+        $dataProvider->setSort([
+            'attributes'=>[
+                'Nombre'=>['asc'=>['Nombre'=>SORT_ASC],
+        		'desc'=>['Nombre'=>SORT_DESC],
+        		'default'=>SORT_DESC],
+                'Apellido'=>['asc'=>['Apellido'=>SORT_ASC],
+        		'desc'=>['Apellido'=>SORT_DESC],
+        		'default'=>SORT_DESC],
+                'FechaIngreso'=>['asc'=>['FechaIngreso'=>SORT_ASC],
+        		'desc'=>['FechaIngreso'=>SORT_DESC],
+        		'default'=>SORT_DESC],
+            ]
+        ]);
+        
         $this->load($params);
 
         if (!$this->validate()) {
@@ -69,6 +83,7 @@ class AdministrativosSearch extends Administrativos
             // $query->where('0=1');
             $query->joinWith(['idEmpleado0']);
             $query->joinWith(['idEspecialidad0']);
+            $query->joinWith(['idSector0']);
             return $dataProvider;
         }
 
@@ -76,6 +91,12 @@ class AdministrativosSearch extends Administrativos
             'idEmpleado' => $this->idEmpleado,
             'idSector' => $this->idSector,
         ]);
+        
+        $query->joinWith(['idEmpleado0'=>function ($q){
+        	$q->where('empleados.Activo = 1');
+        }
+        ]);
+        
 
         return $dataProvider;
     }

@@ -8,6 +8,7 @@ use app\modules\admpersonal\models\EspecialidadesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\IdentityInterface;
 
 /**
  * EspecialidadesController implements the CRUD actions for Especialidades model.
@@ -21,6 +22,17 @@ class EspecialidadesController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'only' => ['create','update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['create','update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];

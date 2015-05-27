@@ -23,6 +23,17 @@ class LicenciasController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'only' => ['create','update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['create','update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
         ];
     }
     
@@ -42,6 +53,8 @@ class LicenciasController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    
+    
 
     /**
      * Displays a single Licencias model.
@@ -55,6 +68,30 @@ class LicenciasController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+    
+    public function actionHistorial()
+    {
+       $this->layout = 'amdpersonal';
+        $searchModel = new LicenciasSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('historial', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    public function actionPendientes()
+    {
+       $this->layout = 'amdpersonal';
+        $searchModel = new LicenciasSearch();
+        $dataProvider = $searchModel->searchPendientes(Yii::$app->request->queryParams);
+
+        return $this->render('pendientes', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 
     /**
      * Creates a new Licencias model.
@@ -65,12 +102,22 @@ class LicenciasController extends Controller
     {
         $this->layout = 'amdpersonal';
         $model = new Licencias();
+        
+        if (isset($_GET['idEmpleado']))
+        {$idEmpleado = $_GET['idEmpleado'];}
+        else
+        {$idEmpleado = "";}
+        
+        if (isset($_GET['idEstado']))
+        {$idEstado = $_GET['idEstado'];}
+        else
+        {$idEstado = "3";}
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idLicencia]);
+            return $this->redirect(['pendientes', 'id' => $model->idLicencia]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                'model' => $model, 'idEmpleado' => $idEmpleado, 'idEstado' => $idEstado
             ]);
         }
     }
@@ -85,12 +132,22 @@ class LicenciasController extends Controller
     {
         $this->layout = 'amdpersonal';
         $model = $this->findModel($id);
+        
+        if (isset($_GET['idEmpleado']))
+        {$idEmpleado = $_GET['idEmpleado'];}
+        else
+        {$idEmpleado = "";}
+        
+        if (isset($_GET['idEstado']))
+        {$idEstado = $_GET['idEstado'];}
+        else
+        {$idEstado = "3";}
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idLicencia]);
+            return $this->redirect(['pendientes', 'id' => $model->idLicencia]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                'model' => $model, 'idEmpleado' => $model->idEmpleado, 'idEstado' => $idEstado
             ]);
         }
     }

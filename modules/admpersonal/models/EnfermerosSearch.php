@@ -64,6 +64,21 @@ class EnfermerosSearch extends Enfermeros
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        
+        // Ordenar valores.
+        $dataProvider->setSort([
+            'attributes'=>[
+                'Nombre'=>['asc'=>['Nombre'=>SORT_ASC],
+        		'desc'=>['Nombre'=>SORT_DESC],
+        		'default'=>SORT_DESC],
+                'Apellido'=>['asc'=>['Apellido'=>SORT_ASC],
+        		'desc'=>['Apellido'=>SORT_DESC],
+        		'default'=>SORT_DESC],
+                'FechaIngreso'=>['asc'=>['FechaIngreso'=>SORT_ASC],
+        		'desc'=>['FechaIngreso'=>SORT_DESC],
+        		'default'=>SORT_DESC],
+            ]
+        ]);
 
         $this->load($params);
 
@@ -78,6 +93,11 @@ class EnfermerosSearch extends Enfermeros
         $query->andFilterWhere([
             'idEnfermero' => $this->idEnfermero,
             'idEspecialidad' => $this->idEspecialidad,
+        ]);
+        
+        $query->joinWith(['idEnfermero0'=>function ($q){
+        	$q->where('empleados.Activo = 1');
+        }
         ]);
         
 
