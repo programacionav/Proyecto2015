@@ -49,10 +49,31 @@ AppAsset::register($this);
         ?>
 
         <div class="container">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
-            <?= $content ?>
+            <?php //Breadcrumbs::widget([
+                //'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            //]) ?>
+            
+        <?php
+    
+        NavBar::begin();
+    
+        echo Nav::widget([
+           
+            'items' => [
+        
+                ['label' => 'Home', 'url' => ['/admpacientes']],
+                ['label' => 'Pacientes', 'url' => ['pacientes/index']],
+                ['label' => 'Consultas', 'url' => ['consultas/create']],
+                ['label' => 'Practicas Medicas', 'url' => ['practicas-medicas/create']]
+                
+             ],
+            'options'=>['class'=>'nav navbar-nav']
+         ]);
+         NavBar::end();
+         
+        ?>
+            
+         <?= $content ?>
         </div>
     </div>
 

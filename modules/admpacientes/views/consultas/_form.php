@@ -31,7 +31,7 @@ use app\models\Obrassociales;
 
     <?= $form->field($model, 'Tratamiento',['template' => '<label class="control-label col-md-1"> Tratamiento: </label> <div class="row"><div class="col-sm-4">{input}{error}{hint}</div></div>'])->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'idObraSocial',['template' => '<label class="control-label col-md-1"> ObraSocial: </label> <div class="row"><div class="col-sm-4">{input}{error}{hint}</div></div>'])->dropDownList(ArrayHelper::map(Obrassociales::find()->all(),'idObraSocial','Descripcion' )) ?>
+    <?= $form->field($model, 'idObraSocial',['template' => '<label class="control-label col-md-1"> ObraSocial: </label> <div class="row"><div class="col-sm-4">{input}{error}{hint}</div></div>'])->dropDownList(ArrayHelper::map(Obrassociales::find()->all(),'idObraSocial','Descripcion' ),['prompt'=>('- Seleccione Obra Social -')]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
