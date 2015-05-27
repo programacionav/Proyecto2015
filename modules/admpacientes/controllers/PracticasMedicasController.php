@@ -12,6 +12,7 @@ use app\models\UploadForm;
 use yii\web\UploadedFile;
 use app\models\Usuarios;
 use yii\filters\AccessControl;
+use yii\db\Connection;
 
 
 
@@ -74,6 +75,7 @@ class PracticasMedicasController extends Controller
         
         return $this->render('view', [
             'model' => $this->findModel($id),
+            
         ]);
     }
 
@@ -91,7 +93,20 @@ class PracticasMedicasController extends Controller
               $model->file = UploadedFile::getInstance($model, 'file');
              if ($model->file && $model->validate()) {
                 $model->file->saveAs('uploads/' . $model->file->baseName . '.' . $model->file->extension);
-                }
+                //Guardamos el nombre del adjunto
+                $connection = new \yii\db\Connection([
+                    
+                    'dsn'=>'mysql:host=localhost;dbname=clinicadb',
+                    'username'=>'root',
+                    'password'=>'',
+                    'charset'=> 'utf8',
+                ]);
+                
+                $connection->open();
+                $comando=$connection->createCommand("UPDATE practicasmedicas SET Adjunto='$model->file' WHERE idPractica='$model->idPractica'");
+                $comando->execute();
+                
+             }
             return $this->redirect(['view', 'id' => $model->idPractica]);
         } else {
             return $this->render('create', [

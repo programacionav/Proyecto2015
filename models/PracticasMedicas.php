@@ -46,7 +46,7 @@ class PracticasMedicas extends \yii\db\ActiveRecord
                 'tooBig' => 'El tamaño maximo permitido es 10Mb',
                 'minSize'=>10,
                 'tooSmall'=>'El tamaño minimo permitido es 10 bytes',
-                'extensions'=>'pdf, txt, doc',
+               // 'extensions'=>'pdf, txt, doc',
                 'wrongExtension'=>'El archivo {file} no contiene una extensión permitida {extensions}',
                 
             ]
@@ -82,4 +82,5 @@ class PracticasMedicas extends \yii\db\ActiveRecord
         return $this->tiposPracticas->Descripcion;
     }
     
+       
 }

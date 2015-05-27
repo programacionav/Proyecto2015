@@ -15,15 +15,16 @@ use yii\widgets\DetailView;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idPractica',
-            'idTipoPractica',
+            //'idPractica',
+            //'idTipoPractica',
             'FechaSolicitud',
             'FechaHoraRealizado',
             'idDoctor',
-            'idPaciente',
+            //'idPaciente',
             'Resultado:ntext',
             'idObraSocial',
             'Adjunto',
+            
         ],
     ]) ?>
 <p>

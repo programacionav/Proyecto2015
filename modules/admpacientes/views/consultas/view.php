@@ -12,9 +12,9 @@ use yii\widgets\DetailView;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idConsulta',
+            //'idConsulta',
             'FechaHora',
-            'idDoctor',
+            //'idDoctor',
             'idPaciente',
             'Diagnostico:ntext',
             'Tratamiento:ntext',

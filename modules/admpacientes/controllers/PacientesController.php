@@ -138,6 +138,8 @@ class PacientesController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout='mainPacientes.php';
+        
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
