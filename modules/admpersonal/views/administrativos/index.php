@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'FechaIngreso',
             
 
-            //['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{update}'],
         ],
     ]); ?>
 

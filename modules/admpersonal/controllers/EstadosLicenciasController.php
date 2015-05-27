@@ -8,6 +8,8 @@ use app\modules\admpersonal\models\EstadosLicenciasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Usuarios;
+use yii\filters\AccessControl;
 
 /**
  * EstadosLicenciasController implements the CRUD actions for EstadosLicencias model.
@@ -31,6 +33,9 @@ class EstadosLicenciasController extends Controller
                         'actions' => ['create','update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                        $valid_roles = [Usuarios::ROLE_ADMIN];
+                        return Usuarios::roleInArray($valid_roles);}
                     ],
                 ],
             ],

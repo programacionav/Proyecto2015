@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
             'FechaInicio',
             'FechaFin',
-            'idEstado',
+            //'idEstado',
             'Aprobacion' => [
                 'label' => 'Aprobar',
                 'format' => 'raw',
