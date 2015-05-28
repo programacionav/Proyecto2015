@@ -6,6 +6,7 @@ use Yii;
 use app\models\Revisionestecnicas;
 use app\modules\admambulancias\models\RevisionestecnicasSearch;
 use yii\web\Controller;
+use app\models\Usuarios;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -23,6 +24,28 @@ class RevisionestecnicasController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                ],
+            ],
+            
+            'access'=> [
+                'class'=> \yii\filters\AccessControl::className(),
+                'only' => ['index','create','update','delete','view'],
+                'rules'=>[
+                    [
+                        'actions'=> ['index','view'],
+                        'allow'=> true,
+                        'roles'=>['@'],
+                        ],
+                                [
+                        'actions'=> ['create', 'update', 'delete'],
+                        'allow'=> true,
+                        'roles'=>['@'],
+                        'matchCallback'=> function ($rule, $action){
+                            $valid_roles = [Usuarios::ROLE_ADMIN];
+                            return Usuarios::roleInArray($valid_roles);
+                        }
+                        ],
+                                
                 ],
             ],
         ];
