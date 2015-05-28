@@ -71,4 +71,36 @@ class EmpleadosSearch extends Empleados
 
         return $dataProvider;
     }
+    
+    public function searchInactivos($params)
+    {
+        $query = Empleados::find();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'idEmpleado' => $this->idEmpleado,
+            'DNI' => $this->DNI,
+            'NroEmpleado' => $this->NroEmpleado,
+            'FechaIngreso' => $this->FechaIngreso,
+            'Activo' => 0,
+            'FechaBaja' => $this->FechaBaja,
+        ]);
+
+        $query->andFilterWhere(['like', 'Apellido', $this->Apellido])
+            ->andFilterWhere(['like', 'Nombre', $this->Nombre])
+            ->andFilterWhere(['like', 'Email', $this->Email]);
+
+        return $dataProvider;
+    }
 }

@@ -8,6 +8,7 @@ use app\modules\admpersonal\models\SectoresSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+//use yii\web\IdentityInterface;
 
 /**
  * SectoresController implements the CRUD actions for Sectores model.
@@ -23,6 +24,19 @@ class SectoresController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'only' => ['create','update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['create','update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            
         ];
     }
 

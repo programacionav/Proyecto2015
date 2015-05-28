@@ -8,7 +8,8 @@ use app\modules\admpacientes\ConsultasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\Usuarios;
+use yii\filters\AccessControl;
 /**
  * ConsultasController implements the CRUD actions for Consultas model.
  */
@@ -23,6 +24,21 @@ class ConsultasController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            
+         'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create'],
+                'rules' => [
+                    [
+                        'actions' => ['create'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                        $valid_roles = [Usuarios::ROLE_ADMIN,Usuarios::ROLE_DOCTOR];
+                        return Usuarios::roleInArray($valid_roles);}
+                    ],
+                ],
+            ],
         ];
     }
 
@@ -32,6 +48,7 @@ class ConsultasController extends Controller
      */
     public function actionIndex()
     {
+        
         $searchModel = new ConsultasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -48,6 +65,7 @@ class ConsultasController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout='mainPacientes.php';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -59,7 +77,9 @@ class ConsultasController extends Controller
      * @return mixed
      */
     public function actionCreate()
-    {
+    {   
+        $this->layout='mainPacientes.php';
+        
         $model = new Consultas();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

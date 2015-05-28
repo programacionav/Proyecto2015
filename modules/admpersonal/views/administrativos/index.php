@@ -27,20 +27,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'idEmpleado',
             //'idSector',
+            'secDescripcion',
             'Nombre',
             'Apellido',
             'FechaIngreso',
-            'secDescripcion',
+            
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}'],
         ],
     ]); ?>
 
 </div>
-<?php
- /*$admin = new app\models\Administrativos;
- $admin->idSector = 1;
- $admin->idEmpleado = 1;
- $admin->save();
-*/
-?>

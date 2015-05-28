@@ -25,21 +25,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
-            'idLicencia',
-            'idTipoLicencia',
-            'idEmpleado',
+            //'idLicencia',
+            //'idTipoLicencia',
+            //'idEmpleado',
+            'Nombre',
             'FechaInicio',
             'FechaFin',
+            'desTipoLicencia',
+            'Estado'=> 
+                [
+                    'label'=>'Estado Licencia',
+                    'format'=>'raw',
+                    'value'=> function($data){
+                        if ($data->idEstado == 3)
+                            { return Html::a('Aprobar', ['update','id' => $data->idLicencia, 'idEstado'=> "1"], ['class' => 'btn btn-success']);}}
+                ],
             // 'idEstado',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
-</div>
-
-<div>
-    <?php print_r($licencias->arrayLicencias()) ?>
 </div>

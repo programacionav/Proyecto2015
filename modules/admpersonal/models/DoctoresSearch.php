@@ -61,6 +61,23 @@ class DoctoresSearch extends Doctores
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        
+        $dataProvider->setSort([
+            'attributes'=>[
+                'Nombre'=>['asc'=>['Nombre'=>SORT_ASC],
+        		'desc'=>['Nombre'=>SORT_DESC],
+        		'default'=>SORT_DESC],
+                'Apellido'=>['asc'=>['Apellido'=>SORT_ASC],
+        		'desc'=>['Apellido'=>SORT_DESC],
+        		'default'=>SORT_DESC],
+                'FechaIngreso'=>['asc'=>['FechaIngreso'=>SORT_ASC],
+        		'desc'=>['FechaIngreso'=>SORT_DESC],
+        		'default'=>SORT_DESC],
+                'Matricula'=>['asc'=>['Matricula'=>SORT_ASC],
+        		'desc'=>['Matricula'=>SORT_DESC],
+        		'default'=>SORT_DESC],
+            ]
+        ]);
 
         $this->load($params);
 
@@ -75,6 +92,11 @@ class DoctoresSearch extends Doctores
         $query->andFilterWhere([
             'idDoctor' => $this->idDoctor,
             'idEspecialidad' => $this->idEspecialidad,
+        ]);
+        
+        $query->joinWith(['idEmpleado0'=>function ($q){
+        	$q->where('empleados.Activo = 1');
+        }
         ]);
 
         $query->andFilterWhere(['like', 'Matricula', $this->Matricula]);

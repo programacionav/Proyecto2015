@@ -17,7 +17,7 @@ class PracticasMedicasSearch extends PracticasMedicas
      */
     
     public $Descripcion;
-    
+   
     public function rules()
     {
         return [
@@ -53,7 +53,8 @@ class PracticasMedicasSearch extends PracticasMedicas
         $this->load($params);
 
         if (!$this->validate()) {
-            $query->joinWith(['tiposPracticas']);// uncomment the following line if you do not want to any records when validation fails
+            $query->joinWith(['tiposPracticas']);//// uncomment the following line if you do not want to any records when validation fails
+          
             // $query->where('0=1');
             return $dataProvider;
         }
@@ -74,7 +75,9 @@ class PracticasMedicasSearch extends PracticasMedicas
             
             $q->where('tiposPracticas.Descripcion LIKE "%'.$this->Descripcion.'%"');
         }]);
-
+        
+         
+        
         return $dataProvider;
     }
 }

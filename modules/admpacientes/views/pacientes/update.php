@@ -5,16 +5,13 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Pacientes */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Pacientes',
-]) . ' ' . $model->idPaciente;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pacientes'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->idPaciente, 'url' => ['view', 'id' => $model->idPaciente]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+
 ?>
 <div class="pacientes-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <br><h2><div class="col-sm-5" style="background-color: #333 ;color: #CCC;padding: 6px;-webkit-border-radius: 5px;
+                 -moz-border-radius: 5px;border-radius: 5px;">Actualizar Paciente<div></h2><div style="clear: both;"></div><br><br>
+
 
     <?= $this->render('_form', [
         'model' => $model,

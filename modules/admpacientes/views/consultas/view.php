@@ -6,13 +6,21 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Consultas */
 
-$this->title = $model->idConsulta;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Consultas'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="consultas-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            //'idConsulta',
+            'FechaHora',
+            //'idDoctor',
+            'idPaciente',
+            'Diagnostico:ntext',
+            'Tratamiento:ntext',
+            'idObraSocial',
+        ],
+    ]) ?>
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->idConsulta], ['class' => 'btn btn-primary']) ?>
@@ -24,18 +32,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'idConsulta',
-            'FechaHora',
-            'idDoctor',
-            'idPaciente',
-            'Diagnostico:ntext',
-            'Tratamiento:ntext',
-            'idObraSocial',
-        ],
-    ]) ?>
 
 </div>

@@ -12,6 +12,10 @@ use app\modules\admpacientes\ConsultasSearch;
 use app\models\FormSearch;
 use yii\helpers\Html;
 use app\models\Consultas;
+use app\models\LoginForm;
+use app\models\Usuarios;
+use yii\filters\AccessControl;
+
 /**
  * PacientesController implements the CRUD actions for Pacientes model.
  */
@@ -24,6 +28,31 @@ class PacientesController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                ],
+            ],
+            
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create','update','ficha','delete'],
+                'rules' => [
+                    [
+                        'actions' => ['create','update','ficha'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                        $valid_roles = [Usuarios::ROLE_DOCTOR];
+                        return Usuarios::roleInArray($valid_roles);}
+                    ],
+                ],
+                'rules' => [
+                    [
+                        'actions' => ['create','update','ficha','delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                        $valid_roles = [Usuarios::ROLE_ADMIN];
+                        return Usuarios::roleInArray($valid_roles);}
+                    ],
                 ],
             ],
         ];
@@ -51,7 +80,7 @@ class PacientesController extends Controller
      */
     public function actionView($id)
     {
-        
+        $this->layout='mainPacientes.php';
         return $this->render('view', [
             'model' => $this->findModel($id),
            
@@ -60,6 +89,8 @@ class PacientesController extends Controller
     
     public function actionFicha($id)
     {
+        $this->layout='mainPacientes.php';
+        
          $searchModel = new \app\modules\admpacientes\PracticasMedicasSearch();
          $searchModel->idPaciente=$id;
          $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -68,33 +99,14 @@ class PacientesController extends Controller
          $searchModel2->idPaciente=$id;
          $dataProvider2 = $searchModel2->search(Yii::$app->request->queryParams);
          
-         //$Search=new ConsultasSearch();
-    
-    
-      //if(isset(Yii::$app->request->post()['fechaIn'])){
-        //    $datos=Yii::$app->request->post();
-          //  $fechaIn=$datos['fechaIn'];
-            //$fechaFin=$datos['fechaFin'];
-            //$model=$Search->searchConsPac($id,$fechaIn,$fechaFin);
-            
-             //return $this->render('ficha', [
-            //'id' => $id,
-            //'model' => $model,
-            // ]);
-                       
-       //}    
-        //else{
-        
             return $this->render('ficha', [
                
-                'id' => $id,
-               //'model' => $this->findModel($id)->consultas,
+               'id' => $id,
                'searchModel'=>$searchModel,
                'dataProvider'=>$dataProvider,
                'searchModel2'=>$searchModel2,
                'dataProvider2'=>$dataProvider2,
              ]);
-        //}
 }
 
 
@@ -105,6 +117,8 @@ class PacientesController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout='mainPacientes.php';
+        
         $model = new Pacientes();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -124,6 +138,8 @@ class PacientesController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout='mainPacientes.php';
+        
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -163,4 +179,6 @@ class PacientesController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+      
 }

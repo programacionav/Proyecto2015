@@ -22,6 +22,9 @@ class PracticasMedicas extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    
+    public $file;
+    
     public static function tableName()
     {
         return 'practicasmedicas';
@@ -37,8 +40,17 @@ class PracticasMedicas extends \yii\db\ActiveRecord
             [['idTipoPractica', 'idDoctor', 'idPaciente', 'idObraSocial'], 'integer'],
             [['FechaSolicitud', 'FechaHoraRealizado'], 'safe'],
             [['Resultado'], 'string'],
-            [['Adjunto'], 'string', 'max' => 250]
-        ];
+            [['Adjunto'], 'string', 'max' => 250],
+            [['file'],'file',
+                
+                'tooBig' => 'El tamaño maximo permitido es 10Mb',
+                'minSize'=>10,
+                'tooSmall'=>'El tamaño minimo permitido es 10 bytes',
+               // 'extensions'=>'pdf, txt, doc',
+                'wrongExtension'=>'El archivo {file} no contiene una extensión permitida {extensions}',
+                
+            ]
+            ];
     }
 
     /**
@@ -56,6 +68,7 @@ class PracticasMedicas extends \yii\db\ActiveRecord
             'Resultado' => Yii::t('app', 'Resultado'),
             'idObraSocial' => Yii::t('app', 'Id Obra Social'),
             'Adjunto' => Yii::t('app', 'Adjunto'),
+            'file'=>'Seleccionar archivos:',
         ];
     }
     
@@ -69,4 +82,5 @@ class PracticasMedicas extends \yii\db\ActiveRecord
         return $this->tiposPracticas->Descripcion;
     }
     
+       
 }

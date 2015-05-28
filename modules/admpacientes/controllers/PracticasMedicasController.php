@@ -8,6 +8,14 @@ use app\modules\admpacientes\PracticasMedicasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\UploadForm;
+use yii\web\UploadedFile;
+use app\models\Usuarios;
+use yii\filters\AccessControl;
+use yii\db\Connection;
+
+
+
 
 /**
  * PracticasMedicasController implements the CRUD actions for PracticasMedicas model.
@@ -21,6 +29,21 @@ class PracticasMedicasController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                ],
+            ],
+            
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create'],
+                'rules' => [
+                    [
+                        'actions' => ['create'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                        $valid_roles = [Usuarios::ROLE_ADMIN,Usuarios::ROLE_DOCTOR];
+                        return Usuarios::roleInArray($valid_roles);}
+                    ],
                 ],
             ],
         ];
@@ -48,8 +71,11 @@ class PracticasMedicasController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout='mainPacientes.php';
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
+            
         ]);
     }
 
@@ -60,15 +86,35 @@ class PracticasMedicasController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout='mainPacientes.php';
+        
         $model = new PracticasMedicas();
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+              $model->file = UploadedFile::getInstance($model, 'file');
+             if ($model->file && $model->validate()) {
+                $model->file->saveAs('uploads/' . $model->file->baseName . '.' . $model->file->extension);
+                //Guardamos el nombre del adjunto
+                $connection = new \yii\db\Connection([
+                    
+                    'dsn'=>'mysql:host=localhost;dbname=clinicadb',
+                    'username'=>'root',
+                    'password'=>'',
+                    'charset'=> 'utf8',
+                ]);
+                
+                $connection->open();
+                $comando=$connection->createCommand("UPDATE practicasmedicas SET Adjunto='$model->file' WHERE idPractica='$model->idPractica'");
+                $comando->execute();
+                
+             }
             return $this->redirect(['view', 'id' => $model->idPractica]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+              
             ]);
         }
+
     }
 
     /**

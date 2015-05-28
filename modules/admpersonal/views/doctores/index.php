@@ -28,24 +28,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'idDoctor',
             //'idEspecialidad',
+            "espDescripcion",
             "Apellido",
             "Nombre",
             'Matricula',
             'FechaIngreso',
-            "espDescripcion",
+            
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
-</div>
-<div>
-    <?php
-    $doc = new Doctores();
-    $doc->idDoctor = 1;
-    $doc->idEspecialidad = 1;
-    $doc->Matricula = "BMW123";
-    
-    
-    ?>
 </div>
