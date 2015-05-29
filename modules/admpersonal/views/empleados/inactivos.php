@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'Email:email',
             'Activo',
             //'licencia',
-            'FechaBaja',
+            //'FechaBaja',
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{update}'],
         ],
