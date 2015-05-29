@@ -48,8 +48,8 @@ class CapacitacionesDoctoresController extends Controller
      */
     public function actionPordoctor($id)
     {
-    	$cp = CapacitacionesDoctores::find()->all();
-    	$this->render('pordoctor', ['cp' => $cp]);
+    	$cp = CapacitacionesDoctores::find()->where(['idDoctor' => $id])->all();
+    	return $this->render('pordoctor', ['cp' => $cp]);
     }
     public function actionView($id)
     {
