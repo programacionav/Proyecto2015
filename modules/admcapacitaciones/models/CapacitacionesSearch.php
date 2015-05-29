@@ -58,6 +58,7 @@ class CapacitacionesSearch extends Capacitaciones
         }
 
         $query->andFilterWhere([
+        	'CapacitacionesActivo' => 1,
             'idCapacitacion' => $this->idCapacitacion,
             'DuracionHoras' => $this->DuracionHoras,
             'idCapacitador' => $this->idCapacitador,

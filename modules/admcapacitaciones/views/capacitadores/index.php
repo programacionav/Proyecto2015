@@ -26,10 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'idCapacitador',
-            'idEmpresaCapacitadora',
+        	['attribute' => 'idEmpresaCapacitadora', 'value' => 'idEmpresaCapacitadora0.RazonSocial'],
             'Apellido',
             'Nombre',
-            'idEspecialidad',
+            ['attribute' => 'idEspecialidad', 'value' => 'idEspecialidad0.Descripcion'],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

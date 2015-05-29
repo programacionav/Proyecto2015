@@ -1,20 +1,45 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
-use app\models\Empleados;
-$model = new Empleados();
+use yii\widgets\Menu;
+use yii\bootstrap\NavBar;
+use yii\bootstrap\Nav;
 ?>
 <div class="admcapacitaciones-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p><?= Html::a('Tabla Capacitaciones', ['capacitaciones/index']); ?></p>
-    <p><?= Html::a('Tabla Capacitadores', ['capacitadores/index']); ?></p>
-    <p><?= Html::a('Tabla de Empresas Capacitadoras', ['empresas-capacitadoras/index']); ?></p>
-    <p><?= Html::a('Tabla relacional Capacitaciones y Doctores', ['capacitaciones-doctores/index']) ?></p>
-    <p><?= Html::a('Filtro de capacitaciones por fecha.', ['capacitaciones/porfecha']) ?></p>
-    <p><?= Html::activeDropDownList($model, 'idEmpleado', ArrayHelper::map(Empleados::find()->all(), 'idEmpleado', 'Apellido')) ?></p>
+    <h1>INICIO</h1>
+    <?php
+	NavBar::begin();
+	echo Nav::widget([
+	    'items' => [
+	        ['label' => 'Capacitaciones',
+	            'items'=>[
+	                ['label' => 'Tabla', 'url' => ['capacitaciones/index']],
+	            	['label' => 'Filtrar por fecha', 'url' => ['capacitaciones/porfecha']]
+	                     ],
+	            'options'=>["class"=>'dropdown-toggle']
+	            ],
+	        ['label' => 'Capacitadores',
+	            'items'=>[
+	                ['label' => 'Tabla', 'url' => ['capacitadores/index']],
+	                     ],
+	            'options'=>["class"=>'dropdown-toggle']
+	            ],
+	        ['label' => 'Capacitaciones Doctores',
+	            'items'=>[
+	                ['label' => 'Tabla', 'url' => ['capacitaciones-doctores/index']],
+	                     ],
+	            'options'=>["class"=>'dropdown-toggle']
+	            ],
+	    		['label' => 'Empresas Capacitadoras',
+	    		'items'=>[
+	    				['label' => 'Tabla', 'url' => ['empresas-capacitadoras/index']],
+	    				],
+	            'options'=>["class"=>'dropdown-toggle']
+	    				]
+	        
+	    ],
+	    'options'=>['class'=>'nav navbar-nav']
+	]);
+	NavBar::end();
+	?>
 </div>

@@ -10,6 +10,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\app\models;
 use app\models\Capacitadores;
+use app\models\Doctores;
+use app\models\CapacitacionesDoctores;
 /**
  * CapacitacionesController implements the CRUD actions for Capacitaciones model.
  */
@@ -26,13 +28,18 @@ class CapacitacionesController extends Controller
             ],
         ];
     }
-
-    /**
-     * Lists all Capacitaciones models.
-     * @return mixed
-     */
-    public function actionPorfecha()
+    /* BORRAR TODAS LAS RELACIONES NO ES LA SOLUCION
+    public function actionRelacion($id)
     {
+    	$busqueda = CapacitacionesDoctores::find() ->where(['idCapacitacion' => $id]) ->all();
+    	if ($busqueda !== null) {
+    		return $busqueda;
+    	} else {
+    		return false;
+    	}
+    }
+    */
+    public function actionPorfecha()
     {
         $model = new CapacitacionesSearch();
  
@@ -44,16 +51,19 @@ class CapacitacionesController extends Controller
             return $this->render('filtroporfecha', ['model' => $model]);
         }
     }
-    }
-    public function actionFiltroporfecha()
+    public function actionDoctores()
     {
-    	$searchModel = new Capacitaciones();
-    	$searchModel = Capacitaciones::find()->where('Fecha = 2016-05-12');
+    	$dataProvider = new Doctores();
+    	$dataProvider = $dataProvider->find()->all();
     	
-    	return $this->render('filtroporfecha', [
-    			'searchModel' => $searchModel,
+    	return $this->render('doctores', [
+    			'dataProvider' => $dataProvider,
     	]);
     }
+    /**
+     * Lists all Capacitaciones models.
+     * @return mixed
+     */
     public function actionIndex()
     {
         $searchModel = new CapacitacionesSearch();
@@ -117,7 +127,25 @@ class CapacitacionesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+    	/*
+    	 * $resultado = $this->actionRelacion($id);
+    	for($i=0;$i<count($resultado);$i++)
+    	{
+    		$relacion = $resultado[$i];
+    		$relacion->delete();
+    	}**/
+    	/*LO QUE SIGUE ES IGUAL QUE LO DE ARRIBA SI USAR LA FUNCION actionBorrar()
+    	$relacion = new CapacitacionesDoctores();
+    	$array = $relacion->find()->where(['idDoctor' => $id])->all();
+    	for($i=0;$i<count($array);$i++)
+    	{
+    		$r = $array[$i];
+    		$r->delete();
+    	}*/
+    	
+        $modelo = $this->findModel($id);
+        $modelo->CapacitacionesActivo = 0;
+        $modelo->save();
 
         return $this->redirect(['index']);
     }

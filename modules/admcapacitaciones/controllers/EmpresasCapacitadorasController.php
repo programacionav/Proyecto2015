@@ -109,7 +109,9 @@ class EmpresasCapacitadorasController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $modelo = $this->findModel($id);
+        $modelo->EPActivo = 0;
+        $modelo->save();
 
         return $this->redirect(['index']);
     }

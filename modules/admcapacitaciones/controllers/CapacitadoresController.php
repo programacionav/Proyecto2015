@@ -106,7 +106,9 @@ class CapacitadoresController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $modelo = $this->findModel($id);
+        $modelo->CapacitadoresActivo = 0;
+        $modelo->save();
 
         return $this->redirect(['index']);
     }

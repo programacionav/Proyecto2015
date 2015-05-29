@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use dosamigos\datepicker\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model app\modules\admcapacitaciones\models\CapacitacionesSearch */
 /* @var $form yii\widgets\ActiveForm */
@@ -21,10 +21,28 @@ use yii\widgets\ActiveForm;
 
     <?php //echo $form->field($model, 'Descripcion') ?>
 
-    <?= $form->field($model, 'Desde') ?>
- 
- 	<?= $form->field($model, 'Hasta') ?>
-
+    <?php //echo $form->field($model, 'Desde') ?>
+    <?= DatePicker::widget([
+    'model' => $model,
+    'attribute' => 'Desde',
+    'template' => '{addon}{input}',
+        'clientOptions' => [
+            'autoclose' => true,
+            'format' => 'yyyy-mm-dd'
+        ]
+	]);?>
+ 	<br />
+ 	<?php //echo $form->field($model, 'Hasta') ?>
+ 	<?= DatePicker::widget([
+    'model' => $model,
+    'attribute' => 'Hasta',
+    'template' => '{addon}{input}',
+        'clientOptions' => [
+            'autoclose' => true,
+            'format' => 'yyyy-mm-dd'
+        ]
+	]);?>
+	<br />
     <?php //echo $form->field($model, 'DuracionHoras') ?>
 
     <?php // echo $form->field($model, 'idCapacitador') ?>

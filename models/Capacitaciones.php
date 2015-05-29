@@ -52,7 +52,7 @@ class Capacitaciones extends \yii\db\ActiveRecord
             'Descripcion' => 'Descripcion',
             'Fecha' => 'Fecha',
             'DuracionHoras' => 'Duracion Horas',
-            'idCapacitador' => 'Id Capacitador',
+            'idCapacitador' => 'Capacitador',
         ];
     }
 

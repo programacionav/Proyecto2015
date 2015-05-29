@@ -46,13 +46,21 @@ class CapacitacionesDoctoresController extends Controller
      * @param integer $id
      * @return mixed
      */
+    public function actionPordoctor($id)
+    {
+    	$cp = CapacitacionesDoctores::find()->all();
+    	$this->render('pordoctor', ['cp' => $cp]);
+    }
     public function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
-
+    public function actionCapacitaciones($id)
+    {
+    	
+    }
     /**
      * Creates a new CapacitacionesDoctores model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -98,7 +106,9 @@ class CapacitacionesDoctoresController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $modelo = $this->findModel($id);
+        $modelo->CDActivo = 0;
+        $modelo->save();
 
         return $this->redirect(['index']);
     }
