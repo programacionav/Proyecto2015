@@ -12,6 +12,8 @@ use app\models\app\models;
 use app\models\Capacitadores;
 use app\models\Doctores;
 use app\models\CapacitacionesDoctores;
+use app\modules\admcapacitaciones\models\CapacitacionesDoctoresSearch;
+use app\models\Empleados;
 /**
  * CapacitacionesController implements the CRUD actions for Capacitaciones model.
  */
@@ -76,8 +78,12 @@ class CapacitacionesController extends Controller
     }
     public function actionView($id)
     {
+    	$a = CapacitacionesDoctores::find()->select(['idDoctor'])->where(['idCapacitacion' => $id]);
+    	$asistencia = Empleados::find()->where(['idEmpleado' => $a])->all();
+    	
         return $this->render('view', [
             'model' => $this->findModel($id),
+        	'asistencia' => $asistencia
         		
         ]);
     }
