@@ -56,6 +56,7 @@ class EmpresasCapacitadorasSearch extends EmpresasCapacitadoras
         }
 
         $query->andFilterWhere([
+        	'ECActivo' => 1,
             'idEmpresa' => $this->idEmpresa,
         ]);
 

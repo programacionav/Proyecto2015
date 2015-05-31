@@ -8,6 +8,8 @@ use app\modules\admpersonal\models\SectoresSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Usuarios;
+use yii\filters\AccessControl;
 //use yii\web\IdentityInterface;
 
 /**
@@ -33,6 +35,9 @@ class SectoresController extends Controller
                         'actions' => ['create','update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                        $valid_roles = [Usuarios::ROLE_ADMIN];
+                        return Usuarios::roleInArray($valid_roles);}
                     ],
                 ],
             ],

@@ -45,8 +45,8 @@ class CapacitacionesDoctores extends \yii\db\ActiveRecord
     {
         return [
             'idCD' => 'Id Cd',
-            'idDoctor' => 'Id Doctor',
-            'idCapacitacion' => 'Id Capacitacion',
+            'idDoctor' => 'Doctor',
+            'idCapacitacion' => 'Capacitacion',
             'Resultado' => 'Resultado',
         ];
     }
@@ -58,7 +58,13 @@ class CapacitacionesDoctores extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Capacitaciones::className(), ['idCapacitacion' => 'idCapacitacion']);
     }
-
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdEmpleados0()
+    {
+    	return $this->hasOne(Empleados::className(), ['idEmpleado' => 'idDoctor']);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */

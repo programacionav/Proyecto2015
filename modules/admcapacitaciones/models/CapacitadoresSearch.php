@@ -18,8 +18,8 @@ class CapacitadoresSearch extends Capacitadores
     public function rules()
     {
         return [
-            [['idCapacitador', 'idEmpresaCapacitadora', 'idEspecialidad'], 'integer'],
-            [['Apellido', 'Nombre'], 'safe'],
+            [['idCapacitador'], 'integer'],
+            [['Apellido', 'Nombre', 'idEmpresaCapacitadora', 'idEspecialidad'], 'safe'],
         ];
     }
 
@@ -56,13 +56,16 @@ class CapacitadoresSearch extends Capacitadores
         }
 
         $query->andFilterWhere([
+        	'CapacitadoresActivo' => 1,
             'idCapacitador' => $this->idCapacitador,
-            'idEmpresaCapacitadora' => $this->idEmpresaCapacitadora,
-            'idEspecialidad' => $this->idEspecialidad,
-        ]);
 
+        ]);
+		$query->joinWith('idEmpresaCapacitadora0');
+		$query->joinWith('idEspecialidad0');
         $query->andFilterWhere(['like', 'Apellido', $this->Apellido])
-            ->andFilterWhere(['like', 'Nombre', $this->Nombre]);
+            ->andFilterWhere(['like', 'Nombre', $this->Nombre])
+        	->andFilterWhere(['like', 'empresascapacitadoras.RazonSocial', $this->idEmpresaCapacitadora])
+        	->andFilterWhere(['like', 'especialidades.Descripcion', $this->idEspecialidad]);
 
         return $dataProvider;
     }

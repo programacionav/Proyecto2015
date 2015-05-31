@@ -8,7 +8,7 @@ use app\models\app\models;
 /* @var $this yii\web\View */
 /* @var $model app\models\EmpresasCapacitadoras */
 
-$this->title = $model->idEmpresa;
+$this->title = $model->RazonSocial.' - '.$model->Cuit;
 $this->params['breadcrumbs'][] = ['label' => 'Empresas Capacitadoras', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -38,20 +38,36 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
     <h3>Capacitacones de esta Empresa</h3>
     <?php
-    	echo '<table class="table table-striped table-bordered detail-view">';
     	foreach($cap as $c)
     	{
-    		echo	'
-						<tbody>
-					    	<tr><th>Nombre</th><td>'.$c->Nombre.'</td></tr>
-							<tr><th>Descripcion</th><td>'.$c->Descripcion.'</td></tr>
-							<tr><th>Fecha</th><td>'.$c->Fecha.'</td></tr>
-							<tr><th>Duracion</th><td>'.$c->DuracionHoras.'</td></tr>
-							<tr><th>idCapacitador</th><td>'.$c->idCapacitador.'</td></tr>
-							<tr><th></th><td></td></tr>
-						</tbody>
-					';
+    		echo	DetailView::widget([
+				        'model' => $c,
+				        'attributes' => [
+				            'Nombre',
+				        	'Descripcion',
+				        	'Fecha',
+				            'DuracionHoras',
+				        	['label' => 'Capacitador', 'value' => $c->idCapacitador0->Nombre.', '.$c->idCapacitador0->Apellido]
+				        ],
+				    ]);
+					//<tr><th>Capacitador</th><td>'.$c->idCapacitador0->Nombre.', '.$c->idCapacitador0->Apellido.'</td></tr>
     	}
-    	echo '</table>';
     ?>
+    <?php
+    	/*echo '<table class="table table-striped table-bordered detail-view">';
+    	foreach($cap as $c)
+    	{
+    		echo	DetailView::widget([
+	        'model' => $c,
+	        'attributes' => [
+            'idCapacitacion',
+            'Nombre',
+            'Descripcion:ntext',
+            'Fecha',
+            'DuracionHoras',
+        	['label' => 'Capacitador', 'value' => $c->idCapacitador0->Nombre.', '.$c->idCapacitador0->Apellido]
+            
+	        ],
+	    ]);
+    	}*/?>
 </div>

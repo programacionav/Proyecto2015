@@ -24,10 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'idCD',
-            'idDoctor',
-            'idCapacitacion',
+        	['format' => 'html', 'attribute' => 'idDoctor', 'value' => function($model){ return Html::a($model->idDoctor0->Apellido, ['pordoctor', 'id' => $model->idDoctor, 'nombre' => $model->idDoctor0->Nombre, 'apellido' => $model->idDoctor0->Apellido]).', '.$model->idDoctor0->Nombre;}],
+            ['attribute' => 'idCapacitacion', 'value' => 'idCapacitacion0.Nombre' ],
             'Resultado',
 
             ['class' => 'yii\grid\ActionColumn'],
@@ -35,3 +34,4 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
 </div>
+

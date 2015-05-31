@@ -12,6 +12,8 @@ use yii\filters\VerbFilter;
 use app\models\Doctores;
 use app\models\Enfermeros;
 use app\models\Administrativos;
+use app\models\Usuarios;
+use yii\filters\AccessControl;
 
 /*$Doctores = new DoctoresController();
 $Administrativos = new AdministrativosController();
@@ -41,6 +43,9 @@ class EmpleadosController extends Controller
                         'actions' => ['create','update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                        $valid_roles = [Usuarios::ROLE_ADMIN];
+                        return Usuarios::roleInArray($valid_roles);}
                     ],
                 ],
             ],
