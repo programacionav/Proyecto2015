@@ -19,36 +19,24 @@ class RevisionestecnicasController extends Controller
     
     public function behaviors()
     {
-        return [
-            'verbs' => [
+        return ['verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-            
+                    'delete' => ['post'],],],
             'access'=> [
                 'class'=> \yii\filters\AccessControl::className(),
                 'only' => ['index','create','update','delete','view'],
-                'rules'=>[
-                    [
-                        'actions'=> ['index','view'],
+                'rules'=>[['actions'=> ['index','view'],
                         'allow'=> true,
-                        'roles'=>['@'],
-                        ],
-                                [
-                        'actions'=> ['create', 'update', 'delete'],
+                        'roles'=>['@'],],
+                                ['actions'=> ['create', 'update', 'delete'],
                         'allow'=> true,
                         'roles'=>['@'],
                         'matchCallback'=> function ($rule, $action){
                             $valid_roles = [Usuarios::ROLE_ADMIN];
                             return Usuarios::roleInArray($valid_roles);
                         }
-                        ],
-                                
-                ],
-            ],
-        ];
+                        ],],],];
     }
 
     /**

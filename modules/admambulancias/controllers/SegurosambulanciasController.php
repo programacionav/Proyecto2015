@@ -20,21 +20,15 @@ class SegurosambulanciasController extends Controller
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-            
+                'actions' => ['delete' => ['post'],],],
             'access'=> [
                 'class'=> \yii\filters\AccessControl::className(),
                 'only' => ['index','create','update','delete','view'],
                 'rules'=>[
-                    [
-                        'actions'=> ['index','view'],
+                    [   'actions'=> ['index','view'],
                         'allow'=> true,
                         'roles'=>['@'],
-                        ],
-                                [
+                        ], [
                         'actions'=> ['create', 'update', 'delete'],
                         'allow'=> true,
                         'roles'=>['@'],
@@ -42,11 +36,7 @@ class SegurosambulanciasController extends Controller
                             $valid_roles = [Usuarios::ROLE_ADMIN];
                             return Usuarios::roleInArray($valid_roles);
                         }
-                        ],
-                                
-                ],
-            ],
-        ];
+                        ],],],];
     }
 
     /**

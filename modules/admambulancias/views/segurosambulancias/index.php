@@ -48,10 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'rowOptions'=>function($model){
-                if($model->dias<15)
-                        return ['class'=>'danger'];
-                else
-                        return ['class'=>'success'];
+                if($model->dias<15){return ['class'=>'danger'];}
+                else{return ['class'=>'success'];}
 
         },
         'columns' => [

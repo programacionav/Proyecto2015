@@ -23,34 +23,24 @@ use app\models\Segurosambulancias;
 class AmbulanciasController extends Controller {
 
     public function behaviors() {
-        return [
-            'verbs' => [
+        return ['verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
-                ],
-            ],
-            'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                ],],
+            'access' => ['class' => \yii\filters\AccessControl::className(),
                 'only' => ['index', 'create', 'update', 'delete', 'informacion', 'view'],
-                'rules' => [
-                    [
-                        'actions' => ['index', 'informacion', 'view'],
+                'rules' => [['actions' => ['index', 'informacion', 'view'],
                         'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                    [
-                        'actions' => ['create', 'update', 'delete'],
+                        'roles' => ['@'],],
+                    ['actions' => ['create', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
                     $valid_roles = [Usuarios::ROLE_ADMIN];
                     return Usuarios::roleInArray($valid_roles);
                 }
-                    ],
-                ],
-            ],
-        ];
+                    ],],],];
     }
 
     /**
@@ -128,9 +118,8 @@ class AmbulanciasController extends Controller {
             if ((count($tempArray)) == 0 && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->Patente]);
             } else {
-                echo '<style>
-body {background-color:#ddffdd}
-</style> ';
+                
+                echo '<style>body {background-color:#ddffdd}</style> ';
                 echo "<p style='text-align: center'>Ya existe ambulancia con esta patente<br/>";
                 echo "<a href='history.back()' id='Volver' class= 'btn btn-primary' onclick= 'history.back()'>Volver</a></p>";
             }
