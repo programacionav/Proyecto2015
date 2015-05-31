@@ -4,6 +4,7 @@ namespace app\modules\admcapacitaciones\controllers;
 
 use yii\web\Controller;
 use yii\filters\VerbFilter;
+use app\models\Usuarios;
 
 class DefaultController extends Controller
 {

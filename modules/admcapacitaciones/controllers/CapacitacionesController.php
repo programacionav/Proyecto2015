@@ -15,6 +15,7 @@ use app\models\CapacitacionesDoctores;
 use app\modules\admcapacitaciones\models\CapacitacionesDoctoresSearch;
 use app\models\Empleados;
 use yii\data\ActiveDataProvider;
+use app\models\Usuarios;
 /**
  * CapacitacionesController implements the CRUD actions for Capacitaciones model.
  */

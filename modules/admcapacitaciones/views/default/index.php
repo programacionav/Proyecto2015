@@ -64,7 +64,7 @@ $rol = 'Bienvenido ';
 		    		'options'=>['class'=>'nav navbar-nav']]);
 	    		NavBar::end();
     }
-    else
+    elseif($usuario['idRol'] == 2)
     {
     	NavBar::begin();
     	echo	Nav::widget([
@@ -80,6 +80,10 @@ $rol = 'Bienvenido ';
 	    			],
 		    		'options'=>['class'=>'nav navbar-nav']]);
 	    		NavBar::end();
+    }
+    else
+    {
+    	echo 'No hay herramientas para este tipo de usuario.';
     }
 	?>
 </div>

@@ -8,6 +8,7 @@ use app\modules\admcapacitaciones\models\CapacitadoresSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Usuarios;
 
 /**
  * CapacitadoresController implements the CRUD actions for Capacitadores model.

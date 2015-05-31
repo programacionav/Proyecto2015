@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use app\models\Capacitaciones;
 use app\models\Capacitadores;
 use app\models\app\models;
+use app\models\Usuarios;
 
 /**
  * EmpresasCapacitadorasController implements the CRUD actions for EmpresasCapacitadoras model.
