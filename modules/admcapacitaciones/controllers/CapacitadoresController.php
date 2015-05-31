@@ -14,17 +14,44 @@ use yii\filters\VerbFilter;
  */
 class CapacitadoresController extends Controller
 {
-    public function behaviors()
+	public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
+        return
+        [
+			'verbs' =>
+        	[
+				'class' => VerbFilter::className(),
+				'actions' =>
+        		[
+					'delete' => ['post'],
+				],
+			],
+        	'access' =>
+        	[
+        		'class' => \yii\filters\AccessControl::className(),
+        		'only' => ['index', 'create', 'update', 'delete', 'informacion', 'view'],
+        		'rules' =>
+        		[
+        			[
+        				'actions' => ['index', 'informacion', 'view'],
+        				'allow' => true,
+        				'roles' => ['@'],
+        		],
+        			[
+        				'actions' => ['create', 'update', 'delete'],
+        				'allow' => true,
+        				'roles' => ['@'],
+        				'matchCallback' =>
+        				function ($rule, $action)
+        				{
+        					$valid_roles = [Usuarios::ROLE_ADMIN];
+        					return Usuarios::roleInArray($valid_roles);
+        				}
+        			],
+        		],
+        	],
+		];
+	}
 
     /**
      * Lists all Capacitadores models.

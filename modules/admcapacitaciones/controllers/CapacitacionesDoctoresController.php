@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
+use app\models\Usuarios;
 
 /**
  * CapacitacionesDoctoresController implements the CRUD actions for CapacitacionesDoctores model.
@@ -18,13 +19,39 @@ class CapacitacionesDoctoresController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
+	            'verbs' =>
+        		[
+	                'class' => VerbFilter::className(),
+	                'actions' =>
+        			[
+	                    'delete' => ['post'],
+	                ],
+	            ],
+        		'access' =>
+        		[
+        			'class' => \yii\filters\AccessControl::className(),
+        			'only' => ['index', 'create', 'update', 'delete', 'informacion', 'view'],
+        			'rules' =>
+        			[
+        				[
+        				'actions' => ['index', 'informacion', 'view'],
+        				'allow' => true,
+        				'roles' => ['@'],
+        				],
+	        			[
+		        			'actions' => ['create', 'update', 'delete'],
+		        			'allow' => true,
+		        			'roles' => ['@'],
+		        			'matchCallback' =>
+		        			function ($rule, $action)
+		        			{
+		        				$valid_roles = [Usuarios::ROLE_ADMIN];
+		        				return Usuarios::roleInArray($valid_roles);
+		        			}
+						],
+					],
+        		],
+        	];
     }
 
     /**
@@ -41,7 +68,6 @@ class CapacitacionesDoctoresController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
     /**
      * Displays a single CapacitacionesDoctores model.
      * @param integer $id
@@ -62,10 +88,6 @@ class CapacitacionesDoctoresController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }
-    public function actionCapacitaciones($id)
-    {
-    	
     }
     /**
      * Creates a new CapacitacionesDoctores model.
