@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'idCD',
-        	['format' => 'html', 'attribute' => 'idDoctor', 'value' => function($model){ return Html::a($model->idDoctor0->Nombre.' - '.$model->idDoctor0->Apellido, ['pordoctor', 'id' => $model->idDoctor]);}],
+        	['format' => 'html', 'attribute' => 'idDoctor', 'value' => function($model){ return Html::a($model->idDoctor0->Apellido, ['pordoctor', 'id' => $model->idDoctor, 'nombre' => $model->idDoctor0->Nombre, 'apellido' => $model->idDoctor0->Apellido]).', '.$model->idDoctor0->Nombre;}],
             ['attribute' => 'idCapacitacion', 'value' => 'idCapacitacion0.Nombre' ],
             'Resultado',
 

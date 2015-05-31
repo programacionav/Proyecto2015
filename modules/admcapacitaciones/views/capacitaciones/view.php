@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Capacitaciones */
@@ -37,16 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
             
         ],
     ]) ?>
-	<?php
-    	echo '<table class="table table-striped table-bordered detail-view"><tbody><tr><th>Nombre</th></tr>';
-    	$i = 1;
-    	foreach($asistencia as $a)
-    	{
-    		echo	'<tr>
-						<td>'.$a->Nombre.', '.$a->Apellido.'</td>
-					</tr>';
-    		$i++;
-    	}
-    	echo '</tbody></table>';
-    ?>
+	<?= GridView::widget([
+        'dataProvider' => $asistencia,
+        'columns' => [
+            'Nombre',
+        	'Apellido',
+        ],
+    ]); ?>
 </div>

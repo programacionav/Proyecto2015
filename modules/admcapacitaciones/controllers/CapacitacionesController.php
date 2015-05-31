@@ -14,6 +14,7 @@ use app\models\Doctores;
 use app\models\CapacitacionesDoctores;
 use app\modules\admcapacitaciones\models\CapacitacionesDoctoresSearch;
 use app\models\Empleados;
+use yii\data\ActiveDataProvider;
 /**
  * CapacitacionesController implements the CRUD actions for Capacitaciones model.
  */
@@ -53,15 +54,6 @@ class CapacitacionesController extends Controller
             return $this->render('filtroporfecha', ['model' => $model]);
         }
     }
-    public function actionDoctores()
-    {
-    	$dataProvider = new Doctores();
-    	$dataProvider = $dataProvider->find()->all();
-    	
-    	return $this->render('doctores', [
-    			'dataProvider' => $dataProvider,
-    	]);
-    }
     /**
      * Lists all Capacitaciones models.
      * @return mixed
@@ -77,10 +69,14 @@ class CapacitacionesController extends Controller
         ]);
     }
     public function actionView($id)
-    {
+    {	
     	$a = CapacitacionesDoctores::find()->select(['idDoctor'])->where(['idCapacitacion' => $id]);
-    	$asistencia = Empleados::find()->where(['idEmpleado' => $a])->all();
-    	
+    	$asistencia = new ActiveDataProvider([
+    			'query' => Empleados::find()->where(['idEmpleado' => $a]),
+    			'pagination' => [
+    					'pageSize' => 20,
+    			],
+    	]);
         return $this->render('view', [
             'model' => $this->findModel($id),
         	'asistencia' => $asistencia

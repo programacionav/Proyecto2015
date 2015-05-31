@@ -8,6 +8,7 @@ use app\modules\admcapacitaciones\models\CapacitacionesDoctoresSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 
 /**
  * CapacitacionesDoctoresController implements the CRUD actions for CapacitacionesDoctores model.
@@ -46,10 +47,15 @@ class CapacitacionesDoctoresController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionPordoctor($id)
+    public function actionPordoctor($id, $nombre, $apellido)
     {
-    	$cp = CapacitacionesDoctores::find()->where(['idDoctor' => $id])->all();
-    	return $this->render('pordoctor', ['cp' => $cp]);
+    	$dataProvider = new ActiveDataProvider([
+    			'query' => CapacitacionesDoctores::find()->where(['idDoctor' => $id]),
+    			'pagination' => [
+    					'pageSize' => 20,
+    			],
+    	]);
+    	return $this->render('pordoctor', ['dataProvider' => $dataProvider, 'nombre' => $nombre, 'apellido' => $apellido]);
     }
     public function actionView($id)
     {
