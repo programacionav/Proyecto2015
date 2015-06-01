@@ -103,6 +103,8 @@ class EmpleadosController extends Controller
     {
         $this->layout = 'amdpersonal';
         $model = new Empleados();
+        $empl = Empleados::findBySql("select * from empleados where idEmpleado = (select max(idEmpleado) from empleados)")->one();
+        $model->NroEmpleado = $empl->idEmpleado + 1;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if ($model->tipoEmpleado == "doctor")

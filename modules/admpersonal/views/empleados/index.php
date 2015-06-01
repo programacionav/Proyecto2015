@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
+use app\models\Empleados;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admpersonal\models\EmpleadosSearch */
@@ -67,8 +68,4 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Crear Empleado'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-</div>
-
-<div>
-    
 </div>

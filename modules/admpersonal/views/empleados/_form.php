@@ -75,7 +75,7 @@ use app\models\Sectores;
     
     <?php /*= $form->field($model, 'NroEmpleado')->hiddenInput()*/ ?>
 
-    <?= $form->field($model, 'NroEmpleado')->textInput() ?>
+    <?php //= $form->field($model, 'NroEmpleado')->textInput() ?>
     
     <?= $form->field($model, "tipoEmpleado")->dropDownList(["admin"=>"Administrativo", "doctor"=>"Doctor", "enfermero"=>"Enfermero"]) ?>
     
