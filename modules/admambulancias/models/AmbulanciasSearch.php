@@ -83,8 +83,21 @@ class AmbulanciasSearch extends Ambulancias
         ]);
         
         $query->joinWith(['idEmpleado0'=>  function ($q){
-            $q->where("empleados.Nombre LIKE '%".$this->FullNombre."%'")
-              ->orWhere("empleados.Apellido LIKE '%".$this->FullNombre."%'");
+            if(substr_count($this->FullNombre, " ")==1)
+            {
+                //print_r($this->FullNombre);
+                //exit();
+                list($cadena1,$cadena2) = explode(" ",$this->FullNombre);
+                $q->where("(empleados.Nombre LIKE '%".$cadena1."%' and empleados.Apellido LIKE '%".$cadena2."%') or "
+                        . "(empleados.Nombre LIKE '%".$cadena2."%' and empleados.Apellido LIKE '%".$cadena1."%')");
+                  
+            }
+            else
+            {
+                $q->where("empleados.Nombre LIKE '%".$this->FullNombre."%'")
+                ->orWhere("empleados.Apellido LIKE '%".$this->FullNombre."%'");
+            }
+            
             
         }]);
 

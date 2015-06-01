@@ -35,13 +35,13 @@ $this->params['breadcrumbs'][] = $this->title;
             
             'FechaInicio',
             'FechaFin',
-            'idEstado',
+            //'idEstado',
             'Aprobacion' => [
                 'label' => 'Aprobar',
                 'format' => 'raw',
                 'value' => function ($data){
                     if ($data->idEstado == "3"){
-                    return Html::a('Aprobar',['licencias/update', 'id' => $data->idLicencia, 'idEmpleado' => $data->idEmpleado, 'idEstado' => "1" ] /*[Url::to(['licencias/create','idEmpleado'=>$data->idEmpleado])]*/, ['class' => 'btn btn-primary']);//idEmpleado
+                    return Html::a('Aprobar',['licencias/update', 'id' => $data->idLicencia, 'idEmpleado' => $data->idEmpleado, 'idEstado' => "1"] /*[Url::to(['licencias/create','idEmpleado'=>$data->idEmpleado])]*/, ['class' => 'btn btn-primary']);//idEmpleado
                     }else{return "<center>".$data->idTipoLicencia."</center>";}}
                     ],
             'rechazo' =>[

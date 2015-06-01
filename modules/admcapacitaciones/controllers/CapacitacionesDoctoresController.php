@@ -8,6 +8,8 @@ use app\modules\admcapacitaciones\models\CapacitacionesDoctoresSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
+use app\models\Usuarios;
 
 /**
  * CapacitacionesDoctoresController implements the CRUD actions for CapacitacionesDoctores model.
@@ -17,13 +19,39 @@ class CapacitacionesDoctoresController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
+	            'verbs' =>
+        		[
+	                'class' => VerbFilter::className(),
+	                'actions' =>
+        			[
+	                    'delete' => ['post'],
+	                ],
+	            ],
+        		'access' =>
+        		[
+        			'class' => \yii\filters\AccessControl::className(),
+        			'only' => ['index', 'create', 'update', 'delete', 'informacion', 'view'],
+        			'rules' =>
+        			[
+        				[
+        				'actions' => ['index', 'informacion', 'view'],
+        				'allow' => true,
+        				'roles' => ['@'],
+        				],
+	        			[
+		        			'actions' => ['create', 'update', 'delete'],
+		        			'allow' => true,
+		        			'roles' => ['@'],
+		        			'matchCallback' =>
+		        			function ($rule, $action)
+		        			{
+		        				$valid_roles = [Usuarios::ROLE_ADMIN];
+		        				return Usuarios::roleInArray($valid_roles);
+		        			}
+						],
+					],
+        		],
+        	];
     }
 
     /**
@@ -40,19 +68,27 @@ class CapacitacionesDoctoresController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
     /**
      * Displays a single CapacitacionesDoctores model.
      * @param integer $id
      * @return mixed
      */
+    public function actionPordoctor($id, $nombre, $apellido)
+    {
+    	$dataProvider = new ActiveDataProvider([
+    			'query' => CapacitacionesDoctores::find()->where(['idDoctor' => $id]),
+    			'pagination' => [
+    					'pageSize' => 20,
+    			],
+    	]);
+    	return $this->render('pordoctor', ['dataProvider' => $dataProvider, 'nombre' => $nombre, 'apellido' => $apellido]);
+    }
     public function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
-
     /**
      * Creates a new CapacitacionesDoctores model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -98,7 +134,9 @@ class CapacitacionesDoctoresController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $modelo = $this->findModel($id);
+        $modelo->CDActivo = 0;
+        $modelo->save();
 
         return $this->redirect(['index']);
     }

@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h2>
         <?php if(isset($idEmpleado)& isset($empleado) & isset($idEstado))
             {
-                echo "Crear licencia para: ".$empleado->Nombre." ".$empleado->Apellido. " - IDESTADO: ".$idEstado;
+                echo "Crear licencia para: ".$empleado->Nombre." ".$empleado->Apellido;
             }
         ?>
     </h2>
@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'idEmpleado' => $idEmpleado,
         'idEstado'=> $idEstado,
+        'antiguedad'=> $antiguedad,
     ]) ?>
 
 </div>

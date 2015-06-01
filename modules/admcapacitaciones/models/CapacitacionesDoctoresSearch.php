@@ -18,8 +18,8 @@ class CapacitacionesDoctoresSearch extends CapacitacionesDoctores
     public function rules()
     {
         return [
-            [['idCD', 'idDoctor', 'idCapacitacion'], 'integer'],
-            [['Resultado'], 'safe'],
+            [['idCD'], 'integer'],
+            [['Resultado', 'idCapacitacion', 'idDoctor'], 'safe'],
         ];
     }
 
@@ -54,15 +54,23 @@ class CapacitacionesDoctoresSearch extends CapacitacionesDoctores
             // $query->where('0=1');
             return $dataProvider;
         }
-
+        $query->joinWith('idEmpleados0');
+		$query->joinWith('idCapacitacion0');
         $query->andFilterWhere([
+        	'CDActivo' => 1,
             'idCD' => $this->idCD,
-            'idDoctor' => $this->idDoctor,
-            'idCapacitacion' => $this->idCapacitacion,
         ]);
 
-        $query->andFilterWhere(['like', 'Resultado', $this->Resultado]);
-
+        $query->andFilterWhere(['like', 'Resultado', $this->Resultado])
+			->andFilterWhere(['like', 'capacitaciones.Nombre', $this->idCapacitacion])
+        	->andFilterWhere(['like', 'empleados.Apellido', $this->idDoctor]);
         return $dataProvider;
     }
 }
+
+
+
+
+
+
+

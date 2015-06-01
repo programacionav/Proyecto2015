@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Capacitadores */
 
-$this->title = $model->idCapacitador;
+$this->title = $model->Nombre.', '.$model->Apellido;
 $this->params['breadcrumbs'][] = ['label' => 'Capacitadores', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->idCapacitador], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->idCapacitador], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->idCapacitador], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Borrar', ['delete', 'id' => $model->idCapacitador], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Seguro quire borrar este item?',
@@ -29,10 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'idCapacitador',
-            'idEmpresaCapacitadora',
+        	['label' => 'Empresa capacitadora', 'value' => $model->idEmpresaCapacitadora0->RazonSocial],
             'Apellido',
             'Nombre',
-            'idEspecialidad',
+        	['label' => 'Especialidad del capacitador', 'value' => $model->idEspecialidad0->Descripcion],
         ],
     ]) ?>
 

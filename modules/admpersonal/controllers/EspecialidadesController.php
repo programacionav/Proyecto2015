@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\IdentityInterface;
+use yii\filters\AccessControl;
+use app\models\Usuarios;
 
 /**
  * EspecialidadesController implements the CRUD actions for Especialidades model.
@@ -32,6 +34,9 @@ class EspecialidadesController extends Controller
                         'actions' => ['create','update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                        $valid_roles = [Usuarios::ROLE_ADMIN];
+                        return Usuarios::roleInArray($valid_roles);}
                     ],
                 ],
             ],

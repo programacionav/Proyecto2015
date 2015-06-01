@@ -15,11 +15,30 @@ body {background-color:#ccc}
 
 
 $this->title = 'Administrador de Ambulancias';
+$usuario = Yii::$app->user->identity;
+$rol = 'Bienvenido ';
+
+?>
+
+<?php
+switch ($usuario['idRol']){
+    case 1: $rol= $rol.$usuario['Usuario'].' (Administrador)';
+                break;
+    case 2: $rol= $rol.$usuario['Usuario'].' (Doctor)';
+                break;
+    case 3: $rol= $rol.$usuario['Usuario'].' (Enfermero)';
+                break;
+                default : $rol= $rol.'usuario invitado';
+                break;
+    
+}
 
 
 ?>
 <h1 style="text-align: center"><?= Html::encode($this->title) ?></h1>
-<br/><br/>
+<br/>
+<?php echo "<p style='text-align:center;'>".$rol."</p>"; ?>
+<br/>
 <div style="text-align: center" class="admambulancias-default-index">
 
     <img src="../../../modules/admambulancias/ambulancia.png" alt="kasa" class="img-circle" height="200px" width="200px">

@@ -19,11 +19,28 @@ $this->title = 'Revisiones Tecnicas';
 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+
+
 <div class="revisionestecnicas-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><span class="glyphicon glyphicon-wrench" style="color: darkblue" aria-hidden="true"></span>&nbsp;&nbsp;<?= Html::encode($this->title) ?></h1>
+    <?php
+    $usuario = Yii::$app->user->identity;
+    $rolnum = $usuario['idRol'];
+    $rol = 'Enfermero';
+    if ($rolnum == 1) {
+        $rol = 'Administrador';
+    } else {
+        if ($rolnum == 2) {
+            $rol = 'Doctor';
+        }
+    }
+    $usuarioTemp = strtoupper($usuario['Usuario']);
+    echo "<p style='color:green;'>  " . $usuarioTemp . " (" . $rol . ")</p>";
+    ?>
     <p style="text-align: right;">
-        
+
         <?= Html::a('Ambulancias', ['/admambulancias/ambulancias'], ['class' => 'btn btn-default']) ?>
         <?= Html::a('Revisiones Tecnicas', ['/admambulancias/revisionestecnicas'], ['class' => 'btn btn-success disabled']) ?>
         <?= Html::a('Seguros', ['/admambulancias/segurosambulancias'], ['class' => 'btn btn-default']) ?>
@@ -38,9 +55,16 @@ $this->params['breadcrumbs'][] = $this->title;
     GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'rowOptions'=>function($model){
+                if($model->dias<15)
+                        return ['class'=>'danger'];
+                else
+                        return ['class'=>'success'];
+
+        },
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            ['attribute' => 'idRevision','label' => 'Revisión'],
+            ['attribute' => 'idRevision', 'label' => 'Revisión'],
             'Patente',
             'Taller',
             [
@@ -54,35 +78,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => ['date', 'php:d / m / Y']
             ],
             [
-                'label' => 'Estado',
                 'format' => 'raw',
-                'value' => function ($data) {// llamar a esta funcion del controlador :D
-                    $tempId = $data["idRevision"];
-
-                    date_default_timezone_set('America/Argentina/Buenos_Aires');
-
-                    $fechaVigencia = $data['FechaVigencia'];
-                    //Fecha de vigencia seccionada
-                    $diaVigencia = $fechaVigencia[8] . $fechaVigencia[9];
-                    $mesVigencia = $fechaVigencia[5] . $fechaVigencia[6];
-                    $anioVigencia = $fechaVigencia[0] . $fechaVigencia[1] . $fechaVigencia[2] . $fechaVigencia[3];
-
-                    $datevigencia = date_create($anioVigencia . '-' . $mesVigencia . '-' . $diaVigencia);
-                    $dateactual = new DateTime("now");
-                    $diferenciaDias = (date_diff($dateactual, $datevigencia)->format('%R%a'))* -1 *-1;
-                    
-                    if ($diferenciaDias<=15) {//Modificar URL para enviar mail
-                        if ($diferenciaDias < 0) {
-                            $sale = Html::a('Dar aviso!<br>Vencio hace ' . ($diferenciaDias* -1) . ' dias', ['aviso', 'id' => $tempId], ['class' => 'btn btn-danger', 'onclick' => 'actionAviso(' . $tempId . ')']);
-                        } else {
-                            $sale = Html::a('Dar aviso!<br>Aun quedan ' . $diferenciaDias . ' dias', ['aviso', 'id' => $tempId], ['class' => 'btn btn-warning', 'onclick' => 'actionAviso(' . $tempId . ')']);
-                        }
-                    } else {
-                        $sale = Html::a('Vigente<br>Aun quedan ' . $diferenciaDias . ' dias', ['aviso', 'id' => $tempId], ['class' => 'btn btn-primary disabled']);
-                    }
-                    return $sale;
-                },
-                    ],
+                'attribute' => 'vencimiento'
+            ],
                     // 'Observaciones:ntext', 
                     ['class' => 'yii\grid\ActionColumn'],
                 ],

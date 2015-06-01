@@ -8,6 +8,8 @@ use app\modules\admpersonal\models\AdministrativosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Usuarios;
+use yii\filters\AccessControl;
 
 
 /**
@@ -33,6 +35,9 @@ class AdministrativosController extends Controller
                         'actions' => ['create','update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                        $valid_roles = [Usuarios::ROLE_ADMIN];
+                        return Usuarios::roleInArray($valid_roles);}
                     ],
                 ],
             ],
@@ -100,7 +105,7 @@ class AdministrativosController extends Controller
         
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idEmpleado]);
+            return $this->redirect(['administrativos/index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

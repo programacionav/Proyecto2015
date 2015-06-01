@@ -6,6 +6,7 @@ use Yii;
 use app\models\Segurosambulancias;
 use app\modules\admambulancias\models\SegurosambulanciasSearch;
 use yii\web\Controller;
+use app\models\Usuarios;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -19,11 +20,23 @@ class SegurosambulanciasController extends Controller
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
+                'actions' => ['delete' => ['post'],],],
+            'access'=> [
+                'class'=> \yii\filters\AccessControl::className(),
+                'only' => ['index','create','update','delete','view'],
+                'rules'=>[
+                    [   'actions'=> ['index','view'],
+                        'allow'=> true,
+                        'roles'=>['@'],
+                        ], [
+                        'actions'=> ['create', 'update', 'delete'],
+                        'allow'=> true,
+                        'roles'=>['@'],
+                        'matchCallback'=> function ($rule, $action){
+                            $valid_roles = [Usuarios::ROLE_ADMIN];
+                            return Usuarios::roleInArray($valid_roles);
+                        }
+                        ],],],];
     }
 
     /**

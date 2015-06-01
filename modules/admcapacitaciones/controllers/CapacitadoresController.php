@@ -8,23 +8,51 @@ use app\modules\admcapacitaciones\models\CapacitadoresSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Usuarios;
 
 /**
  * CapacitadoresController implements the CRUD actions for Capacitadores model.
  */
 class CapacitadoresController extends Controller
 {
-    public function behaviors()
+	public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
+        return
+        [
+			'verbs' =>
+        	[
+				'class' => VerbFilter::className(),
+				'actions' =>
+        		[
+					'delete' => ['post'],
+				],
+			],
+        	'access' =>
+        	[
+        		'class' => \yii\filters\AccessControl::className(),
+        		'only' => ['index', 'create', 'update', 'delete', 'informacion', 'view'],
+        		'rules' =>
+        		[
+        			[
+        				'actions' => ['index', 'informacion', 'view'],
+        				'allow' => true,
+        				'roles' => ['@'],
+        		],
+        			[
+        				'actions' => ['create', 'update', 'delete'],
+        				'allow' => true,
+        				'roles' => ['@'],
+        				'matchCallback' =>
+        				function ($rule, $action)
+        				{
+        					$valid_roles = [Usuarios::ROLE_ADMIN];
+        					return Usuarios::roleInArray($valid_roles);
+        				}
+        			],
+        		],
+        	],
+		];
+	}
 
     /**
      * Lists all Capacitadores models.
@@ -106,7 +134,9 @@ class CapacitadoresController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $modelo = $this->findModel($id);
+        $modelo->CapacitadoresActivo = 0;
+        $modelo->save();
 
         return $this->redirect(['index']);
     }

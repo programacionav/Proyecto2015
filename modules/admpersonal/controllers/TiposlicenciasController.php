@@ -8,6 +8,8 @@ use app\modules\admpersonal\models\TiposlicenciasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Usuarios;
+use yii\filters\AccessControl;
 
 /**
  * TiposlicenciasController implements the CRUD actions for Tiposlicencias model.
@@ -31,6 +33,9 @@ class TiposlicenciasController extends Controller
                         'actions' => ['create','update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                        $valid_roles = [Usuarios::ROLE_ADMIN];
+                        return Usuarios::roleInArray($valid_roles);}
                     ],
                 ],
             ],
@@ -77,7 +82,7 @@ class TiposlicenciasController extends Controller
         $model = new Tiposlicencias();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idTipoLicencia]);
+            return $this->redirect(['index', 'id' => $model->idTipoLicencia]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -97,7 +102,7 @@ class TiposlicenciasController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idTipoLicencia]);
+            return $this->redirect(['index', 'id' => $model->idTipoLicencia]);
         } else {
             return $this->render('update', [
                 'model' => $model,

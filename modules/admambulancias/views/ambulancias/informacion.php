@@ -9,14 +9,14 @@ body {background-color:#EEE}
  
 <h3>Ambulancia</h3>
 <table class="table table-bordered">
-    <tr>
+    <tr class="bg-primary">
         <th>Patente</th>
         <th>Marca</th>
         <th>Modelo</th>
         <th>Numero de Motor</th>
     </tr>
     <?php foreach($model as $fila): ?>
-    <tr>
+    <tr class="bg-info">
         <td><?= $fila->Patente?></td>
         <td><?= $fila->Marca?></td>
         <td><?= $fila->Modelo?></td>
@@ -28,14 +28,14 @@ body {background-color:#EEE}
 
 <h3>Empleado Acargo</h3>
 <table class="table table-bordered">
-    <tr>
+    <tr class="bg-primary">
         <th>Apellido</th>
         <th>Nombre</th>
         <th>DNI</th>
         <th>Email</th>
     </tr>
     <?php foreach($empleadoAcargo as $fila): ?>
-    <tr>
+    <tr class="bg-info">
         <td><?= $fila->Apellido?></td>
         <td><?= $fila->Nombre?></td>
         <td><?= $fila->DNI?></td>
@@ -46,14 +46,14 @@ body {background-color:#EEE}
 </table>
 <h3>Revisiones Tecnicas</h3>
 <table class="table table-bordered">
-    <tr>
+    <tr class="bg-primary">
         <th>Taller</th>
         <th>Fecha de Carga</th>
         <th>Fecha de Vigencia</th>
         <th>Observacion</th>
     </tr>
     <?php foreach($revisiones as $fila): ?>
-    <tr>
+    <tr class="bg-info">
         <td><?= $fila->Taller?></td>
         <td><?= $fila->FechaCarga?></td>
         <td><?= $fila->FechaVigencia?></td>
@@ -64,7 +64,7 @@ body {background-color:#EEE}
 </table>
 <h3>Aseguradora</h3>
 <table class="table table-bordered">
-    <tr>
+    <tr class="bg-primary">
         <th>Aseguradora</th>
         <th>Número de Poliza</th>
         <th>Fecha desde</th>
@@ -72,7 +72,7 @@ body {background-color:#EEE}
         <th>Valor Mensual</th>
     </tr>
     <?php foreach($aseguradora as $fila): ?>
-    <tr>
+    <tr class="bg-info">
         <td><?= $fila->Aseguradora?></td>
         <td><?= $fila->NroPoliza?></td>
         <td><?= $fila->FechaDesde?></td>

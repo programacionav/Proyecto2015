@@ -10,6 +10,12 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\app\models;
 use app\models\Capacitadores;
+use app\models\Doctores;
+use app\models\CapacitacionesDoctores;
+use app\modules\admcapacitaciones\models\CapacitacionesDoctoresSearch;
+use app\models\Empleados;
+use yii\data\ActiveDataProvider;
+use app\models\Usuarios;
 /**
  * CapacitacionesController implements the CRUD actions for Capacitaciones model.
  */
@@ -24,15 +30,40 @@ class CapacitacionesController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+        		'access' => [
+        				'class' => \yii\filters\AccessControl::className(),
+        				'only' => ['index', 'create', 'update', 'delete', 'informacion', 'view'],
+        				'rules' => [
+        						[
+        								'actions' => ['index', 'informacion', 'view'],
+        								'allow' => true,
+        								'roles' => ['@'],
+        						],
+        						[
+        								'actions' => ['create', 'update', 'delete'],
+        								'allow' => true,
+        								'roles' => ['@'],
+        								'matchCallback' => function ($rule, $action) {
+        									$valid_roles = [Usuarios::ROLE_ADMIN];
+        									return Usuarios::roleInArray($valid_roles);
+        								}
+        			],
+        		],
+        	],
         ];
     }
-
-    /**
-     * Lists all Capacitaciones models.
-     * @return mixed
-     */
-    public function actionPorfecha()
+    /* BORRAR TODAS LAS RELACIONES NO ES LA SOLUCION
+    public function actionRelacion($id)
     {
+    	$busqueda = CapacitacionesDoctores::find() ->where(['idCapacitacion' => $id]) ->all();
+    	if ($busqueda !== null) {
+    		return $busqueda;
+    	} else {
+    		return false;
+    	}
+    }
+    */
+    public function actionPorfecha()
     {
         $model = new CapacitacionesSearch();
  
@@ -44,16 +75,10 @@ class CapacitacionesController extends Controller
             return $this->render('filtroporfecha', ['model' => $model]);
         }
     }
-    }
-    public function actionFiltroporfecha()
-    {
-    	$searchModel = new Capacitaciones();
-    	$searchModel = Capacitaciones::find()->where('Fecha = 2016-05-12');
-    	
-    	return $this->render('filtroporfecha', [
-    			'searchModel' => $searchModel,
-    	]);
-    }
+    /**
+     * Lists all Capacitaciones models.
+     * @return mixed
+     */
     public function actionIndex()
     {
         $searchModel = new CapacitacionesSearch();
@@ -65,9 +90,17 @@ class CapacitacionesController extends Controller
         ]);
     }
     public function actionView($id)
-    {
+    {	
+    	$a = CapacitacionesDoctores::find()->select(['idDoctor'])->where(['idCapacitacion' => $id]);
+    	$asistencia = new ActiveDataProvider([
+    			'query' => Empleados::find()->where(['idEmpleado' => $a]),
+    			'pagination' => [
+    					'pageSize' => 20,
+    			],
+    	]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+        	'asistencia' => $asistencia
         		
         ]);
     }
@@ -117,7 +150,25 @@ class CapacitacionesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+    	/*
+    	 * $resultado = $this->actionRelacion($id);
+    	for($i=0;$i<count($resultado);$i++)
+    	{
+    		$relacion = $resultado[$i];
+    		$relacion->delete();
+    	}**/
+    	/*LO QUE SIGUE ES IGUAL QUE LO DE ARRIBA SI USAR LA FUNCION actionBorrar()
+    	$relacion = new CapacitacionesDoctores();
+    	$array = $relacion->find()->where(['idDoctor' => $id])->all();
+    	for($i=0;$i<count($array);$i++)
+    	{
+    		$r = $array[$i];
+    		$r->delete();
+    	}*/
+    	
+        $modelo = $this->findModel($id);
+        $modelo->CapacitacionesActivo = 0;
+        $modelo->save();
 
         return $this->redirect(['index']);
     }

@@ -58,15 +58,24 @@ class CapacitacionesSearch extends Capacitaciones
         }
 
         $query->andFilterWhere([
+        	'CapacitacionesActivo' => 1,
             'idCapacitacion' => $this->idCapacitacion,
             'DuracionHoras' => $this->DuracionHoras,
             'idCapacitador' => $this->idCapacitador,
         ]);
 
         $query->andFilterWhere(['like', 'Nombre', $this->Nombre])
-            ->andFilterWhere(['like', 'Descripcion', $this->Descripcion])
- 	        ->andFilterWhere(['>', 'Fecha', $this->Desde])
-	        ->andFilterWhere(['<', 'Fecha', $this->Hasta]);
+            ->andFilterWhere(['like', 'Descripcion', $this->Descripcion]);
+		if(isset($this->Fecha))
+		{
+			$query->andFilterWhere(['like', 'Fecha', $this->Fecha]);
+		}
+		else
+		{
+			$query->andFilterWhere(['>', 'Fecha', $this->Desde])
+			->andFilterWhere(['<', 'Fecha', $this->Hasta]);
+		}
+           
 
         return $dataProvider;
     }

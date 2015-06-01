@@ -46,10 +46,10 @@ class Capacitadores extends \yii\db\ActiveRecord
     {
         return [
             'idCapacitador' => 'Id Capacitador',
-            'idEmpresaCapacitadora' => 'Id Empresa Capacitadora',
+            'idEmpresaCapacitadora' => 'Empresa Capacitadora',
             'Apellido' => 'Apellido',
             'Nombre' => 'Nombre',
-            'idEspecialidad' => 'Id Especialidad',
+            'idEspecialidad' => 'Especialidad',
         ];
     }
 

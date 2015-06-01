@@ -2,11 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Capacitaciones */
 
-$this->title = $model->idCapacitacion;
+$this->title = $model->Nombre;
 $this->params['breadcrumbs'][] = ['label' => 'Capacitaciones', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -33,8 +34,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'Descripcion:ntext',
             'Fecha',
             'DuracionHoras',
-            'idCapacitador',
+        	['label' => 'Capacitador', 'value' => $model->idCapacitador0->Nombre.', '.$model->idCapacitador0->Apellido]
+            
         ],
     ]) ?>
-
+	<?= GridView::widget([
+        'dataProvider' => $asistencia,
+        'columns' => [
+            'Nombre',
+        	'Apellido',
+        ],
+    ]); ?>
 </div>

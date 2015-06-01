@@ -8,6 +8,8 @@ use app\modules\admpersonal\models\DoctoresSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Usuarios;
+use yii\filters\AccessControl;
 
 /**
  * DoctoresController implements the CRUD actions for Doctores model.
@@ -31,6 +33,9 @@ class DoctoresController extends Controller
                         'actions' => ['create','update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                        $valid_roles = [Usuarios::ROLE_ADMIN];
+                        return Usuarios::roleInArray($valid_roles);}
                     ],
                 ],
             ],
@@ -97,7 +102,7 @@ class DoctoresController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idDoctor]);
+            return $this->redirect(['doctores/index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
