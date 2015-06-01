@@ -79,6 +79,7 @@ class Empleados extends \yii\db\ActiveRecord
             'Email' => Yii::t('app', 'Email'),
             'Activo' => Yii::t('app', 'Activo'),
             'FechaBaja' => Yii::t('app', 'Fecha Baja'),
+            'idEspecialidad' => Yii::t('app', 'Especialidad'),
             'activo2' => Yii::t('app', "Activo"),
         ];
     }
@@ -159,6 +160,33 @@ class Empleados extends \yii\db\ActiveRecord
     public function getUsuarios()
     {
         return $this->hasMany(Usuarios::className(), ['idEmpleado' => 'idEmpleado']);
+    }
+    
+    public function getAntiguedad()
+    {
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+           $fechaActual = date("Y-m-d");
+            $FechaIngreso = $this->FechaIngreso;
+            
+            $faa = substr($fechaActual, 0, 4);
+            $fam = substr($fechaActual, 5, 2);
+            $fad = substr($fechaActual, 8, 2);
+            
+            $fia = substr($FechaIngreso, 0, 4);
+            $fim = substr($FechaIngreso, 5, 2);
+            $fid = substr($FechaIngreso, 8, 2);
+            
+            $antiguedad = $faa - $fia;
+            
+            if ($fam < $fim){ $antiguedad-= 1;}
+            else
+            {
+                if ($fim == $fam)
+                    {
+                        if($fid < $fad){$antiguedad-= 1;}
+                    }
+            }
+            return $antiguedad;
     }
     
     

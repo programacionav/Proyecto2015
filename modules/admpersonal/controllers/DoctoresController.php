@@ -102,7 +102,7 @@ class DoctoresController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idDoctor]);
+            return $this->redirect(['doctores/index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

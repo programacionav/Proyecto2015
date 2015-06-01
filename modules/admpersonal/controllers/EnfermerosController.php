@@ -102,7 +102,7 @@ class EnfermerosController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idEnfermero]);
+            return $this->redirect(['enfermeros/index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

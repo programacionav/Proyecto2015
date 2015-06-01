@@ -31,11 +31,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'NroEmpleado',
             // 'FechaIngreso',
             // 'Email:email',
-            'Activo',
+            //'Activo',
+            'FechaBaja',
+            'baja' => [
+                'label' => 'Baja/Alta',
+                'format' => 'raw',
+                'value' => function ($data){
+                if ($data->Activo == 0){
+                return Html::a('Alta',['baja', 'id' => $data->idEmpleado] /*[Url::to(['licencias/create','idEmpleado'=>$data->idEmpleado])]*/, ['class' => 'btn btn-warning']);//idEmpleado
+                }else{return "<center>-------</center>";}}
+            ]
+            ,
             //'licencia',
-            //'FechaBaja',
+            
 
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{update}'],
+            //['class' => 'yii\grid\ActionColumn', 'template' => '{update}'],
         ],
     ]); ?>
 </div>

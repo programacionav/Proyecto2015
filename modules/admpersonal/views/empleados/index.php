@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Nombre',
             'DNI',
             'NroEmpleado',
-            // 'FechaIngreso',
+            'FechaIngreso',
             // 'Email:email',
             'Activo' => [
                 'label' => 'Estado',
@@ -48,6 +48,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 if ($data->Activo == 1){
                 return Html::a('Licencia',['licencias/create', 'idEmpleado' => $data->idEmpleado, 'idEstado' => "3" ] /*[Url::to(['licencias/create','idEmpleado'=>$data->idEmpleado])]*/, ['class' => 'btn btn-success']);//idEmpleado
                 }else{return "<center>-------</center>";}}
+            ]
+            ,
+            'baja' => [
+                'label' => 'Baja/Alta',
+                'format' => 'raw',
+                'value' => function ($data){
+                if ($data->Activo == 1){
+                return Html::a('Baja',['baja', 'id' => $data->idEmpleado], ['class' => 'btn btn-warning']);
+                }else{return Html::a('Alta',['baja', 'id' => $data->idEmpleado], ['class' => 'btn btn-info']);}}
             ]
             ,
             // 'FechaBaja',

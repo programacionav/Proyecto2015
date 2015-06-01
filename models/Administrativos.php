@@ -41,7 +41,7 @@ class Administrativos extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idEmpleado' => Yii::t('app', 'Id Empleado'),
+            'idEmpleado' => Yii::t('app', 'ID Empleado'),
             'idSector' => Yii::t('app', 'Id Sector'),
             'secDescripcion' => Yii::t('app', 'Sector'),
         ];

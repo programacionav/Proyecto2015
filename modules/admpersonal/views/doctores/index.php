@@ -33,9 +33,17 @@ $this->params['breadcrumbs'][] = $this->title;
             "Nombre",
             'Matricula',
             'FechaIngreso',
+            'licencia' => [
+                'label' => 'Licencia',
+                'format' => 'raw',
+                'value' => function ($data){
+                if ($data->Activo == 1){
+                return Html::a('Licencia',['licencias/create', 'idEmpleado' => $data->idEmpleado, 'idEstado' => "3" ] /*[Url::to(['licencias/create','idEmpleado'=>$data->idEmpleado])]*/, ['class' => 'btn btn-success']);//idEmpleado
+                }else{return "<center>-------</center>";}}
+            ],
             
 
-            //['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{update}'],
         ],
     ]); ?>
 

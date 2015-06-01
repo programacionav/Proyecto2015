@@ -90,7 +90,8 @@ class LicenciasController extends Controller
     {
        $this->layout = 'amdpersonal';
         $searchModel = new LicenciasSearch();
-        $dataProvider = $searchModel->searchPendientes(Yii::$app->request->queryParams);
+        $searchModel->idEstado = "3";
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('pendientes', [
             'searchModel' => $searchModel,
@@ -109,9 +110,13 @@ class LicenciasController extends Controller
         $model = new Licencias();
         
         if (isset($_GET['idEmpleado']))
-        {$idEmpleado = $_GET['idEmpleado'];}
+        {
+            $idEmpleado = $_GET['idEmpleado'];
+            $empl = \app\models\Empleados::findOne($idEmpleado);
+            $antiguedad = $empl->getAntiguedad();
+        }
         else
-        {$idEmpleado = "";}
+        {$idEmpleado = ""; $antiguedad = "35";}
         
         if (isset($_GET['idEstado']))
         {$idEstado = $_GET['idEstado'];}
@@ -122,7 +127,7 @@ class LicenciasController extends Controller
             return $this->redirect(['pendientes', 'id' => $model->idLicencia]);
         } else {
             return $this->render('create', [
-                'model' => $model, 'idEmpleado' => $idEmpleado, 'idEstado' => $idEstado
+                'model' => $model, 'idEmpleado' => $idEmpleado, 'idEstado' => $idEstado, 'antiguedad'=> $antiguedad
             ]);
         }
     }
@@ -139,7 +144,7 @@ class LicenciasController extends Controller
         $model = $this->findModel($id);
         
         if (isset($_GET['idEmpleado']))
-        {$idEmpleado = $_GET['idEmpleado'];}
+        {$idEmpleado = $_GET['idEmpleado']; $empl = \app\models\Empleados::findOne($idEmpleado);}
         else
         {$idEmpleado = "";}
         
@@ -152,7 +157,7 @@ class LicenciasController extends Controller
             return $this->redirect(['pendientes', 'id' => $model->idLicencia]);
         } else {
             return $this->render('update', [
-                'model' => $model, 'idEmpleado' => $model->idEmpleado, 'idEstado' => $idEstado
+                'model' => $model, 'idEmpleado' => $model->idEmpleado, 'idEstado' => $idEstado, 'antiguedad'=> $empl->getAntiguedad()
             ]);
         }
     }

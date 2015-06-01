@@ -41,8 +41,8 @@ class Enfermeros extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idEnfermero' => Yii::t('app', 'Id Enfermero'),
-            'idEspecialidad' => Yii::t('app', 'Id Especialidad'),
+            'idEnfermero' => Yii::t('app', 'ID Enfermero'),
+            'idEspecialidad' => Yii::t('app', 'Especialidad'),
             'espDescripcion' => \Yii::t('app', 'Especialidad'),
         ];
     }

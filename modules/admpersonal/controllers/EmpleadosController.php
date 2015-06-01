@@ -72,7 +72,8 @@ class EmpleadosController extends Controller
     {
         $this->layout = 'amdpersonal';
         $searchModel = new EmpleadosSearch();
-        $dataProvider = $searchModel->searchInactivos(Yii::$app->request->queryParams);
+        $searchModel->Activo = "0";
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
         return $this->render('inactivos', [
             'searchModel' => $searchModel,
@@ -149,12 +150,29 @@ class EmpleadosController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id' => $model->idEmpleado]);
+            return $this->redirect(['empleados/index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
             ]);
         }
+    }
+    
+    public function actionBaja ($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->Activo == "0"){$model->Activo = "1"; $model->FechaBaja = "";}
+        else {$model->Activo = "0";date_default_timezone_set('America/Argentina/Buenos_Aires'); $model->FechaBaja = date("Y-m-d");}
+        
+        
+        if ($model->save()) {
+            return $this->redirect(['inactivos']);
+            
+        } else {
+            return $this->redirect(['index'
+            ]);
+        }
+        
     }
 
     /**

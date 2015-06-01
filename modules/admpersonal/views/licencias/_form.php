@@ -22,44 +22,87 @@ use yii\helpers\ArrayHelper;
 </script>
 
 <script type="text/javascript">
+    function fechaToTxt (fecha)
+    {
+        year = fecha.getFullYear();
+        if (fecha.getMonth() < 10)
+            {
+                mes = fecha.getMonth()+1;
+                month = "0"+mes; 
+            }
+        else{month = fecha.getMonth()+1;}
+            
+        if (fecha.getDate() < 10)
+            {
+                dia = fecha.getDate();
+                day = "0"+dia; 
+            }
+        else{day = fecha.getDate();}
+                        
+        return year+"-"+month+"-"+day;
+        
+    }
+    
+    function fechaTxtToDate(fecha)
+    {
+                    syear = fecha.slice(0,4);
+                    smonth = fecha.slice(5,7) - 1;
+                    sday = fecha.slice(8,10);
+                    
+                    return new Date(syear ,smonth , sday);
+    }
+    
     $(document).ready(function() {
             $("#licencias-fechainicio").change(
                     function(){
-                    fechaSeleccionada = $("#licencias-fechainicio").val();
-                    syear = fechaSeleccionada.slice(0,4);
-                    smonth = fechaSeleccionada.slice(5,7) - 1;
-                    sday = fechaSeleccionada.slice(8,10);
-                    
-                    fechaSeleccionada = new Date(syear ,smonth , sday);
+                    fechaSeleccionada = fechaTxtToDate($("#licencias-fechainicio").val());
                     fechaActual = new Date();
                     
                     if (fechaSeleccionada < fechaActual)
-                    {
-                        year = fechaActual.getFullYear();
-                        if (fechaActual.getMonth() < 10)
-                            {
-                                mes = fechaActual.getMonth()+1;
-                                month = "0"+mes; 
-                            }
-                        else{month = fechaActual.getMonth()+1;}
-            
-                        if (fechaActual.getDate() < 10)
-                            {
-                                dia = fechaActual.getDate();
-                                day = "0"+dia; 
-                            }
-                        else{day = fechaActual.getDate();}
-                        
+                    {   
                         alert("Debe Introducir una fecha valida");
                         
-                        $("#licencias-fechainicio").val(year+"-"+month+"-"+day);
+                        $("#licencias-fechainicio").val(fechaToTxt(fechaActual));
                     }
                     
+                    tipoLicencia = $("#licencias-idtipolicencia").val();
+                    fechaSeleccionada = fechaTxtToDate($("#licencias-fechainicio").val());
+                    fechaFin = fechaSeleccionada;
                     
-                     
+                    if (tipoLicencia == "1")
+                    {fechaFin.setDate(fechaSeleccionada.getDate() + 7);}
+                    else if(tipoLicencia === "2"){fechaFin.setDate(fechaSeleccionada.getDate() + 14);}
+                    else if(tipoLicencia === "3"){fechaFin.setDate(fechaSeleccionada.getDate() + 21);}
+                    else if(tipoLicencia === "4"){fechaFin.setDate(fechaSeleccionada.getDate() + 28);}
+                    else if(tipoLicencia === "5"){fechaFin.setDate(fechaSeleccionada.getDate() + 35);}
+                    else{fechaFin.setDate(fechaSeleccionada.getDate() + 7);}
+                        
+                    
+                    /*switch(tipoLicencia)
+                        {
+                            case (tipoLicencia === "1"):
+                              fechaFin.setDate(fechaSeleccionada.getDate() + 7);
+                              break;
+                            case (tipoLicencia === "2"):
+                              fechaFin.setDate(fechaSeleccionada.getDate() + 14);
+                              break;
+                            case (tipoLicencia === "3"):
+                              fechaFin.setDate(fechaSeleccionada.getDate() + 21);
+                              break;
+                            case (tipoLicencia === "4"):
+                              fechaFin.setDate(fechaSeleccionada.getDate() + 28);
+                              break;
+                            case (tipoLicencia === "5"):
+                              fechaFin.setDate(fechaSeleccionada.getDate() + 35);
+                              break;
+                          
+                        }*/
+                   //fecha = fechaFin.getFullYear()+"-"+fechaFin.getMonth()+"-"fechaFin.getDate()
+                            
+                    $("#licencias-fechafin").val(fechaToTxt(fechaFin)); 
                 })
                 
-            $("#licencias-fechafin").change(
+            /*$("#licencias-fechafin").change(
                     function(){
                         fechaSeleccionada = $("#licencias-fechainicio").val();
                         syear = fechaSeleccionada.slice(0,4);
@@ -76,27 +119,12 @@ use yii\helpers\ArrayHelper;
                         fechaFin = new Date(fyear ,fmonth , fday);
                         
                         if (fechaSeleccionada > fechaFin)
-                    {
-                        year = fechaSeleccionada.getFullYear();
-                        if (fechaSeleccionada.getMonth() < 10)
-                            {
-                                mes = fechaSeleccionada.getMonth()+1;
-                                month = "0"+mes; 
-                            }
-                        else{month = fechaSeleccionada.getMonth()+1;}
-            
-                        if (fechaSeleccionada.getDate()+1 < 10)
-                            {
-                                dia = fechaSeleccionada.getDate()+1;
-                                day = "0"+dia; 
-                            }
-                        else{day = fechaSeleccionada.getDate();}
-                        
+                    {                        
                         alert("Debe Introducir una fecha fin posterior a la de inicio");
                         
-                        $("#licencias-fechafin").val(year+"-"+month+"-"+day);
+                        $("#licencias-fechafin").val(fechaToTxt(fechaSeleccionada));
                     }
-                    })
+                    })*/
         }
                 
            
@@ -110,7 +138,7 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'idTipoLicencia')->dropDownList(ArrayHelper::map(\app\models\Tiposlicencias::find()->all(), "idTipoLicencia", "Descripcion")) ?>
+    <?= $form->field($model, 'idTipoLicencia')->dropDownList(ArrayHelper::map(\app\models\Tiposlicencias::find()->andFilterWhere(['and',"AntiguedadMinima <= $antiguedad"])->all(), "idTipoLicencia", "Descripcion")) ?>
 
     <?php //= $form->field($model, 'idEmpleado')->hiddenInput(["value" => $idEmpleado]) 
         echo '<div class="form-group field-licencias-idempleado required">

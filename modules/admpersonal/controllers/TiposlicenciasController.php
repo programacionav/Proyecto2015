@@ -82,7 +82,7 @@ class TiposlicenciasController extends Controller
         $model = new Tiposlicencias();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idTipoLicencia]);
+            return $this->redirect(['index', 'id' => $model->idTipoLicencia]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -102,7 +102,7 @@ class TiposlicenciasController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idTipoLicencia]);
+            return $this->redirect(['index', 'id' => $model->idTipoLicencia]);
         } else {
             return $this->render('update', [
                 'model' => $model,

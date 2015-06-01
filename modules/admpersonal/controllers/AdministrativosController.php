@@ -105,7 +105,7 @@ class AdministrativosController extends Controller
         
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idEmpleado]);
+            return $this->redirect(['administrativos/index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
