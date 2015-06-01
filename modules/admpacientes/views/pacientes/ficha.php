@@ -8,7 +8,7 @@ use yii\jui\DatePicker;
 
 ?>
 
-    
+    <?php echo "<br><h2>".$model->Nombre." ".$model->Apellido."</h2>"?>
 
 
     <?= $this->render('/consultas\_search',[

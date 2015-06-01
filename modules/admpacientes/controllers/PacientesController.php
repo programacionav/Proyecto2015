@@ -106,6 +106,7 @@ class PacientesController extends Controller
                'dataProvider'=>$dataProvider,
                'searchModel2'=>$searchModel2,
                'dataProvider2'=>$dataProvider2,
+                'model'=>$this->findModel($id),
              ]);
 }
 

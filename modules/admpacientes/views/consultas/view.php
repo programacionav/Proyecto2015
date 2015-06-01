@@ -15,10 +15,10 @@ use yii\widgets\DetailView;
             //'idConsulta',
             'FechaHora',
             //'idDoctor',
-            'idPaciente',
+            //'idPaciente',
             'Diagnostico:ntext',
             'Tratamiento:ntext',
-            'idObraSocial',
+            //'idObraSocial',
         ],
     ]) ?>
 

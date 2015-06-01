@@ -19,11 +19,16 @@ use yii\widgets\DetailView;
             //'idTipoPractica',
             'FechaSolicitud',
             'FechaHoraRealizado',
-            'idDoctor',
+            //'idDoctor',
             //'idPaciente',
             'Resultado:ntext',
-            'idObraSocial',
-            'Adjunto',
+            //'idObraSocial',
+            [
+                'attribute'=>'Adjunto',
+                'format'=>'raw',
+                'value'=> Html::a($model->Adjunto, ["../../uploads/$model->Adjunto"], array('target'=>'_blank')),
+                
+            ],
             
         ],
     ]) ?>
