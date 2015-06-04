@@ -62,9 +62,10 @@ class TagsarticulosController extends Controller
     public function actionCreate()
     {
         $model = new Tagsarticulos();
+        print_r(\Yii::$app->request->post());
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'idArticulo' => $model->idArticulo, 'idTag' => $model->idTag]);
+            //return $this->redirect(['view', 'idArticulo' => $model->idArticulo, 'idTag' => $model->idTag]);
         } else {
             return $this->render('create', [
                 'model' => $model,

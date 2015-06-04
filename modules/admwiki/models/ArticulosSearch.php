@@ -6,12 +6,18 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Articulos;
+use app\models\Estadosarticulos;
+
+
 
 /**
  * ArticulosSearch represents the model behind the search form about `app\models\Articulos`.
  */
 class ArticulosSearch extends Articulos
 {
+	
+	public $Descripcion;
+	
     /**
      * @inheritdoc
      */
@@ -19,7 +25,7 @@ class ArticulosSearch extends Articulos
     {
         return [
             [['idArticulo', 'idEstado', 'idEmpleado'], 'integer'],
-            [['Codigo', 'Titulo', 'Texto', 'FechaAlta'], 'safe'],
+            [['Codigo', 'Titulo', 'Texto', 'FechaAlta','Descripcion'], 'safe'],
         ];
     }
 
@@ -50,6 +56,7 @@ class ArticulosSearch extends Articulos
         $this->load($params);
 
         if (!$this->validate()) {
+        	$query->joinWith(['idEstado0']);
             // uncomment the following line if you do not want to any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
@@ -58,14 +65,21 @@ class ArticulosSearch extends Articulos
         $query->andFilterWhere([
             'idArticulo' => $this->idArticulo,
             'FechaAlta' => $this->FechaAlta,
-            'idEstado' => $this->idEstado,
+            'articulos.idEstado' => $this->idEstado,
             'idEmpleado' => $this->idEmpleado,
         ]);
 
+        $query->joinWith(['idEstado0'=>function ($q){
+        	$q->where('Estadosarticulos.Descripcion LIKE "%'.$this->Descripcion.'%"');
+        }
+        ]);
+                
         $query->andFilterWhere(['like', 'Codigo', $this->Codigo])
             ->andFilterWhere(['like', 'Titulo', $this->Titulo])
             ->andFilterWhere(['like', 'Texto', $this->Texto]);
-
+        
+        
+        
         return $dataProvider;
     }
 }

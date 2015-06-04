@@ -1,21 +1,12 @@
-<div class="admwiki-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <h1>PROBANDOOO!!!</h1>
-    <h3>Views</h3>
-    <a href=http://localhost/Proyecto2015/web/index.php?r=admwiki/articulos>Articulos</a><br>
-    <a href=http://localhost/Proyecto2015/web/index.php?r=admwiki/estadosarticulos>Estados Articulos</a><br>
-    <a href=http://localhost/Proyecto2015/web/index.php?r=admwiki/tags>Tags</a><br>
-    <a href=http://localhost/Proyecto2015/web/index.php?r=admwiki/tagsarticulos>Tags Articulos</a>
-       
-    <!-- CODIGO ORIGINAL
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
-    -->
-</div>
+<head>
+	<link rel="stylesheet" type="text/css" href="/Proyecto2015/modules/admwiki/views/css/styles.css">
+</head>
+
+
+ 
+    
+    <div id="presentacion-cuadrogeneral">
+    <div id="titulo">CLINICA</div>
+    <div id="subtitulo">WIKIPEDIA</div>
+    <a href=/Proyecto2015/web/index.php/admwiki/articulos><div id="boton-ingresar">INGRESAR</div></a>
+    </div>
